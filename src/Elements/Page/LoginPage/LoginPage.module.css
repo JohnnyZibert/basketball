@@ -1,0 +1,71 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: 100vh;
+
+}
+
+
+.picture_wrapper {
+    /*max-width: 605px;*/
+    margin: auto 0;
+    padding: 0 12px;
+    overflow: hidden;
+    object-fit: cover;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.signIn_content{
+    padding: 0 12px;
+    width: 100%;
+    max-width: 366px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    margin: auto;
+
+}
+
+.logoSingIn {
+    width: 130px;
+    height: 50px;
+    left: 120px;
+    top: 340px;
+}
+
+.logoText {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 49px;
+    color: #344472;
+}
+
+.img {
+position: relative;
+}
+
+.imgSingIn {
+    position: absolute;
+    z-index: 1;
+}
+
+.bgSignIn {
+    position: absolute;
+    z-index: 0;
+}
+
+.linkSignUp {
+    color: #E4163A;
+}
+
+
+
+
+
