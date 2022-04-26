@@ -2,9 +2,11 @@ import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 
+import { images } from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests'
 import { AppDispatch } from '../../../Store/store'
 import { FormInput } from '../../../UI/form/FormInput'
+import styles from './register.module.css'
 
 export interface IAuthForm {
   userName: string
@@ -16,7 +18,6 @@ export interface IAuthForm {
 const RegisterForm = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
-  console.log(methods.formState.errors)
 
   const onSubmit = (data: IAuthForm) => {
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {
@@ -51,44 +52,44 @@ const RegisterForm = () => {
             }}
             name={'repeatPassword'}
           />
-          <button type="submit">Зайти </button>
+          <button type="submit">Sign Up</button>
         </form>
       </FormProvider>
+
+      {/*// <div className={styles.container}>*/}
+      {/*// <div className={styles.registerContainer}>*/}
+      {/*// <form className={styles.regForm}>*/}
+      {/*// <AuthForm*/}
+      {/*//         handleSubmit={handleSubmit}*/}
+      {/*//         control={control}*/}
+      {/*//         reset={reset}*/}
+      {/*//       />*/}
+      {/*//       <AuthForm />*/}
+      {/*//       <AuthForm />*/}
+      {/*//       <AuthForm />*/}
+      {/*//       <div>*/}
+      {/*//         <input type="checkbox" /> I accept the agreement*/}
+      {/*//         <div />*/}
+      {/*//         <NewButton onClick={handleSubmit}>Sing up</NewButton>{' '}*/}
+      {/*//         <div>*/}
+      {/*//           Already a member?*/}
+      {/*//           <span>*/}
+      {/*//             {' '}*/}
+      {/*//             <Link to={'/'}>Sing in</Link>*/}
+      {/*//           </span>*/}
+      {/*//         </div>*/}
+      {/*//       </div>*/}
+      {/*//     </form>*/}
+      {/*//   </div>*/}
+      <div className={styles.picture_wrapper}>
+        <img className={styles.bgSignUp} src={images.bgSignUp} alt="bgSingUp" />
+        <img
+          className={styles.imgSignUp}
+          src={images.imgSingUp}
+          alt="imgSingUp"
+        />
+      </div>
     </>
-    // <div className={styles.container}>
-    //   <div className={styles.registerContainer}>
-    //     <form className={styles.regForm}>
-    //       <AuthForm
-    //         handleSubmit={handleSubmit}
-    //         control={control}
-    //         reset={reset}
-    //       />
-    //       <AuthForm />
-    //       <AuthForm />
-    //       <AuthForm />
-    //       <div>
-    //         <input type="checkbox" /> I accept the agreement
-    //         <div />
-    //         <NewButton onClick={handleSubmit}>Sing up</NewButton>{' '}
-    //         <div>
-    //           Already a member?
-    //           <span>
-    //             {' '}
-    //             <Link to={'/'}>Sing in</Link>
-    //           </span>
-    //         </div>
-    //       </div>
-    //     </form>
-    //   </div>
-    //   <div className={styles.picture_wrapper}>
-    //     <img className={styles.bgSignUp} src={images.bgSignUp} alt="bgSingUp" />
-    //     <img
-    //       className={styles.imgSignUp}
-    //       src={images.imgSingUp}
-    //       alt="imgSingUp"
-    //     />
-    //   </div>
-    // </div>
   )
 }
 

@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
 
-import TestForm from './testForm/testForm'
-
 const UserProfilePage = () => {
   return (
     <div>
-      <TestForm />
       <button>
         {' '}
-        <Link to={'/profile'}>Profile</Link>
+        <h1> THIS IS PROFILE</h1>
       </button>
     </div>
   )

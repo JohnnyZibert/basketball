@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { combineReducers, createStore } from 'redux'
+import { combineReducers } from 'redux'
 
+import authLoginReducer from './slices/authLoginSlice'
 import { auth } from './slices/authSlice'
 
-const reducers = combineReducers({ auth })
+const reducers = combineReducers({ auth, authLoginReducer })
 export type RootStateType = ReturnType<typeof reducers>
 export type AppDispatch = typeof store.dispatch
 export const store = configureStore({

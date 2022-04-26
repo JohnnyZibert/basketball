@@ -15,7 +15,8 @@ export const FormInput = ({
       rules={rules}
       name={name}
       render={(props) => (
-        <>
+        <label>
+          {name}
           <input
             type="text"
             value={props.field.value}
@@ -24,7 +25,7 @@ export const FormInput = ({
           <span>
             {formState.errors[name] && formState.errors[name].message}
           </span>
-        </>
+        </label>
       )}
     />
   )
