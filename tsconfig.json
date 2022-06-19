@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "strict": true,
+    "useUnknownInCatchVariables": false,
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+
     ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -20,7 +22,10 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+
   "include": [
     "src"
-  ]
+  ],
+
 }
+

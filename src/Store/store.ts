@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { combineReducers } from 'redux'
+import { useDispatch } from 'react-redux'
 
 import authLoginReducer from './slices/authLoginSlice'
 import { auth } from './slices/authSlice'
+import teamsReducer from './teamsItem/TeamsSlice'
 
-const reducers = combineReducers({ auth, authLoginReducer })
-export type RootStateType = ReturnType<typeof reducers>
-export type AppDispatch = typeof store.dispatch
 export const store = configureStore({
-  reducer: reducers,
-  middleware: (getDefaultMiddleware1) =>
-    getDefaultMiddleware1({
-      serializableCheck: false,
-    }),
+  reducer: {
+    auth,
+    authLogin: authLoginReducer,
+    teams: teamsReducer,
+  },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()

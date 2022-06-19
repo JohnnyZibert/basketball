@@ -1,0 +1,19 @@
+.formControl input {
+    background-color: #F6F6F6;
+
+}
+ .formControl input:hover{
+     background-color: #D1D1D1;
+ }
+ .formControl input:focus{
+     background-color: #F6F6F6;
+     outline: none;
+
+ }
+.formControl.error input{
+    border: solid #FF768E 2px;
+    border-radius: 4px;
+}
+ .formControl.error span{
+     color: #FF768E;
+ }

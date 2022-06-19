@@ -1,0 +1,41 @@
+.main {
+  background-color: #F6F6F6;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 32px;
+  justify-self: center;
+  padding-left: 80px;
+
+
+}
+
+.supraMain {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 80px;
+
+
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 104px;
+    height: 40px;
+  }
+
+  svg {
+    padding-right: 11px;
+  }
+
+}
+
+.addButton {
+  padding-right: 150px;
+}
+
+.mainFooter {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 15px;
+}

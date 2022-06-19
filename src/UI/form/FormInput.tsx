@@ -1,5 +1,10 @@
+import classNames from 'classnames'
 import { Controller, useFormContext } from 'react-hook-form'
 import { RegisterOptions } from 'react-hook-form/dist/types/validator'
+
+import styles from './formInput.module.css'
+
+const cx = classNames.bind(styles)
 
 export const FormInput = ({
   name,
@@ -9,13 +14,14 @@ export const FormInput = ({
   rules?: RegisterOptions
 }) => {
   const { control, formState } = useFormContext()
+
   return (
     <Controller
       control={control}
       rules={rules}
       name={name}
       render={(props) => (
-        <label>
+        <label className={styles.formControl + ' ' + styles.error}>
           {name}
           <input
             type="text"
@@ -23,7 +29,9 @@ export const FormInput = ({
             onChange={props.field.onChange}
           />
           <span>
-            {formState.errors[name] && formState.errors[name].message}
+            {formState.touchedFields &&
+              formState.errors[name] &&
+              formState.errors[name].message}
           </span>
         </label>
       )}

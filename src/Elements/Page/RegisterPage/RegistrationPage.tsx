@@ -1,18 +1,21 @@
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { images } from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests'
 import { AppDispatch } from '../../../Store/store'
+import { NewButton } from '../../../UI/Button/NewButton'
 import { FormInput } from '../../../UI/form/FormInput'
 import styles from './register.module.css'
 
 export interface IAuthForm {
-  userName: string
-  login: string
-  password: string
-  repeatPassword: string
+  userName: string | null
+  login: string | null
+  password: string | null
+  repeatPassword: string | null
+  token: any
 }
 
 const RegisterForm = () => {
@@ -25,62 +28,70 @@ const RegisterForm = () => {
     } else {
       methods.setError('repeatPassword', {
         type: 'required',
-        message: 'ТЫ ПИДОР',
+        message: 'The password does not match, please enter a valid value',
       })
     }
   }
   return (
-    <>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <FormInput
-            rules={{ required: { value: true, message: 'ТЫ ПИДОР' } }}
-            name={'userName'}
-          />
-          <FormInput
-            rules={{ required: { value: true, message: 'ТЫ ПИДОР' } }}
-            name={'login'}
-          />
-          <FormInput
-            rules={{ required: { value: true, message: 'ТЫ ПИДОР' } }}
-            name={'password'}
-          />
-          <FormInput
-            rules={{
-              required: { value: true, message: 'ТЫ ПИДОР' },
-              validate: (v) => v === methods.getValues('password'),
-            }}
-            name={'repeatPassword'}
-          />
-          <button type="submit">Sign Up</button>
-        </form>
-      </FormProvider>
-
-      {/*// <div className={styles.container}>*/}
-      {/*// <div className={styles.registerContainer}>*/}
-      {/*// <form className={styles.regForm}>*/}
-      {/*// <AuthForm*/}
-      {/*//         handleSubmit={handleSubmit}*/}
-      {/*//         control={control}*/}
-      {/*//         reset={reset}*/}
-      {/*//       />*/}
-      {/*//       <AuthForm />*/}
-      {/*//       <AuthForm />*/}
-      {/*//       <AuthForm />*/}
-      {/*//       <div>*/}
-      {/*//         <input type="checkbox" /> I accept the agreement*/}
-      {/*//         <div />*/}
-      {/*//         <NewButton onClick={handleSubmit}>Sing up</NewButton>{' '}*/}
-      {/*//         <div>*/}
-      {/*//           Already a member?*/}
-      {/*//           <span>*/}
-      {/*//             {' '}*/}
-      {/*//             <Link to={'/'}>Sing in</Link>*/}
-      {/*//           </span>*/}
-      {/*//         </div>*/}
-      {/*//       </div>*/}
-      {/*//     </form>*/}
-      {/*//   </div>*/}
+    <div className={styles.container}>
+      <div className={styles.registerContainer}>
+        <FormProvider {...methods}>
+          <form
+            className={styles.regForm}
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
+            <FormInput
+              rules={{
+                required: {
+                  value: true,
+                  message: 'User name is required field',
+                },
+              }}
+              name={'Name'}
+            />
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Login'}
+            />
+            <FormInput
+              rules={{
+                required: {
+                  value: true,
+                  message: 'password is required field',
+                },
+                maxLength: { value: 15, message: 'Maximum 15 characters' },
+                minLength: { value: 5, message: 'Minimum 5 characters' },
+              }}
+              name={'Password'}
+            />
+            <FormInput
+              rules={{
+                required: {
+                  value: true,
+                  message: ' Repeat password is required field',
+                },
+                maxLength: { value: 15, message: 'Maximum 15 characters' },
+                minLength: { value: 5, message: 'Minimum 5 characters' },
+                validate: (v) => v === methods.getValues('password'),
+              }}
+              name={'Enter your password again'}
+            />
+            <NewButton type="submit">Sing up</NewButton>{' '}
+            <div>
+              <input type="checkbox" /> I accept the agreement
+            </div>
+            <div>
+              Already a member?
+              <span>
+                {' '}
+                <Link to={'/'}>Sing in</Link>
+              </span>
+            </div>
+          </form>
+        </FormProvider>
+      </div>
       <div className={styles.picture_wrapper}>
         <img className={styles.bgSignUp} src={images.bgSignUp} alt="bgSingUp" />
         <img
@@ -89,7 +100,7 @@ const RegisterForm = () => {
           alt="imgSingUp"
         />
       </div>
-    </>
+    </div>
   )
 }
 

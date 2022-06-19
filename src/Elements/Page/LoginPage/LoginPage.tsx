@@ -1,64 +1,90 @@
-import React from 'react'
+import cnBind from 'classnames/bind'
+import React, { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 
 import { images } from '../../../assets/img/images'
-import { setLoginAuthRequest } from '../../../Store/requests/authLoginRequest'
-import { IInitialState } from '../../../Store/slices/authLoginSlice'
+import {
+  getToken,
+  setLoginAuthRequest,
+} from '../../../Store/requests/authLoginRequest'
 import { AppDispatch } from '../../../Store/store'
 import { NewButton } from '../../../UI/Button/NewButton'
 import { FormInput } from '../../../UI/form/FormInput'
 import { IAuthForm } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.css'
 
+const cx = cnBind(styles)
+
 const LoginPage = () => {
-  const isAuth = useSelector<IInitialState>((state) => state.isAuth)
-  const methods = useForm<IAuthForm>()
+  const methods = useForm<IAuthForm>({ mode: 'onChange' })
   const dispatch: AppDispatch = useDispatch()
-
-  const onSubmit = (userData: IAuthForm) => {
-    dispatch(setLoginAuthRequest(userData))
-    if (isAuth) {
-      ;<Navigate to={'/profile'} />
-    }
+  const onSubmit = (data: IAuthForm) => {
+    dispatch(setLoginAuthRequest(data))
   }
-
   return (
     <div className={styles.container}>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className={styles.signIn_content}>
-            <div className={styles.logoSingIn}>
-              <div className={styles.logoText}>Sign In</div>
-            </div>
-            <FormInput
-              rules={{ required: { value: true, message: 'САМ ПИДОР' } }}
-              name={'login'}
-            />
-            <div>
-              <FormInput
-                rules={{ required: { value: true, message: 'Сам пидор' } }}
-                name={'password'}
-              />
-            </div>
-            <NewButton type={'submit'}>Sign in</NewButton>
-            <div>
-              Not a member yet?
-              <span>
-                <Link className={styles.linkSignUp} to={'/register'}>
-                  Sign up
-                </Link>
-              </span>
-            </div>
-          </div>
-        </form>
-      </FormProvider>
+      {/*{getToken() ? <Navigate to={'/home'} /> : ' '}*/}
 
+      <div className={styles.loginWrapper}>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <div className={styles.signIn_content}>
+              <div className={styles.logoSingIn}>
+                <div className={styles.logoText}>Sign In</div>
+              </div>
+              <FormInput
+                rules={{
+                  required: { value: true, message: 'Name is required field' },
+                }}
+                name={'Login'}
+              />
+              <div>
+                <FormInput
+                  rules={{
+                    required: {
+                      value: true,
+                      message: 'Password is required field',
+                    },
+                    // maxLength: { value: 15, message: 'Maximum 15 characters' },
+                    // minLength: { value: 5, message: 'Minimum 5 characters' },
+                  }}
+                  name={'Password'}
+                />
+              </div>
+              <NewButton type={'submit'}>
+                <span>Sign in</span>
+              </NewButton>
+              <div>
+                Not a member yet?
+                <span className={styles.btnWrapper}>
+                  <Link className={styles.linkSignUp} to={'/register'}>
+                    Sign up
+                  </Link>
+                  <Link className={styles.linkSignUp} to={'/home'}>
+                    Home
+                  </Link>
+                </span>
+              </div>
+            </div>
+          </form>
+        </FormProvider>
+      </div>
       <div className={styles.picture_wrapper}>
         <img className={styles.imgSingIn} src={images.signIn} alt="imgSingIn" />
         <img className={styles.bgSignIn} src={images.bgSignIn} alt="bgSignIn" />
       </div>
+      {/*  <ReactSelect*/}
+      {/*    classNamePrefix="custom-select"*/}
+      {/*    placeholder={''}*/}
+      {/*    options={options}*/}
+      {/*    value={getValue()}*/}
+      {/*    onChange={onChange}*/}
+      {/*    isMulti={isMulti}*/}
+      {/*    components={animatedComponents}*/}
+      {/*    isLoading={isLoading}*/}
+      {/*  />*/}
     </div>
   )
 }

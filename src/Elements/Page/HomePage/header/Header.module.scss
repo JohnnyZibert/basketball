@@ -1,0 +1,36 @@
+.header {
+  max-width: 100%;
+  margin: 0 auto;
+
+}
+
+.headerLogo {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 50px;
+}
+
+.userProfile {
+  display: flex;
+  justify-content: end;
+
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  color: #303030;
+}
+
+.user{
+  font-size: 14px;
+  line-height: 24px;
+  align-items: center;
+}
+
+.userIcon{
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+}
+

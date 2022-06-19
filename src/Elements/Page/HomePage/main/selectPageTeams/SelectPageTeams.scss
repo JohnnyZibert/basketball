@@ -1,0 +1,23 @@
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.custom-select {
+  &__control {
+    margin-right: 65px !important;
+    margin-top: 0px;
+    }
+  }
+
+
+//custom-select__indicator custom-select__dropdown-indicator css-tlfecz-indicatorContainer

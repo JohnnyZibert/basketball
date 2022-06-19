@@ -1,7 +1,4 @@
 
-
-
-
 .button{
     padding: 8px 24px;
     background: #E4163A;
@@ -10,6 +7,9 @@
     cursor: pointer;
     transition: ease-in-out 100ms;
     color:white;
+}
+.button span{
+   color: #FFFFFF
 }
 .button:hover {
     background: #FF5761;
@@ -23,6 +23,9 @@
     background: #F6F6F6;
 }
 
+.button:disabled span{
+    color: #D1D1D1;
+}
 
 
 

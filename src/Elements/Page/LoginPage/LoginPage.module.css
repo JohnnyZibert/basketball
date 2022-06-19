@@ -29,6 +29,7 @@
     justify-content: center;
     margin: auto;
 
+
 }
 
 .logoSingIn {
@@ -39,7 +40,7 @@
 }
 
 .logoText {
-    font-family: 'Avenir';
+    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
@@ -65,6 +66,14 @@ position: relative;
     color: #E4163A;
 }
 
+label {
+    display: flex;
+    flex-direction: column;
+}
+input:invalid {border-color: red;}
+.btnWrapper {
+    color: red;
+}
 
 
 
