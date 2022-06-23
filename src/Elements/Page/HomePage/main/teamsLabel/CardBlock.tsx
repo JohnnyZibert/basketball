@@ -1,9 +1,13 @@
-import styles from './TeamsLabel.module.scss'
-
-export const CardBlock = (props: any) => {
-  return (
-    <>
-      <img className={styles.imgCard} src={props.imageUrl} />
-    </>
-  )
-}
+// import React from 'react'
+//
+// import { ITeams, ITeamsSlice } from '../../../../../Store/teamsItem/TeamsSlice'
+// import styles from './TeamsLabel.module.scss'
+//
+// export const TeamsBlock: React.FC = (props) => {
+//   return (
+//     <>
+//       <img className={styles.imgCard} src={.} />
+//     </>
+//   )
+// }
+export {}

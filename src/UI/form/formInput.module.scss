@@ -2,6 +2,16 @@
     background-color: #F6F6F6;
 
 }
+.labelText {
+  font-family: 'Avenir', sans-serif;
+      color: #707070;
+}
+.inputText{
+  font-family: 'Avenir', sans-serif;
+  color:#303030
+}
+
+
  .formControl input:hover{
      background-color: #D1D1D1;
  }
@@ -11,7 +21,7 @@
 
  }
 .formControl.error input{
-    border: solid #FF768E 2px;
+    /*border: solid #FF768E 2px;*/
     border-radius: 4px;
 }
  .formControl.error span{

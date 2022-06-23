@@ -8,14 +8,14 @@ import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests
 import { AppDispatch } from '../../../Store/store'
 import { NewButton } from '../../../UI/Button/NewButton'
 import { FormInput } from '../../../UI/form/FormInput'
-import styles from './register.module.css'
+import styles from './register.module.scss'
 
 export interface IAuthForm {
   userName: string | null
   login: string | null
   password: string | null
   repeatPassword: string | null
-  token: any
+  token: string
 }
 
 const RegisterForm = () => {
@@ -40,6 +40,7 @@ const RegisterForm = () => {
             className={styles.regForm}
             onSubmit={methods.handleSubmit(onSubmit)}
           >
+            <div className={styles.logoSingUp}>Sign Up</div>
             <FormInput
               rules={{
                 required: {
@@ -78,22 +79,20 @@ const RegisterForm = () => {
               }}
               name={'Enter your password again'}
             />
-            <NewButton type="submit">Sing up</NewButton>{' '}
-            <div>
+            <div className={styles.checkBox}>
               <input type="checkbox" /> I accept the agreement
             </div>
-            <div>
-              Already a member?
-              <span>
-                {' '}
+            <NewButton type="submit">Sing Up</NewButton>{' '}
+            <div className={styles.already}>
+              <div>Already a member?</div>
+              <div>
                 <Link to={'/'}>Sing in</Link>
-              </span>
+              </div>
             </div>
           </form>
         </FormProvider>
       </div>
-      <div className={styles.picture_wrapper}>
-        <img className={styles.bgSignUp} src={images.bgSignUp} alt="bgSingUp" />
+      <div className={styles.imgContainer}>
         <img
           className={styles.imgSignUp}
           src={images.imgSingUp}

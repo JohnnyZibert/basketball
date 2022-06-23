@@ -47,7 +47,7 @@ const teamsSlice = createSlice({
     })
     builder.addCase(getTeamsRequest.fulfilled, (state, { payload }) => {
       state.status = Status.SUCCESS
-      state.teams = payload.data
+      state.teams.data = payload.data
     })
 
     builder.addCase(getTeamsRequest.rejected, (state) => {

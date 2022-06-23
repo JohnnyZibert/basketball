@@ -1,6 +1,5 @@
 import { Header } from './header/Header'
-import styles from './HomePage.module.css'
-import { MainContent } from './main/Main'
+import styles from './HomePage.module.scss'
 import { SideBarHome } from './sidebar/SideBarHome'
 
 export const Home = () => {
@@ -9,7 +8,7 @@ export const Home = () => {
       <Header />
       <div className={styles.wrapper}>
         <SideBarHome />
-        <MainContent />
+        {/*<MainContent />*/}
       </div>
     </>
   )
