@@ -69,7 +69,11 @@
   font-family: 'Avenir', sans-serif;
   display: flex;
   justify-content: center;
+  .alreadyText {
+    margin-right: 5px;
+  }
   a {
+    text-decoration: underline;
     font-weight: 500;
     color: #FF768E;
   }

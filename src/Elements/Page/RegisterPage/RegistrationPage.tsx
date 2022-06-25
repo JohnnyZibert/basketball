@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -18,9 +18,15 @@ export interface IAuthForm {
   token: string
 }
 
+export const inputType = 'password'
+
 const RegisterForm = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
+  const [isType, setIsType] = useState('text')
+  const handleOnClick = () => {
+    setIsType('password')
+  }
 
   const onSubmit = (data: IAuthForm) => {
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {
@@ -32,6 +38,7 @@ const RegisterForm = () => {
       })
     }
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.registerContainer}>
@@ -66,6 +73,7 @@ const RegisterForm = () => {
                 minLength: { value: 5, message: 'Minimum 5 characters' },
               }}
               name={'Password'}
+              type={'password'}
             />
             <FormInput
               rules={{
@@ -75,16 +83,18 @@ const RegisterForm = () => {
                 },
                 maxLength: { value: 15, message: 'Maximum 15 characters' },
                 minLength: { value: 5, message: 'Minimum 5 characters' },
-                validate: (v) => v === methods.getValues('password'),
+                validate: (v: string | null) =>
+                  v === methods.getValues('password'),
               }}
               name={'Enter your password again'}
+              type={'password'}
             />
             <div className={styles.checkBox}>
               <input type="checkbox" /> I accept the agreement
             </div>
             <NewButton type="submit">Sing Up</NewButton>{' '}
             <div className={styles.already}>
-              <div>Already a member?</div>
+              <div className={styles.alreadyText}>Already a member?</div>
               <div>
                 <Link to={'/'}>Sing in</Link>
               </div>

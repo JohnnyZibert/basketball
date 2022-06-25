@@ -12,7 +12,7 @@ import {
 import { AppDispatch } from '../../../Store/store'
 import { NewButton } from '../../../UI/Button/NewButton'
 import { FormInput } from '../../../UI/form/FormInput'
-import { IAuthForm } from '../RegisterPage/RegistrationPage'
+import { IAuthForm, inputType } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.css'
 
 const cx = cnBind(styles)
@@ -51,6 +51,7 @@ const LoginPage = () => {
                     // minLength: { value: 5, message: 'Minimum 5 characters' },
                   }}
                   name={'Password'}
+                  type={inputType}
                 />
               </div>
               <NewButton type={'submit'}>

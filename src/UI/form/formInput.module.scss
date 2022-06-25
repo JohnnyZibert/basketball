@@ -27,3 +27,15 @@
  .formControl.error span{
      color: #FF768E;
  }
+.inputContainer {
+  position: relative;
+}
+
+.onIconEyes{
+    svg{
+      position: absolute;
+      top: 12px;
+      right: 15px;
+    }
+
+  }
