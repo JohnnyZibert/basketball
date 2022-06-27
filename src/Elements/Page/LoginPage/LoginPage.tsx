@@ -1,5 +1,5 @@
 import cnBind from 'classnames/bind'
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ import { AppDispatch } from '../../../Store/store'
 import { NewButton } from '../../../UI/Button/NewButton'
 import { FormInput } from '../../../UI/form/FormInput'
 import { IAuthForm, inputType } from '../RegisterPage/RegistrationPage'
-import styles from './LoginPage.module.css'
+import styles from './LoginPage.module.scss'
 
 const cx = cnBind(styles)
 
@@ -23,72 +23,70 @@ const LoginPage = () => {
   const onSubmit = (data: IAuthForm) => {
     dispatch(setLoginAuthRequest(data))
   }
+
   return (
     <div className={styles.container}>
-      {/*{getToken() ? <Navigate to={'/home'} /> : ' '}*/}
-
-      <div className={styles.loginWrapper}>
+      <div className={styles.registerContainer}>
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <div className={styles.signIn_content}>
-              <div className={styles.logoSingIn}>
-                <div className={styles.logoText}>Sign In</div>
-              </div>
-              <FormInput
-                rules={{
-                  required: { value: true, message: 'Name is required field' },
-                }}
-                name={'Login'}
-              />
+          <form
+            className={styles.regForm}
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
+            <div className={styles.logoSingUp}>Sign In</div>
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Login'}
+            />
+            <FormInput
+              rules={{
+                required: {
+                  value: true,
+                  message: 'password is required field',
+                },
+                maxLength: { value: 15, message: 'Maximum 15 characters' },
+                minLength: { value: 5, message: 'Minimum 5 characters' },
+              }}
+              name={'Password'}
+              // type={inputTypePas}
+              // onEyeClick={handleToggle}
+              // eyeIcon={icon}
+            />
+            <NewButton type="submit">Sing Up</NewButton>{' '}
+            <div className={styles.isMember}>
+              <div className={styles.isMember}>Not a member yet?</div>
               <div>
-                <FormInput
-                  rules={{
-                    required: {
-                      value: true,
-                      message: 'Password is required field',
-                    },
-                    // maxLength: { value: 15, message: 'Maximum 15 characters' },
-                    // minLength: { value: 5, message: 'Minimum 5 characters' },
-                  }}
-                  name={'Password'}
-                  type={inputType}
-                />
-              </div>
-              <NewButton type={'submit'}>
-                <span>Sign in</span>
-              </NewButton>
-              <div>
-                Not a member yet?
-                <span className={styles.btnWrapper}>
-                  <Link className={styles.linkSignUp} to={'/register'}>
-                    Sign up
-                  </Link>
-                  <Link className={styles.linkSignUp} to={'/home'}>
-                    Home
-                  </Link>
-                </span>
+                <Link to={'/register'}>Sing up</Link>
+                <Link to={'/home/players'}>Profile</Link>
               </div>
             </div>
           </form>
         </FormProvider>
       </div>
-      <div className={styles.picture_wrapper}>
-        <img className={styles.imgSingIn} src={images.signIn} alt="imgSingIn" />
-        <img className={styles.bgSignIn} src={images.bgSignIn} alt="bgSignIn" />
+      <div className={styles.imgContainer}>
+        <img
+          className={styles.imgSignUp}
+          src={images.imgSingUp}
+          alt="imgSingUp"
+        />
       </div>
-      {/*  <ReactSelect*/}
-      {/*    classNamePrefix="custom-select"*/}
-      {/*    placeholder={''}*/}
-      {/*    options={options}*/}
-      {/*    value={getValue()}*/}
-      {/*    onChange={onChange}*/}
-      {/*    isMulti={isMulti}*/}
-      {/*    components={animatedComponents}*/}
-      {/*    isLoading={isLoading}*/}
-      {/*  />*/}
     </div>
   )
 }
+// }
+//       {/*  <ReactSelect*/}
+//       {/*    classNamePrefix="custom-select"*/}
+//       {/*    placeholder={''}*/}
+//       {/*    options={options}*/}
+//       {/*    value={getValue()}*/}
+//       {/*    onChange={onChange}*/}
+//       {/*    isMulti={isMulti}*/}
+//       {/*    components={animatedComponents}*/}
+//       {/*    isLoading={isLoading}*/}
+//       {/*  />*/
+//
+// }
 export default LoginPage
 // <div className={styles.container}>
 //

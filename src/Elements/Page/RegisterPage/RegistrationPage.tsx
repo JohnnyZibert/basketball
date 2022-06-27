@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { eye } from 'react-icons-kit/feather/eye'
+import { eyeOff } from 'react-icons-kit/feather/eyeOff'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -23,6 +25,8 @@ export const inputType = 'password'
 const RegisterForm = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
+  const [inputTypePas, setType] = useState('password')
+  const [icon, setIcon] = useState(eyeOff)
   const [isType, setIsType] = useState('text')
   const handleOnClick = () => {
     setIsType('password')
@@ -36,6 +40,16 @@ const RegisterForm = () => {
         type: 'required',
         message: 'The password does not match, please enter a valid value',
       })
+    }
+  }
+
+  const handleToggle = () => {
+    if (inputTypePas === 'password') {
+      setIcon(eye)
+      setType('text')
+    } else {
+      setIcon(eyeOff)
+      setType('password')
     }
   }
 
@@ -73,7 +87,9 @@ const RegisterForm = () => {
                 minLength: { value: 5, message: 'Minimum 5 characters' },
               }}
               name={'Password'}
-              type={'password'}
+              type={inputTypePas}
+              onEyeClick={handleToggle}
+              eyeIcon={icon}
             />
             <FormInput
               rules={{
@@ -87,7 +103,9 @@ const RegisterForm = () => {
                   v === methods.getValues('password'),
               }}
               name={'Enter your password again'}
-              type={'password'}
+              type={inputTypePas}
+              onEyeClick={handleToggle}
+              eyeIcon={icon}
             />
             <div className={styles.checkBox}>
               <input type="checkbox" /> I accept the agreement

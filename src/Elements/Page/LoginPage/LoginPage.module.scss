@@ -1,0 +1,82 @@
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.logoSingUp {
+  font-family: 'Avenir', sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  font-size: 36px;
+  line-height: 49px;
+  color: #344472;
+
+}
+
+.imgContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  background-color: #F5FBFF;
+
+}
+
+.imgSignUp {
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 24px;
+
+}
+
+.registerContainer {
+  display: flex;
+  align-items: center;
+}
+
+.regForm {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 0 120px;
+}
+
+.regForm input {
+  width: 366px;
+  height: 40px;
+}
+
+.checkBox {
+  font-family: 'Avenir', sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.checkBox input {
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+.isMember {
+  font-family: 'Avenir', sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-right: 5px;
+
+  a {
+    text-decoration: underline;
+    font-weight: 500;
+    color: #FF768E;
+  }
+}
