@@ -1,5 +1,4 @@
-// import { AddButton } from '../../../../UI/Button/AddButton'
-// import Teams from '../../teamPage'
+// import { AddButton } from '../../../../UI/AddButton/AddButton'
 // import styles from './Main.module.scss'
 // import { Pagination } from './pagination/Pagination'
 // import { Search } from './search/Search'
@@ -13,7 +12,7 @@
 //           <Search />
 //           <AddButton children={'Add'} />
 //         </div>
-//         <Teams />
+//         {/*<Teams />*/}
 //       </div>
 //       <div className={styles.mainFooter}>
 //         <Pagination />

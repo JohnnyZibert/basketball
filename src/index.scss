@@ -11,7 +11,7 @@
   src: url('./assets/fonts/AvenirNextCyr-Light.woff2') format('woff2');
   src: url('./assets/fonts/AvenirNextCyr-Light.woff') format('woff');
   font-weight: 500;
-  font-style: normal;
+
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   src: url('./assets/fonts/AvenirNextCyr-Light.woff2') format('woff2');
   src: url('./assets/fonts/AvenirNextCyr-Light.woff') format('woff');
   font-weight: 700;
-  font-style: normal;
+
 }
 
 @font-face {
@@ -27,11 +27,11 @@
   src: url('./assets/fonts/AvenirNextCyr-Light.woff2') format('woff2');
   src: url('./assets/fonts/AvenirNextCyr-Light.woff') format('woff');
   font-weight: 300;
-  font-style: normal;
+
 }
 
 body {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 @tailwind base;

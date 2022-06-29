@@ -10,7 +10,7 @@ import {
   setLoginAuthRequest,
 } from '../../../Store/requests/authLoginRequest'
 import { AppDispatch } from '../../../Store/store'
-import { NewButton } from '../../../UI/Button/NewButton'
+import { BtnSave } from '../../../UI/Button/BtnSave'
 import { FormInput } from '../../../UI/form/FormInput'
 import { IAuthForm, inputType } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.scss'
@@ -53,7 +53,7 @@ const LoginPage = () => {
               // onEyeClick={handleToggle}
               // eyeIcon={icon}
             />
-            <NewButton type="submit">Sing Up</NewButton>{' '}
+            <BtnSave type="submit">Sing Up</BtnSave>{' '}
             <div className={styles.isMember}>
               <div className={styles.isMember}>Not a member yet?</div>
               <div>

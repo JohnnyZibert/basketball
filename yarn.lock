@@ -1740,6 +1740,14 @@
   dependencies:
     "@rpldy/shared-ui" "^1.0.0"
 
+"@rpldy/upload-preview@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@rpldy/upload-preview/-/upload-preview-1.0.0.tgz#6355157f7aaa5dbb07bd0ee04c3f24f5b938b267"
+  integrity sha512-dj7VnckcDidjJzPyYV22/UsYCm4h3LwC9wRm27EsS+lJRHM09VHkslAiUqDrVlL+B7bfGQUZbEIJja/S0JbQPw==
+  dependencies:
+    "@rpldy/shared" "^1.0.0"
+    "@rpldy/shared-ui" "^1.0.0"
+
 "@rpldy/uploader@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@rpldy/uploader/-/uploader-1.0.0.tgz#2b06890a35f7ee65e1d9edca63b10351b7c69854"

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { images } from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests'
 import { AppDispatch } from '../../../Store/store'
-import { NewButton } from '../../../UI/Button/NewButton'
+import { BtnSave } from '../../../UI/Button/BtnSave'
 import { FormInput } from '../../../UI/form/FormInput'
 import styles from './register.module.scss'
 
@@ -110,7 +110,7 @@ const RegisterForm = () => {
             <div className={styles.checkBox}>
               <input type="checkbox" /> I accept the agreement
             </div>
-            <NewButton type="submit">Sing Up</NewButton>{' '}
+            <BtnSave type="submit">Sing Up</BtnSave>{' '}
             <div className={styles.already}>
               <div className={styles.alreadyText}>Already a member?</div>
               <div>

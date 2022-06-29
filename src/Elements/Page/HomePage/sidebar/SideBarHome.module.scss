@@ -1,13 +1,19 @@
 .sideBar {
-
+  display: flex;
+  //max-width: 200px;
+  //align-items: center;
+  background-color: #F6F6F6;
+  nav {
+    margin-right: 80px;
+    background-color: #FFFFFF;
+  }
+}
+.sideBarSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 200px;
-  align-items: center;
-  min-height:992px;
-
 }
+
 //.signOutBlock{
 //  display: flex;
 //  flex-direction: column;
@@ -24,39 +30,76 @@
 .sideBarTeams {
   margin-bottom: 40px;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sideBarPlayers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.wrapperContent {
+  width: 100%;
+}
+
+
 .sideBarItem a {
+  display: flex;
   text-decoration: none;
   color: #9C9C9C;
   padding: 10px;
+  flex-direction: column;
+  align-items: center;
+
 }
+
 .signOutBlock {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   text-align: center;
+  align-items: center;
 }
+.header {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #FFFFFF;
+  padding: 24px 32px;
 
-.sideBarTeams:hover {
-  svg path{
-    fill: #E4163A;
-    transition: 0.6s;
-  }
-  color: #E4163A;
-  transition: 0.6s;
-
-}
-
-.sideBarPlayers:hover {
-  svg path {
-    fill: #E4163A;
-    transition: 0.6s;
+  p {
+    color: #E4163A;
+    font-family: 'Avenir', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
   }
 
-  color: #E4163A;
-  transition: 0.6s;
+  span {
+    color: #9C9C9C;
+  }
+
+  .activeLink:hover {
+    svg path {
+      fill: #E4163A;
+      transition: 0.6s;
+    }
+
+    color: #E4163A;
+    transition: 0.6s;
+
+  }
+
+  .activeLink:hover {
+    svg path {
+      fill: #E4163A;
+      transition: 0.6s;
+    }
+
+    color: #E4163A;
+    transition: 0.6s;
+  }
 }
-
-
 .btnSignOut {
   color: #FF768E;
 }

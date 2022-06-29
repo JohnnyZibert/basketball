@@ -1,51 +1,96 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useDropzone } from 'react-dropzone'
+import { FormProvider, useForm } from 'react-hook-form'
 
-// function UploadInput() {
-//   const { register, handleSubmit } = useForm()
-//
-//   const onSubmit = (data: any) => {
-//     const onChange = (e: { target: { files: any[]; }; }) => {
-//       const file = e.target.files[0];
-//       const storageRef = app.storage().ref()
-//       const fileRef = storageRef.child(file.name)
-//       fileRef.put(file).then(() => {
-//         console.log("Uploaded a file")
-//       })
-//     }
-//     const inputRef = React.createRef<HTMLInputElement>()
-//
-//   return (
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <input
-//           inputRef={register}
-//           name="image"
-//           type="file" />
-//     </form>
-//   )
-// }
+import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
+import { BtnSave } from '../../../../UI/Button/BtnSave'
+import { FormInput } from '../../../../UI/form/FormInput'
+import styles from './uploadFile.module.scss'
 
-// export default UploadInput;
+export interface IUserForm {}
 
-//   <div>
-//     <div className={styles.dropFileInput}>
-//       {/*<svg*/}
-//       {/*  width="336"*/}
-//       {/*  height="261"*/}
-//       {/*  viewBox="0 0 336 261"*/}
-//       {/*  fill="none"*/}
-//       {/*  xmlns="http://www.w3.org/2000/svg"*/}
-//       {/*>*/}
-//       {/*  <rect opacity="0.5" width="336" height="261" rx="10" fill="#9C9C9C" />*/}
-//       {/*  <path*/}
-//       {/*    opacity="0.7"*/}
-//       {/*    fill-rule="evenodd"*/}
-//       {/*    clip-rule="evenodd"*/}
-//       {/*    d="M144.875 122.688C143.179 122.688 141.791 121.281 141.791 119.562V113.312H135.625C133.929 113.312 132.541 111.906 132.541 110.188C132.541 108.469 133.929 107.062 135.625 107.062H141.791V100.812C141.791 99.0938 143.179 97.6875 144.875 97.6875C146.571 97.6875 147.958 99.0938 147.958 100.812V107.062H154.125C155.821 107.062 157.208 108.469 157.208 110.188C157.208 111.906 155.821 113.312 154.125 113.312H147.958V119.562C147.958 121.281 146.571 122.688 144.875 122.688ZM164.614 133.625C166.267 130.724 169.32 128.938 172.625 128.938C175.93 128.938 178.983 130.724 180.636 133.625C182.288 136.526 182.288 140.099 180.636 143C178.983 145.901 175.93 147.688 172.625 147.688C169.32 147.688 166.267 145.901 164.614 143C162.962 140.099 162.962 136.526 164.614 133.625ZM197.291 113.312H187.517L183.694 109.094C182.553 107.812 180.888 107.062 179.161 107.062H159.428C159.952 108 160.291 109.031 160.291 110.188C160.291 113.625 157.516 116.438 154.125 116.438H151.041V119.562C151.041 123 148.266 125.812 144.875 125.812C143.734 125.812 142.716 125.469 141.791 124.938V157.062C141.791 160.5 144.566 163.312 147.958 163.312H197.291C200.683 163.312 203.458 160.5 203.458 157.062V119.562C203.458 116.125 200.683 113.312 197.291 113.312ZM157.208 138.312C157.208 146.937 164.115 153.937 172.625 153.937C181.135 153.937 188.041 146.937 188.041 138.312C188.041 129.687 181.135 122.687 172.625 122.687C164.115 122.687 157.208 129.687 157.208 138.312Z"*/}
-//       {/*    fill="white"*/}
-//       {/*  />*/}
-//       {/*</svg>*/}
-//     </div>
-//     <input type="file" value="" />
-//   </div>
-// )
+export const Basic = (props: any) => {
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone()
+  const methods = useForm<IUserForm>({ mode: 'onChange' })
+  const onSubmit = (data: IUserForm) => {
+    console.log(data)
+  }
+
+  const files = acceptedFiles.map((file: any) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ))
+
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        <p>
+          Teams <span>/</span> Add new team
+        </p>
+      </div>
+      <div className={styles.wrapperContent}>
+        <section className={styles.dropZoneSection}>
+          <div {...getRootProps({ className: styles.dropZoneSvg })}>
+            <svg
+              width="72"
+              height="67"
+              viewBox="0 0 72 67"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                className={styles.dropZonePhotosPath}
+                opacity="0.7"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12.8748 25.6875C11.179 25.6875 9.79147 24.2812 9.79147 22.5625V16.3125H3.62481C1.92897 16.3125 0.541473 14.9062 0.541473 13.1875C0.541473 11.4688 1.92897 10.0625 3.62481 10.0625H9.79147V3.8125C9.79147 2.09375 11.179 0.6875 12.8748 0.6875C14.5706 0.6875 15.9581 2.09375 15.9581 3.8125V10.0625H22.1248C23.8206 10.0625 25.2081 11.4688 25.2081 13.1875C25.2081 14.9062 23.8206 16.3125 22.1248 16.3125H15.9581V22.5625C15.9581 24.2812 14.5706 25.6875 12.8748 25.6875ZM32.6143 36.625C34.2666 33.7244 37.3203 31.9375 40.625 31.9375C43.9297 31.9375 46.9834 33.7244 48.6357 36.625C50.2881 39.5257 50.2881 43.0994 48.6357 46C46.9834 48.9007 43.9297 50.6875 40.625 50.6875C37.3203 50.6875 34.2666 48.9007 32.6143 46C30.9619 43.0994 30.9619 39.5257 32.6143 36.625ZM65.2915 16.3125H55.5173L51.694 12.0938C50.5531 10.8125 48.8881 10.0625 47.1615 10.0625H27.4281C27.9523 11 28.2915 12.0312 28.2915 13.1875C28.2915 16.625 25.5165 19.4375 22.1248 19.4375H19.0415V22.5625C19.0415 26 16.2665 28.8125 12.8748 28.8125C11.734 28.8125 10.7165 28.4688 9.79147 27.9375V60.0625C9.79147 63.5 12.5665 66.3125 15.9581 66.3125H65.2915C68.6831 66.3125 71.4581 63.5 71.4581 60.0625V22.5625C71.4581 19.125 68.6831 16.3125 65.2915 16.3125ZM25.2079 41.3125C25.2079 49.9375 32.1146 56.9375 40.6246 56.9375C49.1346 56.9375 56.0413 49.9375 56.0413 41.3125C56.0413 32.6875 49.1346 25.6875 40.6246 25.6875C32.1146 25.6875 25.2079 32.6875 25.2079 41.3125Z"
+                fill="white"
+              />
+            </svg>
+            <input {...getInputProps()} />
+          </div>
+          <aside>
+            <ul>{files}</ul>
+          </aside>
+        </section>
+
+        <FormProvider {...methods}>
+          <form
+            className={styles.regForm}
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Name'}
+            />
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Division'}
+            />
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Conference'}
+            />
+            <FormInput
+              rules={{
+                required: { value: true, message: 'Login is required field' },
+              }}
+              name={'Year of foundation'}
+            />
+            <div className={styles.btnContainer}>
+              <BtnCancel>Cancel</BtnCancel>
+              <BtnSave type="submit">Save</BtnSave>
+            </div>
+          </form>
+        </FormProvider>
+      </div>
+    </div>
+  )
+}

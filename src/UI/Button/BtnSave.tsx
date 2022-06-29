@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import styles from './button.module.css'
+import styles from './BtnSave.module.css'
 
 interface IProps {
   onClick?: () => void
@@ -9,7 +9,7 @@ interface IProps {
   children: ReactNode
 }
 
-export const NewButton: FC<IProps> = ({
+export const BtnSave: FC<IProps> = ({
   children,
   type = 'button',
   onClick,
