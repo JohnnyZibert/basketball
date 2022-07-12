@@ -4,8 +4,6 @@ import headerLogo from './headerLogo.png'
 import headerProfile from './headerProfile.png'
 import imgSingUp from './imgReg.png'
 import signIn from './imgSingIn.png'
-import playerCard from './playerCard.jpg'
-import teamsCard from './teams_card.jpg'
 
 export const images = {
   signIn,
@@ -14,6 +12,4 @@ export const images = {
   bgSignIn,
   headerLogo,
   headerProfile,
-  teamsCard,
-  playerCard,
 }

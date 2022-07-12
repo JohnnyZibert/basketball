@@ -1,0 +1,43 @@
+
+.cartTeamsBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+
+}
+
+.teamsCard {
+  display: flex;
+  width: 364px;
+  height: 380px;
+  flex-direction: column;
+}
+
+.teamsCardTop {
+  background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
+  width: 364px;
+  height: 280px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teamsCardBottom {
+  font-family: 'Avenir', sans-serif;
+  font-weight: 500;
+  height: 100px;
+  background-color: #303030;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-top: 24px;
+
+  span {
+    font-size: 14px;
+    line-height: 24px;
+    color: #9C9C9C;
+  }
+}

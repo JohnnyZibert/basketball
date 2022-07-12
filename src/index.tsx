@@ -4,7 +4,7 @@ import axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Navigate } from 'react-router-dom'
 
 import App from './App'
 import { getToken } from './Store/requests/authLoginRequest'
@@ -12,15 +12,16 @@ import { store } from './Store/store'
 
 axios.defaults.baseURL = 'http://dev.trainee.dex-it.ru/'
 axios.defaults.headers.common = { Authorization: `bearer ${getToken()}` }
+{
+  getToken() ? <Navigate to={'/home'} /> : <Navigate to={'/login'} />
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 )
 export default axios

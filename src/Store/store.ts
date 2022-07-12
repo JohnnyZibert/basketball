@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
+import photosTeamsUrlReducer from './savePhotos/SavePhotoSlice'
 import authLoginReducer from './slices/authLoginSlice'
 import { auth } from './slices/authSlice'
 import teamsReducer from './teamsItem/TeamsSlice'
@@ -9,7 +10,8 @@ export const store = configureStore({
   reducer: {
     auth,
     authLogin: authLoginReducer,
-    teams: teamsReducer,
+    getTeams: teamsReducer,
+    photosTeamsUrl: photosTeamsUrlReducer,
   },
 })
 

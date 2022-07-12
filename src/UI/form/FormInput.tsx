@@ -1,14 +1,11 @@
-import classNames from 'classnames'
-import React, { HTMLInputTypeAttribute, useState } from 'react'
-import { Controller, FieldValues, useFormContext } from 'react-hook-form'
+import React, { useState } from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
 import { RegisterOptions } from 'react-hook-form/dist/types/validator'
 import { Icon } from 'react-icons-kit'
 import { eye } from 'react-icons-kit/feather/eye'
 import { eyeOff } from 'react-icons-kit/feather/eyeOff'
 
 import styles from './formInput.module.scss'
-
-const cx = classNames.bind(styles)
 
 export const FormInput = ({
   name,

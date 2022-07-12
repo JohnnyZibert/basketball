@@ -10,7 +10,7 @@ export const setLoginAuthRequest = createAsyncThunk(
   async (data: IAuthForm, { dispatch }) => {
     const response = await instance.post(requestLinks.authLogin, data)
     await dispatch(setUserData(response.data))
-    await localStorage.setItem('token', response.data.token)
+    localStorage.setItem('token', response.data.token)
   }
 )
 

@@ -2,15 +2,11 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { Header } from './Elements/Page/HomePage/header/Header'
-import { PlayersPage } from './Elements/Page/HomePage/playersPage'
+import { HomePage } from './Elements/Page/HomePage/HomePage'
+import { TeamsPage } from './Elements/Page/HomePage/main/teamsPage/TeamsPage'
 import { SideBarHome } from './Elements/Page/HomePage/sidebar/SideBarHome'
 import LoginPage from './Elements/Page/LoginPage/LoginPage'
-import Home from './Elements/Page/MainLayout'
-import MainLayout from './Elements/Page/MainLayout'
 import RegisterForm from './Elements/Page/RegisterPage/RegistrationPage'
-import Teams from './Elements/Page/teamPage'
-
-// import Teams from './Elements/Page/teamPage'
 
 function App() {
   return (
@@ -19,13 +15,10 @@ function App() {
       <SideBarHome />
       <div>
         <Routes>
-          <Route path={''} element={<LoginPage />} />
-          <Route path={'register'} element={<RegisterForm />} />
-          <Route path="/" element={<MainLayout />}>
-            {/*<Route path={'home'} element={<HomePage />} />*/}
-            <Route path={'/teams'} element={<Teams />} />
-            {/*<Route path={'/players'} element={<PlayersPage />} />*/}
-          </Route>
+          <Route path={'/register'} element={<RegisterForm />} />
+          <Route path={'/login'} element={<LoginPage />} />
+          <Route path={'/home'} element={<HomePage />} />
+          <Route path={'/teams'} element={<TeamsPage />} />
         </Routes>
       </div>
     </div>

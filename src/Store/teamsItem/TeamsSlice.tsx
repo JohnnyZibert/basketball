@@ -8,7 +8,7 @@ export enum Status {
   ERROR = 'error',
 }
 
-export interface ITeams {
+export interface ITeamsCard {
   data: {
     name: string
     foundationYear: number
@@ -23,7 +23,7 @@ export interface ITeams {
 }
 
 export interface ITeamsSlice {
-  teams: ITeams
+  teams: ITeamsCard
   status: Status
 }
 
