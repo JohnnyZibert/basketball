@@ -12,9 +12,6 @@ import { store } from './Store/store'
 
 axios.defaults.baseURL = 'http://dev.trainee.dex-it.ru/'
 axios.defaults.headers.common = { Authorization: `bearer ${getToken()}` }
-{
-  getToken() ? <Navigate to={'/home'} /> : <Navigate to={'/login'} />
-}
 
 ReactDOM.render(
   <BrowserRouter>

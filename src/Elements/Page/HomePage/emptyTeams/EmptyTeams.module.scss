@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 211px 372px;
+}
+
+.emptyTeamsContainer {
+  max-width: 556px;
+  max-height: 570px;
+  text-align: center;
+
+  h1 {
+    font-family: 'Avenir', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 49px;
+    color: #FF768E;
+  }
+  span {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+  }
+}

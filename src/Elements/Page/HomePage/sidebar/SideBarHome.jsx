@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import LoginPage from '../../LoginPage/LoginPage'
 import { MainContent } from '../main/Main'
 import styles from './SideBarHome.module.scss'
 

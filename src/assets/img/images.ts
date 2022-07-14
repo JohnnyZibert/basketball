@@ -1,5 +1,6 @@
 import bgSignUp from './bgReg.jpg'
 import bgSignIn from './bgSignIn.png'
+import emptyTeams from './emptyTeams.png'
 import headerLogo from './headerLogo.png'
 import headerProfile from './headerProfile.png'
 import imgSingUp from './imgReg.png'
@@ -12,4 +13,5 @@ export const images = {
   bgSignIn,
   headerLogo,
   headerProfile,
+  emptyTeams,
 }
