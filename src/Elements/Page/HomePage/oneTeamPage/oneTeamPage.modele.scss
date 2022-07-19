@@ -1,0 +1,23 @@
+.oneTeamsContainer {
+  padding: 32px 0;
+  width: 1140px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #FFFFFF;
+  padding: 24px 32px;
+
+  p {
+    color: #E4163A;
+    font-family: 'Avenir', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  span {
+    color: #9C9C9C;
+  }
+
+}

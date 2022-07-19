@@ -3,43 +3,67 @@ import { useDropzone } from 'react-dropzone'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { date } from 'yup'
 
-import { addNewTeamsPostRequest } from '../../../../Store/newTeams/AddNewTeamsRequest'
-import { postPhotosRequest } from '../../../../Store/savePhotos/AsyncActionSavePhoto'
+import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
+import { postPhotosRequestPlayers } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
 import { AppDispatch } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/BtnSave'
 import { FormInput } from '../../../../UI/form/FormInput'
-import styles from './uploadFile.module.scss'
+import { MyComponent } from '../selectForForm/SelectForForm'
+import styles from './AddNewPlayersPage.module.scss'
 
-export interface IUserForm {
-  name: string
-  foundationYear: number
-  division: string
-  conference: string
-  imageUrl: string
+export interface IAddPlayersForm {
+  newPlayer: string
+  number: number
+  position: string
+  team: number
+  birthday: '2022-07-16T17:20:41.788Z'
+  height: number
+  weight: number
+  avatarUrl: string
 }
 
-export const AddNewTeams: React.FC = (props) => {
-  const methods = useForm<IUserForm>()
+export const AddNewPlayers: React.FC = (props) => {
+  const optionsPosition = [
+    { value: 'Center Forward', label: 'Center Forward' },
+    { value: 'Guard Forward', label: 'Guard Forward' },
+    { value: 'Forward', label: 'Forward' },
+    { value: 'Center', label: 'Center' },
+    { value: 'Guard', label: 'Guard' },
+  ]
 
-  const { getValues, setValue } = methods
-  const url = methods.watch('imageUrl')
-  // console.log(url)
-  console.log(methods.watch())
-  const onSubmit = (data: IUserForm) => {
-    dispatch(addNewTeamsPostRequest(data))
-  }
+  const optionsTeam = [
+    { value: 'Portland trail blazers', label: 'Portland trail blazers' },
+    { value: 'Denver Nuggets', label: 'Denver Nuggets' },
+    { value: 'Minnesota timberwolves', label: 'Minnesota timberwolves' },
+    { value: 'Memphis Grizzlies', label: 'Memphis Grizzlies' },
+    { value: 'Oklahoma city thunder', label: 'Oklahoma city thunder' },
+    {
+      value: 'Philadelphia seventy sixers',
+      label: 'Philadelphia seventy sixers',
+    },
+  ]
 
+  const methods = useForm<IAddPlayersForm>()
   const dispatch: AppDispatch = useDispatch()
 
+  const { setValue } = methods
+  const urlPhotoPlayers = methods.watch('avatarUrl')
+  // console.log(url)
+  console.log(methods.watch())
+
+  const onSubmit = (data: IAddPlayersForm) => {
+    dispatch(addNewPlayersPostRequest(data))
+  }
   const onDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0]
       const formData = new FormData()
       formData.append('file', file)
       dispatch(
-        postPhotosRequest({
+        postPhotosRequestPlayers({
           file: formData,
           setValue,
         })
@@ -47,7 +71,6 @@ export const AddNewTeams: React.FC = (props) => {
     },
     [dispatch, setValue]
   )
-
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     multiple: false,
@@ -57,7 +80,7 @@ export const AddNewTeams: React.FC = (props) => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <p>
-          <Link to={'teams'}>Teams</Link>
+          <Link to={'players'}>Teams</Link>
           <span>/</span> Add new team
         </p>
       </div>
@@ -71,7 +94,7 @@ export const AddNewTeams: React.FC = (props) => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={url} />
+                  <img src={urlPhotoPlayers} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,
@@ -93,16 +116,25 @@ export const AddNewTeams: React.FC = (props) => {
                         fill="white"
                       />
                     </svg>
-                    <input name="imageUrl" id="file" {...getInputProps()} />
+                    <input name="avatarUrl" id="file" {...getInputProps()} />
                   </div>
                 </section>
               </div>
 
               <div className={styles.inputContainer}>
                 <FormInput name={'name'} />
-                <FormInput name={'division'} />
-                <FormInput name={'conference'} />
-                <FormInput name={'foundationYear'} />
+                <FormInput name={'newPlayer'} />
+                <FormInput name={'position'} />
+                <FormInput name={'team'} />
+                <div className={styles.bodySize}>
+                  <FormInput name={'height (cm)'} />
+                  <FormInput name={'weight (kg)'} />
+                </div>
+                <div className={styles.data}>
+                  <FormInput name={'birthday'} type="date" />
+                  <FormInput name={'number'} />
+                </div>
+
                 <div className={styles.btnContainer}>
                   <BtnCancel>Cancel</BtnCancel>
                   <BtnSave type="submit">Save</BtnSave>

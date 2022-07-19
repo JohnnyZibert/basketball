@@ -34,7 +34,7 @@ export const SideBarHome = () => {
                 <div>Teams</div>
               </div>
             </Link>
-            <Link to={'/home/players'}>
+            <Link to={'/addPlayersPage'}>
               <div className={styles.sideBarPlayers}>
                 <svg
                   width="24"

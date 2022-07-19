@@ -5,14 +5,14 @@ import { instance } from '../../api/instance'
 import { IAddPlayersForm } from '../../Elements/Page/HomePage/addNewPlayersPage/AddNewPlayersPage'
 import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsPage/AddNewTeamsPage'
 
-export interface IPostPhotosPayload {
+export interface IPostPhotosPayloadPlayers {
   file: FormData
-  setValue: UseFormSetValue<IUserForm>
+  setValue: UseFormSetValue<IAddPlayersForm>
 }
 
-export const postPhotosRequest = createAsyncThunk(
-  'savePhotos/postPhotosRequest',
-  async ({ file, setValue }: IPostPhotosPayload) => {
+export const postPhotosRequestPlayers = createAsyncThunk(
+  'savePhotosPlayers/postPhotosRequestPlayers',
+  async ({ file, setValue }: IPostPhotosPayloadPlayers) => {
     const response = await instance.post<any>(
       'http://dev.trainee.dex-it.ru/api/Image/SaveImage',
       file,

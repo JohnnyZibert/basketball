@@ -4,7 +4,7 @@ import { UseFormSetValue } from 'react-hook-form'
 
 import { instance } from '../../api/instance'
 import { requestAddTeams } from '../../consts/links'
-import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsBlock/uploadInput'
+import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsPage/AddNewTeamsPage'
 
 export const addNewTeamsPostRequest = createAsyncThunk(
   'addNewTeams/addNewTeamsPostRequest',

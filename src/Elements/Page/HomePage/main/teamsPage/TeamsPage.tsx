@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
+import { getOneTeamRequest } from '../../../../../Store/getOneTeam/getOneTeamRequest'
+import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
-import { getTeamsRequest } from '../../../../../Store/teamsItem/AsyncActionTeams'
 import styles from './TeamsLabel.module.scss'
 
 export const TeamsPage = React.memo(() => {
@@ -10,23 +12,34 @@ export const TeamsPage = React.memo(() => {
   const { data, count, page, size } = useSelector(
     (state: RootState) => state.getTeams.teams
   )
-
   useEffect(() => {
     dispatch(getTeamsRequest())
-  }, [dispatch])
+  }, [])
+
+  const handleOnClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const id = e.currentTarget.id
+    console.log(id)
+    dispatch(getOneTeamRequest(id))
+  }
 
   return (
     <>
       <ul className={styles.cartTeamsBox}>
         {data.map((item) => (
-          <li key={item.id} className={styles.teamsCard}>
-            <div className={styles.teamsCardTop}>
-              <img className={styles.logoTeams} src={item.imageUrl} />
-            </div>
-            <div className={styles.teamsCardBottom}>
-              {item.name} <br />
-              <span>Year of foundation:{item.foundationYear}</span>
-            </div>
+          <li
+            key={item.id}
+            className={styles.teamsCard}
+            onClick={(e) => handleOnClick(e)}
+          >
+            <Link to={`/oneTeam`}>
+              <div className={styles.teamsCardTop}>
+                <img className={styles.logoTeams} src={item.imageUrl} />
+              </div>
+              <div className={styles.teamsCardBottom}>
+                {item.name} <br />
+                <span>Year of foundation:{item.foundationYear}</span>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

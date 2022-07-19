@@ -1,0 +1,121 @@
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #FFFFFF;
+  padding: 24px 32px;
+
+  p {
+    color: #E4163A;
+    font-family: 'Avenir', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  span {
+    color: #9C9C9C;
+  }
+
+}
+
+.wrapper {
+  padding: 32px 0;
+  width: 1140px;
+
+}
+
+.wrapperContent {
+  display: flex;
+  background-color: #FFFFFF;
+ padding: 48px 73px;
+  margin-bottom: 48px;
+  align-self: flex-start;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: flex-start;
+  gap: 65px;
+}
+
+.dropZoneSection {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #9C9C9C;
+  border-radius: 8px;
+  max-width: 336px;
+  max-height: 261px;
+  width: 100%;
+  margin-right: 20px;
+  opacity: 0.5;
+
+  .dropZoneSvg {
+    display: flex;
+    justify-content: center;
+    width: 336px;
+    height:261px ;
+  }
+  img {
+    position: absolute;
+    z-index: -1;
+    max-height: 261px;
+    max-width: 336px;
+  }
+}
+
+.dropZoneSvg {
+  display: flex;
+  align-items: center;
+}
+
+.regForm {
+  width: 100%;
+  max-width: 366px;
+  display: flex;
+  flex-direction: column;
+
+
+  .btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.regForm input {
+  width: 366px;
+  height: 40px;
+}
+.inputContainer{
+  display: flex;
+  gap:25px;
+  flex-direction: column;
+}
+.bodySize {
+  display: flex;
+  justify-content: space-between;
+  input {
+  max-width: 171px}
+}
+.data {
+  display: flex;
+  justify-content: space-between;
+  input {
+    max-width: 171px}
+  input[type="date"]::-webkit-calendar-picker-indicator
+
+  {
+    color: rgba(0, 0, 0, 0);
+    opacity: 0.2;
+    margin-right: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  gap:24px
+}
+
+
+

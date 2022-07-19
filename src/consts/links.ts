@@ -8,13 +8,15 @@ export const requestAddTeams = {
 }
 export const requestGetTeams = {
   getTeams: 'Team/GetTeams',
+  getOneTeam: 'Team/Get/',
 }
 
-// export const requestPlayers = {
-//   players: 'Player/GetPlayers',
-//   player: 'Player/Get',
-//   position: 'Player/GetPositions',
-// }
+export const requestPlayers = {
+  players: 'Player/GetPlayers',
+  player: 'Player/Get',
+  position: 'Player/GetPositions',
+  addNewPlayers: 'Player/Add',
+}
 
 export const requestPhotos = {
   postPhoto: 'Image/SaveImage',
