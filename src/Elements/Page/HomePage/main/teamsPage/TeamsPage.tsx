@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { getOneTeamRequest } from '../../../../../Store/getOneTeam/getOneTeamRequest'
 import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
-import styles from './TeamsLabel.module.scss'
+import styles from './TeamsPage.module.scss'
 
 export const TeamsPage = React.memo(() => {
   const dispatch = useAppDispatch()
@@ -18,12 +18,11 @@ export const TeamsPage = React.memo(() => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const id = e.currentTarget.id
-    console.log(id)
     dispatch(getOneTeamRequest(id))
   }
 
   return (
-    <>
+    <div className={styles.cardContainer}>
       <ul className={styles.cartTeamsBox}>
         {data.map((item) => (
           <li
@@ -33,7 +32,11 @@ export const TeamsPage = React.memo(() => {
           >
             <Link to={`/oneTeam`}>
               <div className={styles.teamsCardTop}>
-                <img className={styles.logoTeams} src={item.imageUrl} />
+                <img
+                  className={styles.logoTeams}
+                  src={item.imageUrl}
+                  alt={'logoTeam'}
+                />
               </div>
               <div className={styles.teamsCardBottom}>
                 {item.name} <br />
@@ -43,6 +46,6 @@ export const TeamsPage = React.memo(() => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 })

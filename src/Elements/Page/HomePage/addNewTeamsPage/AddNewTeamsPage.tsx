@@ -20,14 +20,12 @@ export interface IUserForm {
   imageUrl: string
 }
 
-export const AddNewTeams: React.FC = (props) => {
+export const AddNewTeams: React.FC = () => {
   const methods = useForm<IUserForm>()
   const dispatch: AppDispatch = useDispatch()
 
-  const { getValues, setValue } = methods
+  const { setValue } = methods
   const url = methods.watch('imageUrl')
-  // console.log(url)
-  console.log(methods.watch())
   const onSubmit = (data: IUserForm) => {
     dispatch(addNewTeamsPostRequest(data))
   }
@@ -54,7 +52,7 @@ export const AddNewTeams: React.FC = (props) => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <p>
-          <Link to={'/teams'}>Teams</Link>
+          <Link to={'/'}>Teams</Link>
           <span>/</span> Add new team
         </p>
       </div>
@@ -68,7 +66,7 @@ export const AddNewTeams: React.FC = (props) => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={url} />
+                  <img src={url} alt={'photoNewTeam'} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,

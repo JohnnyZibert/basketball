@@ -3,7 +3,6 @@ import { useDropzone } from 'react-dropzone'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { date } from 'yup'
 
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { postPhotosRequestPlayers } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
@@ -11,7 +10,6 @@ import { AppDispatch } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/BtnSave'
 import { FormInput } from '../../../../UI/form/FormInput'
-import { MyComponent } from '../selectForForm/SelectForForm'
 import styles from './AddNewPlayersPage.module.scss'
 
 export interface IAddPlayersForm {
@@ -25,7 +23,7 @@ export interface IAddPlayersForm {
   avatarUrl: string
 }
 
-export const AddNewPlayers: React.FC = (props) => {
+export const AddNewPlayers: React.FC = () => {
   const optionsPosition = [
     { value: 'Center Forward', label: 'Center Forward' },
     { value: 'Guard Forward', label: 'Guard Forward' },
@@ -80,8 +78,8 @@ export const AddNewPlayers: React.FC = (props) => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <p>
-          <Link to={'players'}>Teams</Link>
-          <span>/</span> Add new team
+          <Link to={'players'}>Players</Link>
+          <span>/</span> Add new player
         </p>
       </div>
 
@@ -94,7 +92,7 @@ export const AddNewPlayers: React.FC = (props) => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={urlPhotoPlayers} />
+                  <img src={urlPhotoPlayers} alt={'photoPlayer'} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,

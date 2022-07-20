@@ -5,6 +5,7 @@ import headerLogo from './headerLogo.png'
 import headerProfile from './headerProfile.png'
 import imgSingUp from './imgReg.png'
 import signIn from './imgSingIn.png'
+import notFoundImg from './NotFound.png'
 
 export const images = {
   signIn,
@@ -14,4 +15,5 @@ export const images = {
   headerLogo,
   headerProfile,
   emptyTeams,
+  notFoundImg,
 }

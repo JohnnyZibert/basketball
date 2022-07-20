@@ -1,21 +1,13 @@
-.sideBar {
-  display: flex;
-  //max-width: 200px;
-  //align-items: center;
-  background-color: #F6F6F6;
-  nav {
-    margin-right: 80px;
-    background-color: #FFFFFF;
-  }
-}
+
 .sideBarSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 200px;
+  //align-items: center;
+  background-color: #FFFFFF;
 
-}
-.sideBar{
-  box-shadow: 0 1px 10px rgba(209, 209, 209, 0.5);
+
 }
 
 //.signOutBlock{
@@ -66,6 +58,7 @@
   cursor: pointer;
   text-align: center;
   align-items: center;
+  margin-bottom: 32px;
 }
 .header {
   display: flex;

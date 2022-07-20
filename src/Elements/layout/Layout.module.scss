@@ -1,0 +1,17 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 1px 10px  rgba(209, 209, 209, 0.5);
+
+}
+.asideContainer{
+  width: 200px;
+  display: flex;
+
+
+}
+.mainContainer{
+    padding: 0 80px;
+    background-color: #F6F6F6;
+    width: 100%;
+}

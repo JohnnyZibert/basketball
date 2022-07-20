@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 import { RootState } from '../../../../Store/store'
 import { AddButton } from '../../../../UI/AddButton/AddButton'
 import { EmptyTeams } from '../emptyTeams/EmptyTeams'
-import { OneTeamPage } from '../oneTeamPage/oneTeamPage'
 import styles from './Main.module.scss'
 import { Pagination } from './pagination/Pagination'
 import { Search } from './search/Search'
@@ -18,12 +17,13 @@ export const MainContent = () => {
       <div className={styles.mainContainer}>
         <div className={styles.supraMain}>
           <Search />
-          <Link to={'/addTeamsPage'}>
+          <Link to={'addNewTeams'}>
             <AddButton children={'Add'} />
           </Link>
         </div>
-        {/*{statusTeams ? <TeamsPage /> : <EmptyTeams />}*/}
-        <OneTeamPage />
+        <Outlet />
+        {statusTeams ? <TeamsPage /> : <EmptyTeams />}
+        {/*<OneTeamPage />*/}
       </div>
       <div className={styles.mainFooter}>
         <Pagination />
