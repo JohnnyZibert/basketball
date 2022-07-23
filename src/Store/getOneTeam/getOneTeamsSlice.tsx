@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { Status } from '../getTeams/TeamsSlice'
 import { getOneTeamRequest } from './getOneTeamRequest'
@@ -15,8 +15,8 @@ export interface IOneTeam {
   status: Status
 }
 
-const initialState: IOneTeam = {
-  data: {
+const initialState = {
+  teamData: {
     name: '',
     foundationYear: 0,
     division: '',
@@ -27,16 +27,19 @@ const initialState: IOneTeam = {
   status: Status.SUCCESS,
 }
 
-const getOneTeam = createSlice({
+const getOneTeamSlice = createSlice({
   name: 'getOneTeam',
   initialState,
-  reducers: {},
+  reducers: {
+    setOneTeam(state = initialState, { payload }) {
+      state.teamData = payload
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getOneTeamRequest.pending, (state) => {
       state.status = Status.LOADING
     })
     builder.addCase(getOneTeamRequest.fulfilled, (state, { payload }) => {
-      state.data = payload.data
       state.status = Status.SUCCESS
     })
 
@@ -46,6 +49,6 @@ const getOneTeam = createSlice({
   },
 })
 
-// export const {  } = getOneTeam.actions
+export const { setOneTeam } = getOneTeamSlice.actions
 
-export default getOneTeam.reducer
+export default getOneTeamSlice.reducer

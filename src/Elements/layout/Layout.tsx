@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import { Header } from '../Page/HomePage/header/Header'
 import { SideBarHome } from '../Page/HomePage/sidebar/SideBarHome'
+import LoginPage from '../Page/LoginPage/LoginPage'
 import styles from './Layout.module.scss'
 export const Layout = () => {
   return (
@@ -17,6 +18,7 @@ export const Layout = () => {
         <main className={styles.mainContainer}>
           <Outlet />
         </main>
+        {/*<LoginPage />*/}
       </div>
     </>
   )

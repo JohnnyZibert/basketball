@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import LoginPage from '../../LoginPage/LoginPage'
 import styles from './SideBarHome.module.scss'
 
 export const SideBarHome = () => {
@@ -69,7 +70,6 @@ export const SideBarHome = () => {
           <span className={styles.btnSignOut}>Sign Out</span>
         </div>
       </nav>
-      {/*<LoginPage />*/}
     </>
   )
 }

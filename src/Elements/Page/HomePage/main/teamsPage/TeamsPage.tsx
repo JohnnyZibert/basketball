@@ -16,34 +16,34 @@ export const TeamsPage = React.memo(() => {
     dispatch(getTeamsRequest())
   }, [])
 
-  const handleOnClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const id = e.currentTarget.id
-    dispatch(getOneTeamRequest(id))
-  }
+  // const handleOnClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  //   const id = e.currentTarget.id
+  //   dispatch(getOneTeamRequest(id))
+  // }
 
   return (
     <div className={styles.cardContainer}>
       <ul className={styles.cartTeamsBox}>
         {data.map((item) => (
-          <li
+          <Link
             key={item.id}
             className={styles.teamsCard}
-            onClick={(e) => handleOnClick(e)}
+            to={`teams/${item.id}`}
           >
-            <Link to={`/oneTeam`}>
-              <div className={styles.teamsCardTop}>
-                <img
-                  className={styles.logoTeams}
-                  src={item.imageUrl}
-                  alt={'logoTeam'}
-                />
-              </div>
-              <div className={styles.teamsCardBottom}>
-                {item.name} <br />
-                <span>Year of foundation:{item.foundationYear}</span>
-              </div>
-            </Link>
-          </li>
+            {/*<Link to={`/oneTeam`}>*/}
+            <div className={styles.teamsCardTop}>
+              <img
+                className={styles.logoTeams}
+                src={item.imageUrl}
+                alt={'logoTeam'}
+              />
+            </div>
+            <div className={styles.teamsCardBottom}>
+              {item.name} <br />
+              <span>Year of foundation:{item.foundationYear}</span>
+            </div>
+          </Link>
+          // </Link>
         ))}
       </ul>
     </div>

@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { useParams } from 'react-router-dom'
 
 import { instance } from '../../api/instance'
-import { requestGetTeams } from '../../consts/links'
+import { IOneTeam, setOneTeam } from './getOneTeamsSlice'
 
 export const getOneTeamRequest = createAsyncThunk(
   'getOneTeam/getOneTeamRequest',
-  async (id: string) => {
-    const response = await instance.get(requestGetTeams.getOneTeam + id)
-    return response.data
+  async (id: number, { dispatch }) => {
+    const response = await instance.get<IOneTeam>(
+      `http://dev.trainee.dex-it.ru/api/Team/Get?id=${id}`
+    )
+    return dispatch(setOneTeam(response.data))
   }
 )

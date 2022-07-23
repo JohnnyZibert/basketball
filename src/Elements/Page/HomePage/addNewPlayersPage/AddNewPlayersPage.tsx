@@ -1,8 +1,10 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { FormProvider, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Select, { GroupBase } from 'react-select'
+import ReactSelect from 'react-select'
 
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { postPhotosRequestPlayers } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
@@ -15,8 +17,8 @@ import styles from './AddNewPlayersPage.module.scss'
 export interface IAddPlayersForm {
   newPlayer: string
   number: number
-  position: string
-  team: number
+  position: { value: string; label: string }[]
+  team: { value: string; label: string }[]
   birthday: '2022-07-16T17:20:41.788Z'
   height: number
   weight: number
@@ -47,13 +49,15 @@ export const AddNewPlayers: React.FC = () => {
   const methods = useForm<IAddPlayersForm>()
   const dispatch: AppDispatch = useDispatch()
 
-  const { setValue } = methods
+  const { getValues, setValue } = methods
   const urlPhotoPlayers = methods.watch('avatarUrl')
   // console.log(url)
   console.log(methods.watch())
 
   const onSubmit = (data: IAddPlayersForm) => {
     dispatch(addNewPlayersPostRequest(data))
+
+    console.log(data)
   }
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -88,11 +92,12 @@ export const AddNewPlayers: React.FC = () => {
           <form
             className={styles.regForm}
             onSubmit={methods.handleSubmit(onSubmit)}
+            id="playerForm"
           >
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={urlPhotoPlayers} alt={'photoPlayer'} />
+                  <img src={urlPhotoPlayers} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,
@@ -122,8 +127,47 @@ export const AddNewPlayers: React.FC = () => {
               <div className={styles.inputContainer}>
                 <FormInput name={'name'} />
                 <FormInput name={'newPlayer'} />
-                <FormInput name={'position'} />
-                <FormInput name={'team'} />
+                {/*<FormInput name={'position'} options={optionsPosition} />*/}
+                {/*<FormInput name={'team'} options={optionsTeam} />*/}
+                {/*<SelectForm*/}
+                {/*  methods={methods}*/}
+                {/*  options={optionsPosition}*/}
+                {/*  name={'position'}*/}
+                {/*/>*/}
+                {/*<SelectForm*/}
+                {/*  methods={methods}*/}
+                {/*  options={{ optionsTeam }}*/}
+                {/*  name={'team'}*/}
+                {/*/>*/}
+                <section>
+                  <label>Position</label>
+                  <Controller
+                    render={({ field }) => (
+                      <ReactSelect
+                        {...field}
+                        options={optionsPosition}
+                        isClearable
+                      />
+                    )}
+                    name="position"
+                    control={methods.control}
+                  />
+                </section>
+                <section>
+                  <label>Team</label>
+                  <Controller
+                    render={({ field }) => (
+                      <ReactSelect
+                        {...field}
+                        options={optionsTeam}
+                        isClearable
+                      />
+                    )}
+                    name="team"
+                    control={methods.control}
+                  />
+                </section>
+
                 <div className={styles.bodySize}>
                   <FormInput name={'height (cm)'} />
                   <FormInput name={'weight (kg)'} />
@@ -135,7 +179,16 @@ export const AddNewPlayers: React.FC = () => {
 
                 <div className={styles.btnContainer}>
                   <BtnCancel>Cancel</BtnCancel>
-                  <BtnSave type="submit">Save</BtnSave>
+                  <BtnSave
+                    type="submit"
+                    onClick={() => {
+                      // getValues('position')
+                      // getValues('team')
+                      getValues(['position', 'team'])
+                    }}
+                  >
+                    Save
+                  </BtnSave>
                 </div>
               </div>
             </div>

@@ -66,7 +66,7 @@ export const AddNewTeams: React.FC = () => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={url} alt={'photoNewTeam'} />
+                  <img src={url} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,

@@ -1,4 +1,5 @@
 .oneTeamsContainer {
+
   padding: 32px 0;
   width: 1140px;
 }
@@ -20,4 +21,21 @@
     color: #9C9C9C;
   }
 
+}
+
+.teamInfo{
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(276.45deg, #707070 0%, #393939 100.28%);
+  border-radius: 10px 10px 0 0;
+}
+
+.logoTeams{
+  padding: 97px 146px;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 210px;
+    height: 210px;
+  }
 }

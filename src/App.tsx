@@ -23,8 +23,9 @@ function App() {
           <Route path="/*" element={<Layout />}>
             <Route index element={<MainContent />} />
             <Route path="teams" element={<TeamsPage />} />
+            <Route path="teams/:id" element={<OneTeamPage />} />
             <Route path="addNewTeams" element={<AddNewTeams />} />
-            <Route path="oneTeam" element={<OneTeamPage />} />
+            {/*<Route path="oneTeam" element={<OneTeamPage />} />*/}
             <Route path="register" element={<RegisterForm />} />
             <Route path="addPlayersPage" element={<AddNewPlayers />} />
             <Route path="login" element={<LoginPage />} />
