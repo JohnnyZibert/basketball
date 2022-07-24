@@ -6,6 +6,9 @@ export const requestLinks = {
 export const requestAddTeams = {
   addTeams: 'Team/Add',
 }
+export const requestDeleteTeams = {
+  deleteTeams: 'Team/Delete',
+}
 export const requestGetTeams = {
   getTeams: 'Team/GetTeams',
   getOneTeam: 'Team/Get/',

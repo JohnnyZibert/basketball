@@ -1,0 +1,32 @@
+.tableContainer {
+  display: grid;
+  border: 0.5px solid #9C9C9C;
+  border-radius: 10px;
+}
+
+.tableHead {
+  color: #707070;
+  grid-template-columns: 12fr;
+  border-bottom: 0.5px solid #9C9C9C;
+
+}
+
+.tableBody {
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  color: #707070;
+
+}
+
+.tableBody {
+  span {
+    padding: 10px;
+    border-bottom: 0.5px solid #9C9C9C;;
+  }
+  span:last-child {
+    border-bottom: none;
+    padding: 10px;
+  }
+}
+

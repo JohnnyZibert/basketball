@@ -1,11 +1,13 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 
+import images, { deleteTeam, editTeamInfo } from '../../../../assets/img/images'
+import { deleteTeamRequest } from '../../../../Store/deleteTeam/DeleteTeamAsyncAction'
 import { getOneTeamRequest } from '../../../../Store/getOneTeam/getOneTeamRequest'
-import { IOneTeam } from '../../../../Store/getOneTeam/getOneTeamsSlice'
 import { AppDispatch, RootState } from '../../../../Store/store'
+import { updateTeamRequest } from '../../../../Store/updateTeam/UpdataeTeamRequest'
+import { TablePlayers } from '../../../../UI/TableWithPlayers/TablePlayers'
 import styles from './oneTeamPage.module.scss'
 
 export const OneTeamPage = () => {
@@ -14,6 +16,7 @@ export const OneTeamPage = () => {
   const { name, division, imageUrl, foundationYear, conference } = useSelector(
     (state: RootState) => state.oneTeam.teamData
   )
+  const teamId = useSelector((state: RootState) => state.oneTeam.teamData.id)
 
   useEffect(() => {
     if (id != null) {
@@ -21,28 +24,64 @@ export const OneTeamPage = () => {
     }
   }, [id])
 
-  console.log(useParams())
+  const handleOnClickDeleteTeam = (teamId: number) => {
+    dispatch(deleteTeamRequest(Number(teamId)))
+    console.log(teamId)
+  }
+  const handleOnClickEditTeam = (teamId: number) => {
+    dispatch(updateTeamRequest(Number(teamId)))
+    console.log(teamId)
+  }
+
   return (
     <div className={styles.oneTeamsContainer}>
       <div className={styles.header}>
-        <p>
+        <div className={styles.headerTeamMenu}>
           <Link to={'teams'}>Teams</Link>
           <span> / </span>
           {name}
-        </p>
-      </div>
-      <div className={styles.teamInfo}>
-        <div className={styles.logoTeams}>
-          <img src={imageUrl} />
         </div>
-        <div>
-          <div>{name}</div>
-          <div>{foundationYear}</div>
-          <div>{conference}</div>
-          <div>{division}</div>
+        <div className={styles.editTools}>
+          <div
+            className={styles.editBtn}
+            onClick={() => handleOnClickEditTeam(teamId)}
+          >
+            {editTeamInfo}
+          </div>
+          <div
+            className={styles.deleteBtn}
+            onClick={() => handleOnClickDeleteTeam(teamId)}
+          >
+            {deleteTeam}
+          </div>
         </div>
       </div>
-      <div className={styles.schedule}>Player list with params</div>
+      <div className={styles.wrapInfoTeam}>
+        {' '}
+        <div className={styles.teamInfo}>
+          <div className={styles.logoTeams}>
+            <img src={imageUrl} />
+          </div>
+          <div className={styles.descriptionTeam}>
+            <div className={styles.nameTeam}>{name}</div>
+            <div className={styles.foundation}>
+              <div>
+                Year of foundation
+                <div className={styles.years}>{foundationYear}</div>
+              </div>
+              <div>
+                Division
+                <div className={styles.division}>{division}</div>
+              </div>
+            </div>
+            <div>
+              Conference
+              <div className={styles.conference}>{conference}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <TablePlayers />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { Status } from '../getTeams/TeamsSlice'
-import { deleteTeamRequest } from './DeleteTeamAsyncAction'
+import { updateTeamRequest } from './UpdataeTeamRequest'
 
 export interface IOneTeam {
   data: {
@@ -27,28 +27,28 @@ const initialState = {
   status: Status.SUCCESS,
 }
 
-const deleteTeamSlice = createSlice({
-  name: 'deleteTeamSlice',
+const updateTeamSlice = createSlice({
+  name: 'updateTeamSlice',
   initialState,
   reducers: {
-    deleteTeam(state = initialState, { payload }) {
+    updateTeam(state = initialState, { payload }) {
       state.teamData = payload
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(deleteTeamRequest.pending, (state) => {
+    builder.addCase(updateTeamRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(deleteTeamRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(updateTeamRequest.fulfilled, (state, { payload }) => {
       state.status = Status.SUCCESS
     })
 
-    builder.addCase(deleteTeamRequest.rejected, (state) => {
+    builder.addCase(updateTeamRequest.rejected, (state) => {
       state.status = Status.ERROR
     })
   },
 })
 
-export const { deleteTeam } = deleteTeamSlice.actions
+export const { updateTeam } = updateTeamSlice.actions
 
-export default deleteTeamSlice.reducer
+export default updateTeamSlice.reducer

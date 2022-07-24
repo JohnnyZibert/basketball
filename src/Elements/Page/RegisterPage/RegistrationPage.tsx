@@ -5,7 +5,7 @@ import { eyeOff } from 'react-icons-kit/feather/eyeOff'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { images } from '../../../assets/img/images'
+import images from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests'
 import { AppDispatch } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/BtnSave'
@@ -121,11 +121,7 @@ const RegisterForm = () => {
         </FormProvider>
       </div>
       <div className={styles.imgContainer}>
-        <img
-          className={styles.imgSignUp}
-          src={images.imgSingUp}
-          alt="imgSingUp"
-        />
+        <img className={styles.imgSignUp} src={images.imgReg} alt="imgSingUp" />
       </div>
     </div>
   )

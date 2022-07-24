@@ -1,4 +1,4 @@
-import { images } from '../../../../assets/img/images'
+import images from '../../../../assets/img/images'
 import styles from './EmptyTeams.module.scss'
 
 export const EmptyTeams = () => {

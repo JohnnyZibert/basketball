@@ -1,4 +1,4 @@
-import { images } from '../../../../../assets/img/images'
+import images from '../../../../../assets/img/images'
 import { PlayerBlock } from './PlayerBlock'
 import styles from './PlayersLabel.module.scss'
 

@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
 
-import { images } from '../../../assets/img/images'
+import images from '../../../assets/img/images'
 import { setLoginAuthRequest } from '../../../Store/requests/authLoginRequest'
 import { AppDispatch, RootState } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/BtnSave'
@@ -61,7 +61,7 @@ const LoginPage = () => {
       <div className={styles.imgContainer}>
         <img
           className={styles.imgSignUp}
-          src={images.imgSingUp}
+          src={images.imgSingIn}
           alt="imgSingUp"
         />
       </div>
