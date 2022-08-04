@@ -1,15 +1,36 @@
+import { debounce } from '@material-ui/core'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { setSearchValue } from '../../../../../Store/search/Search'
+import { AppDispatch } from '../../../../../Store/store'
 import styles from './Search.module.scss'
 
 export const Search = () => {
+  const dispatch: AppDispatch = useDispatch()
+  const [value, setValue] = React.useState('')
+  const inputEl = React.useRef<HTMLInputElement>(null)
+
+  const updateSearchValue = React.useCallback(
+    debounce((str) => {
+      dispatch(setSearchValue(str))
+    }, 250),
+    []
+  )
+
+  const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value)
+    updateSearchValue(event.target.value)
+  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.searchInput}>
         <input
-          // ref={inputEl}
-          // value={value}
+          ref={inputEl}
+          value={value}
           placeholder="Search..."
           type={'text'}
-          // onChange={onChangeValue}
+          onChange={onChangeValue}
         />
         <div className={styles.searchSvg}>
           <svg

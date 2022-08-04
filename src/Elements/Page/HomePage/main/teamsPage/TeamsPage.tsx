@@ -2,24 +2,17 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getOneTeamRequest } from '../../../../../Store/getOneTeam/getOneTeamRequest'
 import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
 import styles from './TeamsPage.module.scss'
 
-export const TeamsPage = React.memo(() => {
+export const TeamsPage = () => {
   const dispatch = useAppDispatch()
-  const { data, count, page, size } = useSelector(
-    (state: RootState) => state.getTeams.teams
-  )
+  const { data } = useSelector((state: RootState) => state.getTeams.teams)
+
   useEffect(() => {
     dispatch(getTeamsRequest())
   }, [])
-
-  // const handleOnClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-  //   const id = e.currentTarget.id
-  //   dispatch(getOneTeamRequest(id))
-  // }
 
   return (
     <div className={styles.cardContainer}>
@@ -30,7 +23,6 @@ export const TeamsPage = React.memo(() => {
             className={styles.teamsCard}
             to={`teams/${item.id}`}
           >
-            {/*<Link to={`/oneTeam`}>*/}
             <div className={styles.teamsCardTop}>
               <img
                 className={styles.logoTeams}
@@ -43,9 +35,8 @@ export const TeamsPage = React.memo(() => {
               <span>Year of foundation:{item.foundationYear}</span>
             </div>
           </Link>
-          // </Link>
         ))}
       </ul>
     </div>
   )
-})
+}

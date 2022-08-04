@@ -1,8 +1,21 @@
+import React from 'react'
 import ReactPaginate from 'react-paginate'
+import { useSelector } from 'react-redux'
 
+import { RootState } from '../../../../../Store/store'
 import styles from './Paginate.module.scss'
 
-export const Pagination = () => {
+interface IPaginationProps {
+  currentPage?: number
+  onChangePage?: (page: number) => void
+  countPage?: number
+  sizePage?: number
+}
+
+export const Pagination: React.FC<IPaginationProps> = () => {
+  const { page, size, count } = useSelector(
+    (state: RootState) => state.getTeams.teams
+  )
   const svgBackArrow = (
     <svg
       width="6"
@@ -39,9 +52,9 @@ export const Pagination = () => {
         breakLabel="..."
         nextLabel={svgUpArrow}
         onPageChange={(event) => event.selected + 1}
-        pageRangeDisplayed={4}
-        pageCount={4}
-        // forcePage={currentPage - 1}
+        pageRangeDisplayed={size}
+        pageCount={count}
+        forcePage={page - 1}
         previousLabel={svgBackArrow}
       />
     </div>

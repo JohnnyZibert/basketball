@@ -1,10 +1,14 @@
-.cardContainer{
-display: flex;
+.cardContainer {
+  display: flex;
 }
+
 .cartTeamsBox {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  @media (max-width: 803px) {
+    flex-direction: row;
+  }
 
 }
 
@@ -13,6 +17,11 @@ display: flex;
   width: 364px;
   height: 380px;
   flex-direction: column;
+  @media (max-width: 803px) {
+    width: 196px;
+    height: 201px;
+  }
+
 }
 
 .teamsCardTop {

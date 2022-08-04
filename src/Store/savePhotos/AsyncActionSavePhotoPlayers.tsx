@@ -3,7 +3,6 @@ import { UseFormSetValue } from 'react-hook-form'
 
 import { instance } from '../../api/instance'
 import { IAddPlayersForm } from '../../Elements/Page/HomePage/addNewPlayersPage/AddNewPlayersPage'
-import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsPage/AddNewTeamsPage'
 
 export interface IPostPhotosPayloadPlayers {
   file: FormData
@@ -13,7 +12,7 @@ export interface IPostPhotosPayloadPlayers {
 export const postPhotosRequestPlayers = createAsyncThunk(
   'savePhotosPlayers/postPhotosRequestPlayers',
   async ({ file, setValue }: IPostPhotosPayloadPlayers) => {
-    const response = await instance.post<any>(
+    const response = await instance.post(
       'http://dev.trainee.dex-it.ru/api/Image/SaveImage',
       file,
       {

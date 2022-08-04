@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import images, { deleteTeam, editTeamInfo } from '../../../../assets/img/images'
+import { deleteTeam, editTeamInfo } from '../../../../assets/img/images'
 import { deleteTeamRequest } from '../../../../Store/deleteTeam/DeleteTeamAsyncAction'
 import { getOneTeamRequest } from '../../../../Store/getOneTeam/getOneTeamRequest'
 import { AppDispatch, RootState } from '../../../../Store/store'
-import { updateTeamRequest } from '../../../../Store/updateTeam/UpdataeTeamRequest'
 import { TablePlayers } from '../../../../UI/TableWithPlayers/TablePlayers'
 import styles from './oneTeamPage.module.scss'
 
@@ -14,9 +14,10 @@ export const OneTeamPage = () => {
   const dispatch: AppDispatch = useDispatch()
   const { id } = useParams()
   const { name, division, imageUrl, foundationYear, conference } = useSelector(
-    (state: RootState) => state.oneTeam.teamData
+    (state: RootState) => state.oneTeam.data
   )
-  const teamId = useSelector((state: RootState) => state.oneTeam.teamData.id)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (id != null) {
@@ -24,33 +25,26 @@ export const OneTeamPage = () => {
     }
   }, [id])
 
-  const handleOnClickDeleteTeam = (teamId: number) => {
-    dispatch(deleteTeamRequest(Number(teamId)))
-    console.log(teamId)
-  }
-  const handleOnClickEditTeam = (teamId: number) => {
-    dispatch(updateTeamRequest(Number(teamId)))
-    console.log(teamId)
+  const handleOnClickDeleteTeam = async (id: number) => {
+    await dispatch(deleteTeamRequest(Number(id)))
+    await navigate('/')
   }
 
   return (
     <div className={styles.oneTeamsContainer}>
       <div className={styles.header}>
         <div className={styles.headerTeamMenu}>
-          <Link to={'teams'}>Teams</Link>
+          <Link to="/">Teams</Link>
           <span> / </span>
           {name}
         </div>
         <div className={styles.editTools}>
-          <div
-            className={styles.editBtn}
-            onClick={() => handleOnClickEditTeam(teamId)}
-          >
-            {editTeamInfo}
-          </div>
+          <Link to={'addNewTeams'}>
+            <div className={styles.editBtn}>{editTeamInfo}</div>
+          </Link>
           <div
             className={styles.deleteBtn}
-            onClick={() => handleOnClickDeleteTeam(teamId)}
+            onClick={() => handleOnClickDeleteTeam(Number(id))}
           >
             {deleteTeam}
           </div>

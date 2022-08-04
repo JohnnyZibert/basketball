@@ -22,12 +22,18 @@ export interface IUserForm {
 
 export const AddNewTeams: React.FC = () => {
   const methods = useForm<IUserForm>()
+
   const dispatch: AppDispatch = useDispatch()
 
   const { setValue } = methods
+
   const url = methods.watch('imageUrl')
+
   const onSubmit = (data: IUserForm) => {
-    dispatch(addNewTeamsPostRequest(data))
+    if (data) {
+      dispatch(addNewTeamsPostRequest(data))
+    }
+    methods.reset({})
   }
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -67,6 +73,7 @@ export const AddNewTeams: React.FC = () => {
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
                   <img src={url} />
+
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,
@@ -94,10 +101,10 @@ export const AddNewTeams: React.FC = () => {
               </div>
 
               <div className={styles.inputContainer}>
-                <FormInput name={'name'} />
-                <FormInput name={'division'} />
-                <FormInput name={'conference'} />
-                <FormInput name={'foundationYear'} />
+                <FormInput name={'name'} label={'Name'} />
+                <FormInput name={'division'} label={'Division'} />
+                <FormInput name={'conference'} label={'Conference'} />
+                <FormInput name={'foundationYear'} label={'Foundation year'} />
                 <div className={styles.btnContainer}>
                   <BtnCancel>Cancel</BtnCancel>
                   <BtnSave type="submit">Save</BtnSave>

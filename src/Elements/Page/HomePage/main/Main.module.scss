@@ -7,17 +7,19 @@
   justify-self: center;
 
 
-
 }
 
-.mainContainer{
+.mainContainer {
   max-width: 1140px;
 }
 
 .supraMain {
   display: flex;
   justify-content: space-between;
-
+  @media (max-width: 803px) {
+    flex-direction: column;
+    margin: 16px 12px;
+  }
 
 
   button {
@@ -27,6 +29,13 @@
     width: 104px;
     height: 40px;
 
+
+    @media (max-width: 784px) {
+      display: flex;
+      width: 351px;
+      justify-content: center;
+
+    }
   }
 
 }

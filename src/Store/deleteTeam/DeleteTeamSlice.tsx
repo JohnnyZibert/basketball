@@ -15,8 +15,8 @@ export interface IOneTeam {
   status: Status
 }
 
-const initialState = {
-  teamData: {
+const initialState: IOneTeam = {
+  data: {
     name: '',
     foundationYear: 0,
     division: '',
@@ -32,14 +32,14 @@ const deleteTeamSlice = createSlice({
   initialState,
   reducers: {
     deleteTeam(state = initialState, { payload }) {
-      state.teamData = payload
+      state.data = payload
     },
   },
   extraReducers: (builder) => {
     builder.addCase(deleteTeamRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(deleteTeamRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(deleteTeamRequest.fulfilled, (state) => {
       state.status = Status.SUCCESS
     })
 

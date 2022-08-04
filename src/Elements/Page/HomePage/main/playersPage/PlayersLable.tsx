@@ -1,39 +1,42 @@
-import images from '../../../../../assets/img/images'
-import { PlayerBlock } from './PlayerBlock'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { getPlayersRequest } from '../../../../../Store/getPlayers/AsyncGetPlayers'
+import { RootState, useAppDispatch } from '../../../../../Store/store'
 import styles from './PlayersLabel.module.scss'
 
-export interface IPlayers {
-  name: string
-  number: number
-  position: string
-  team: number
-  birthday: string
-  height: number
-  weight: number
-  // avatarUrl: string
-  id: number
-}
+export const PlayersPage = () => {
+  const dispatch = useAppDispatch()
+  const { data } = useSelector((state: RootState) => state.getPlayers.players)
 
-const playersList: IPlayers[] = [
-  {
-    name: 'Jaylen Adams#',
-    number: 10,
-    position: ' ',
-    team: 0,
-    birthday: '2022-06-20T15:27:14.260Z',
-    height: 0,
-    weight: 0,
-    // avatarUrl: `${images.playerCard}`,
-    id: 0,
-  },
-]
+  useEffect(() => {
+    dispatch(getPlayersRequest())
+  }, [])
 
-export const PlayersLabel = () => {
   return (
-    <div className={styles.playersWrapper}>
-      {playersList.map((playersList, idx) => (
-        <PlayerBlock key={idx} {...playersList} />
-      ))}
+    <div className={styles.cardContainer}>
+      <ul className={styles.cartTeamsBox}>
+        {data.map((item) => (
+          <Link
+            key={item.id}
+            className={styles.teamsCard}
+            to={`players/${item.id}`}
+          >
+            <div className={styles.teamsCardTop}>
+              <img
+                className={styles.logoTeams}
+                src={item.avatarUrl}
+                alt={'logoPlayers'}
+              />
+            </div>
+            <div className={styles.teamsCardBottom}>
+              {item.newPlayer} <br />
+              <span>Year of foundation:{item.position}</span>
+            </div>
+          </Link>
+        ))}
+      </ul>
     </div>
   )
 }

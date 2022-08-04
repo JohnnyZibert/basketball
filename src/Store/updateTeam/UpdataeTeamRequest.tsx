@@ -1,15 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
+import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsPage/AddNewTeamsPage'
 import { IOneTeam } from '../getOneTeam/getOneTeamsSlice'
 
 export const updateTeamRequest = createAsyncThunk(
   'updateTeamSlice/updateTeamRequest',
-  async (teamId: number) => {
+  async (data: IUserForm) => {
     const response = await instance.put<IOneTeam>(
-      `http://dev.trainee.dex-it.ru/api/Team/Update?id=${teamId}`
+      `http://dev.trainee.dex-it.ru/api/Team/Update`,
+      data
     )
-    console.log(response.data)
     return response.data
   }
 )

@@ -7,7 +7,14 @@ import { IAddPlayersForm } from '../../Elements/Page/HomePage/addNewPlayersPage/
 export const addNewPlayersPostRequest = createAsyncThunk(
   'addNewPlayers/addNewPlayersPostRequest',
   async (data: IAddPlayersForm) => {
-    const response = await instance.post(requestPlayers.addNewPlayers, data)
+    const response = await instance.post(requestPlayers.addNewPlayers, {
+      ...data,
+      position: data.position.value,
+      team: +data.team.value,
+      number: +data.number,
+      height: +data.height,
+      weight: +data.weight,
+    })
     return response.data
   }
 )

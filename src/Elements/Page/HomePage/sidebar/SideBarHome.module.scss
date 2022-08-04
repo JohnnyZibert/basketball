@@ -6,6 +6,9 @@
   width: 200px;
   //align-items: center;
   background-color: #FFFFFF;
+  @media (max-width: 680px) {
+    display: none;
+  }
 
 
 }

@@ -16,7 +16,11 @@ const initialState: IPostPhoto = {
 const savePhotosPlayers = createSlice({
   name: 'savePhotosPlayers',
   initialState,
-  reducers: {},
+  reducers: {
+    addPhotoPlayer(state, action) {
+      state.photosUpload = 'http://dev.trainee.dex-it.ru' + action.payload.data
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postPhotosRequestPlayers.pending, (state) => {
       state.status = Status.LOADING

@@ -1,6 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { UseFormSetValue } from 'react-hook-form'
 
 import { instance } from '../../api/instance'
 import { requestAddTeams } from '../../consts/links'

@@ -1,64 +1,69 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Select, { GroupBase } from 'react-select'
 import ReactSelect from 'react-select'
 
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
+import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
 import { postPhotosRequestPlayers } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
-import { AppDispatch } from '../../../../Store/store'
+import { AppDispatch, RootState } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/BtnSave'
 import { FormInput } from '../../../../UI/form/FormInput'
 import styles from './AddNewPlayersPage.module.scss'
 
 export interface IAddPlayersForm {
-  newPlayer: string
+  newPlayer: number
   number: number
-  position: { value: string; label: string }[]
-  team: { value: string; label: string }[]
-  birthday: '2022-07-16T17:20:41.788Z'
+  position: string
+  team: number
+  birthday: string
   height: number
   weight: number
   avatarUrl: string
 }
 
-export const AddNewPlayers: React.FC = () => {
-  const optionsPosition = [
-    { value: 'Center Forward', label: 'Center Forward' },
-    { value: 'Guard Forward', label: 'Guard Forward' },
-    { value: 'Forward', label: 'Forward' },
-    { value: 'Center', label: 'Center' },
-    { value: 'Guard', label: 'Guard' },
-  ]
+export interface IOptionType {
+  value: string | number
+  label: string
+}
 
-  const optionsTeam = [
-    { value: 'Portland trail blazers', label: 'Portland trail blazers' },
-    { value: 'Denver Nuggets', label: 'Denver Nuggets' },
-    { value: 'Minnesota timberwolves', label: 'Minnesota timberwolves' },
-    { value: 'Memphis Grizzlies', label: 'Memphis Grizzlies' },
-    { value: 'Oklahoma city thunder', label: 'Oklahoma city thunder' },
-    {
-      value: 'Philadelphia seventy sixers',
-      label: 'Philadelphia seventy sixers',
-    },
-  ]
+const optionsPosition: IOptionType[] = [
+  { value: '1', label: 'Center Forward' },
+  { value: '2', label: 'Guard Forward' },
+  { value: '3', label: 'Forward' },
+  { value: '4', label: 'Center' },
+  { value: '5', label: 'Guard' },
+]
+
+export const AddNewPlayers = () => {
+  const dispatch: AppDispatch = useDispatch()
+  const teamData = useSelector((state: RootState) => state.getTeams.teams.data)
+  const playerPhoto = useSelector(
+    (state: RootState) => state.photosPlayersUrl.photosUpload
+  )
+
+  const optionsTeam: IOptionType[] = teamData.map((team) => ({
+    value: team.id,
+    label: team.name,
+  }))
 
   const methods = useForm<IAddPlayersForm>()
-  const dispatch: AppDispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getTeamsRequest())
+  }, [dispatch])
 
   const { getValues, setValue } = methods
   const urlPhotoPlayers = methods.watch('avatarUrl')
-  // console.log(url)
-  console.log(methods.watch())
 
   const onSubmit = (data: IAddPlayersForm) => {
-    dispatch(addNewPlayersPostRequest(data))
-
-    console.log(data)
+    if (data) {
+      dispatch(addNewPlayersPostRequest(data))
+    }
   }
+
   const onDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0]
@@ -97,7 +102,8 @@ export const AddNewPlayers: React.FC = () => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  <img src={urlPhotoPlayers} />
+                  {/*<img src={'avatarUrl'} />*/}
+                  <img src={playerPhoto} />
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,
@@ -125,26 +131,15 @@ export const AddNewPlayers: React.FC = () => {
               </div>
 
               <div className={styles.inputContainer}>
-                <FormInput name={'name'} />
-                <FormInput name={'newPlayer'} />
-                {/*<FormInput name={'position'} options={optionsPosition} />*/}
-                {/*<FormInput name={'team'} options={optionsTeam} />*/}
-                {/*<SelectForm*/}
-                {/*  methods={methods}*/}
-                {/*  options={optionsPosition}*/}
-                {/*  name={'position'}*/}
-                {/*/>*/}
-                {/*<SelectForm*/}
-                {/*  methods={methods}*/}
-                {/*  options={{ optionsTeam }}*/}
-                {/*  name={'team'}*/}
-                {/*/>*/}
+                <FormInput name={'name'} label={'name'} />
+                <FormInput name={'newPlayer'} label={'newPlayer'} />
                 <section>
                   <label>Position</label>
                   <Controller
                     render={({ field }) => (
                       <ReactSelect
                         {...field}
+                        // @ts-ignore
                         options={optionsPosition}
                         isClearable
                       />
@@ -159,6 +154,7 @@ export const AddNewPlayers: React.FC = () => {
                     render={({ field }) => (
                       <ReactSelect
                         {...field}
+                        // @ts-ignore
                         options={optionsTeam}
                         isClearable
                       />
@@ -169,8 +165,8 @@ export const AddNewPlayers: React.FC = () => {
                 </section>
 
                 <div className={styles.bodySize}>
-                  <FormInput name={'height (cm)'} />
-                  <FormInput name={'weight (kg)'} />
+                  <FormInput name={'height'} label={'height'} />
+                  <FormInput name={'weight'} label={'weight'} type="number" />
                 </div>
                 <div className={styles.data}>
                   <FormInput name={'birthday'} type="date" />

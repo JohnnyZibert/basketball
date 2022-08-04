@@ -4,7 +4,7 @@ import { getToken } from '../Store/requests/authLoginRequest'
 
 export const baseURL = 'http://dev.trainee.dex-it.ru/api/'
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiemdpcmRhbiIsInRlbmFudCI6IjI4NTYiLCJuYmYiOjE2NTg2ODQ4NTAsImV4cCI6MTY1ODc3MTI1MCwiaXNzIjoiVGVzdC1CYWNrZW5kLTEiLCJhdWQiOiJCYXNrZXRCYWxsQ2x1YlNhbXBsZSJ9.CpQALtBxak57YZH6TdPk52Qob7i7a244F8fz6pT4mUM'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiemdpcmRhbiIsInRlbmFudCI6IjI4NTYiLCJuYmYiOjE2NTk2MzgxMjgsImV4cCI6MTY1OTcyNDUyOCwiaXNzIjoiVGVzdC1CYWNrZW5kLTEiLCJhdWQiOiJCYXNrZXRCYWxsQ2x1YlNhbXBsZSJ9.jlQJ78rOXeq8BEg66NuyssL53Q3eqGj7SruPlaQ2OjY'
 export const instance = axios.create({
   baseURL,
 
