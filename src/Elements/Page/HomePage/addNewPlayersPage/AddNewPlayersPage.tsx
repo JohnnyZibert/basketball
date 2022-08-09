@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
+import { getPositionsRequest } from '../../../../Store/getPositionsPlayers/getPositionRequest'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
 import { postPhotosRequestPlayers } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
 import { AppDispatch, RootState } from '../../../../Store/store'
@@ -53,6 +54,10 @@ export const AddNewPlayers = () => {
   const methods = useForm<IAddPlayersForm>()
   useEffect(() => {
     dispatch(getTeamsRequest())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getPositionsRequest())
   }, [dispatch])
 
   const { getValues, setValue } = methods

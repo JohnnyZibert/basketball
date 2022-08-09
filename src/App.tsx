@@ -19,14 +19,15 @@ function App() {
       <div className={styles.appContainer}>
         <Routes>
           <Route path="/*" element={<Layout />}>
-            <Route index element={<MainContent />} />
-            <Route path="teams" element={<TeamsPage />} />
+            <Route path="content/*" element={<MainContent />}>
+              <Route path="teams" element={<TeamsPage />} />
+              <Route path="players" element={<PlayersPage />} />
+            </Route>
             <Route path="teams/:id" element={<OneTeamPage />} />
             <Route path="addNewTeams" element={<AddNewTeams />} />
             <Route path="teams/:id/addNewTeams" element={<AddNewTeams />} />
             <Route path="register" element={<RegisterForm />} />
-            <Route path="players" element={<PlayersPage />} />
-            <Route path="addPlayersPage" element={<AddNewPlayers />} />
+            <Route path="addPlayers" element={<AddNewPlayers />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>

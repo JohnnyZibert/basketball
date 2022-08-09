@@ -13,7 +13,7 @@ export const SideBarHome = () => {
     <>
       <nav className={styles.sideBarSection}>
         <div className={styles.sideBarItem}>
-          <Link to="/">
+          <Link to="content/teams">
             <div className={styles.sideBarTeams}>
               <svg
                 width="24"
@@ -32,7 +32,7 @@ export const SideBarHome = () => {
               <div>Teams</div>
             </div>
           </Link>
-          <Link to={'/players'}>
+          <Link to={'content/players'}>
             <div className={styles.sideBarPlayers}>
               <svg
                 width="24"

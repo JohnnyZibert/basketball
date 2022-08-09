@@ -6,6 +6,7 @@ import { RootState } from '../../../../Store/store'
 import { AddButton } from '../../../../UI/AddButton/AddButton'
 import styles from './Main.module.scss'
 import { Pagination } from './pagination/Pagination'
+import { PlayersPage } from './playersPage/PlayersLable'
 import { Search } from './search/Search'
 import { SelectPageTeams } from './selectPageTeams/SelectPageTeams'
 import { TeamsPage } from './teamsPage/TeamsPage'
@@ -23,9 +24,8 @@ export const MainContent = () => {
             <AddButton children={'Add'} />
           </Link>
         </div>
-        <Outlet />
-        <TeamsPage />
       </div>
+      <Outlet />
       <div className={styles.mainFooter}>
         <Pagination />
         <SelectPageTeams />
