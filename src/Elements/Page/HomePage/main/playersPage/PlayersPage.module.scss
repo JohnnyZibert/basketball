@@ -1,17 +1,15 @@
-.cardContainer {
-  display: flex;
-}
+//.supraMain {
+//  display: flex;
+//  flex-direction: row;
+//  justify-content: space-between;
+//}
 
-.cartTeamsBox {
+.playersWrapper {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 24px;
-  @media (max-width: 803px) {
-    flex-direction: row;
-  }
-
+  justify-content: center;
 }
-
 .supraMain {
   display: flex;
   justify-content: space-between;
@@ -27,6 +25,23 @@
   }
 }
 
+.imgCardPlayers {
+  padding: 12px;
+  width: 364px;
+}
+.cardContainer {
+  display: flex;
+}
+
+.cartTeamsBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  @media (max-width: 803px) {
+    flex-direction: row;
+  }
+
+}
 
 .teamsCard {
   display: flex;
@@ -68,6 +83,7 @@
     color: #9C9C9C;
   }
 }
+
 .mainFooter {
   display: flex;
   justify-content: space-between;

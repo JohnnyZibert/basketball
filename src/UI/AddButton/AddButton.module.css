@@ -9,8 +9,9 @@
     color:white;
 }
 
+
 .button span{
-   color: #FFFFFF
+   color: #FFFFFF;
 }
 .button:hover {
     background: #FF5761;

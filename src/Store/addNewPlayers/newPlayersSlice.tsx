@@ -15,12 +15,9 @@ const addNewPlayersSlice = createSlice({
     builder.addCase(addNewPlayersPostRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(
-      addNewPlayersPostRequest.fulfilled,
-      (state, { payload }) => {
-        state.status = Status.SUCCESS
-      }
-    )
+    builder.addCase(addNewPlayersPostRequest.fulfilled, (state) => {
+      state.status = Status.SUCCESS
+    })
 
     builder.addCase(addNewPlayersPostRequest.rejected, (state) => {
       state.status = Status.ERROR

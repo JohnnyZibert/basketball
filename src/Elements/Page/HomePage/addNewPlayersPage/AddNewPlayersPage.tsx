@@ -40,18 +40,23 @@ const optionsPosition: IOptionType[] = [
 ]
 
 export const AddNewPlayers = () => {
+  const methods = useForm<IAddPlayersForm>()
+
   const dispatch: AppDispatch = useDispatch()
+
+  const { getValues, setValue } = methods
+
   const teamData = useSelector((state: RootState) => state.getTeams.teams.data)
-  const playerPhoto = useSelector(
-    (state: RootState) => state.photosPlayersUrl.photosUpload
-  )
+  // const playerPhoto = useSelector(
+  //   (state: RootState) => state.photosPlayersUrl.photosUploadPlayer
+  // )
+  const urlPhotoPlayers = console.log(methods.watch('avatarUrl'))
 
   const optionsTeam: IOptionType[] = teamData.map((team) => ({
     value: team.id,
     label: team.name,
   }))
 
-  const methods = useForm<IAddPlayersForm>()
   useEffect(() => {
     dispatch(getTeamsRequest())
   }, [dispatch])
@@ -60,13 +65,11 @@ export const AddNewPlayers = () => {
     dispatch(getPositionsRequest())
   }, [dispatch])
 
-  const { getValues, setValue } = methods
-  const urlPhotoPlayers = methods.watch('avatarUrl')
-
   const onSubmit = (data: IAddPlayersForm) => {
     if (data) {
       dispatch(addNewPlayersPostRequest(data))
     }
+    methods.reset({})
   }
 
   const onDrop = useCallback(
@@ -92,7 +95,7 @@ export const AddNewPlayers = () => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <p>
-          <Link to={'players'}>Players</Link>
+          <Link to={'/players'}>Players</Link>
           <span>/</span> Add new player
         </p>
       </div>
@@ -107,8 +110,8 @@ export const AddNewPlayers = () => {
             <div className={styles.formContainer}>
               <div className={styles.dropZoneContainer}>
                 <section className={styles.dropZoneSection}>
-                  {/*<img src={'avatarUrl'} />*/}
-                  <img src={playerPhoto} />
+                  {/*<img src={urlPhotoPlayers} />*/}
+                  {/*<img src={playerPhoto} />*/}
                   <div
                     {...getRootProps({
                       className: styles.dropZoneSvg,

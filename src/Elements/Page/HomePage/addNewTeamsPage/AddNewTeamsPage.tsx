@@ -58,7 +58,7 @@ export const AddNewTeams: React.FC = () => {
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <p>
-          <Link to={'/'}>Teams</Link>
+          <Link to={'/teams'}>Teams</Link>
           <span>/</span> Add new team
         </p>
       </div>

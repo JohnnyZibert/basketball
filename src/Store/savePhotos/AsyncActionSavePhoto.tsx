@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { UseFormSetValue } from 'react-hook-form'
 
 import { instance } from '../../api/instance'
+import { IAddPlayersForm } from '../../Elements/Page/HomePage/addNewPlayersPage/AddNewPlayersPage'
 import { IUserForm } from '../../Elements/Page/HomePage/addNewTeamsPage/AddNewTeamsPage'
 
 export interface IPostPhotosPayload {
@@ -10,7 +11,7 @@ export interface IPostPhotosPayload {
 }
 
 export const postPhotosRequest = createAsyncThunk(
-  'savePhotos/postPhotosRequest',
+  'savePhotosPlayers/postPhotosRequest',
   async ({ file, setValue }: IPostPhotosPayload) => {
     const response = await instance.post(
       'http://dev.trainee.dex-it.ru/api/Image/SaveImage',

@@ -1,4 +1,4 @@
-import styles from './PlayersLabel.module.scss'
+import styles from './PlayersPage.module.scss'
 
 export const PlayerBlock = (props: any) => {
   return (
