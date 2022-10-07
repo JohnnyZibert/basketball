@@ -70,12 +70,14 @@ const RegisterForm = () => {
                 },
               }}
               name={'Name'}
+              label={'Name'}
             />
             <FormInput
               rules={{
                 required: { value: true, message: 'Login is required field' },
               }}
               name={'Login'}
+              label={'Login'}
             />
             <FormInput
               rules={{
@@ -87,6 +89,7 @@ const RegisterForm = () => {
                 minLength: { value: 5, message: 'Minimum 5 characters' },
               }}
               name={'Password'}
+              label={'Password'}
               type={inputTypePas}
               onEyeClick={handleToggle}
               eyeIcon={icon}
@@ -103,6 +106,7 @@ const RegisterForm = () => {
                   v === methods.getValues('password'),
               }}
               name={'Enter your password again'}
+              label={'Enter your password again'}
               type={inputTypePas}
               onEyeClick={handleToggle}
               eyeIcon={icon}

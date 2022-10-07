@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
@@ -13,6 +13,31 @@ import styles from './TeamsPage.module.scss'
 export const TeamsPage = () => {
   const dispatch = useAppDispatch()
   const { data } = useSelector((state: RootState) => state.getTeams.teams)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [teamPerPage] = useState(6)
+  const { searchValue } = useSelector((state: RootState) => state.search)
+
+  // const search = searchValue ? `search=${searchValue}` : ''
+  const offset = currentPage * teamPerPage
+  const firstPage = offset - teamPerPage
+  const currentPageTeams = data.slice(firstPage, offset)
+  const searchedTeams = currentPageTeams.filter((searchTeam) =>
+    searchTeam.name.toLowerCase().includes(searchValue.toLowerCase())
+  )
+  //
+  const handlePageClick = ({ selected: selectedPage }: any) => {
+    setCurrentPage(selectedPage)
+    console.log(selectedPage)
+  }
+
+  const pageCount = []
+  for (let i = 1; i < Math.ceil(data.length / teamPerPage); i++) {
+    pageCount.push(i)
+  }
+
+  // const paginate = (pageNumber: (selectedItem: { selected: number }) => void) =>
+  //   setCurrentPage(pageNumber)
+
   useEffect(() => {
     dispatch(getTeamsRequest())
   }, [])
@@ -27,7 +52,7 @@ export const TeamsPage = () => {
       </div>
       <div className={styles.cardContainer}>
         <ul className={styles.cartTeamsBox}>
-          {data.map((item) => (
+          {searchedTeams.map((item) => (
             <Link key={item.id} className={styles.teamsCard} to={`${item.id}`}>
               <div className={styles.teamsCardTop}>
                 <img
@@ -45,7 +70,9 @@ export const TeamsPage = () => {
         </ul>
       </div>
       <div className={styles.mainFooter}>
-        <Pagination />
+        {/*<PaginationTest pageNumber={pageNumber} paginate={paginate} />*/}
+        {/*<PaginatedItems itemsPerPage={4} />*/}
+        <Pagination handlePageClick={handlePageClick} />
         <SelectPageTeams />
       </div>
     </div>

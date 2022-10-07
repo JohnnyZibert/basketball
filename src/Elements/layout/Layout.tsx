@@ -1,13 +1,19 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { MouseEvent, useRef, useState } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 
+import { useAuth } from '../../hooks/use-auth'
 import { Header } from '../Page/HomePage/header/Header'
 import { SideBarHome } from '../Page/HomePage/sidebar/SideBarHome'
 import LoginPage from '../Page/LoginPage/LoginPage'
+import RegisterForm from '../Page/RegisterPage/RegistrationPage'
 import styles from './Layout.module.scss'
 export const Layout = () => {
-  return (
+  const { isAuth, name, token } = useAuth()
+
+  return token ? (
     <>
+      {/*<RegisterForm />*/}
+      {/*<LoginPage />*/}
       <header className={styles.headerContainer}>
         <Header />
       </header>
@@ -18,8 +24,9 @@ export const Layout = () => {
         <main className={styles.mainContainer}>
           <Outlet />
         </main>
-        {/*<LoginPage />*/}
       </div>
     </>
+  ) : (
+    <Navigate to={'login'} />
   )
 }

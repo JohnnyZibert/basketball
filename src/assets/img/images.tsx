@@ -17,7 +17,7 @@ const images = {
 }
 export default images
 
-export const editTeamInfo = (
+export const editInfoIcon = (
   <svg
     width="24"
     height="24"
@@ -34,7 +34,7 @@ export const editTeamInfo = (
   </svg>
 )
 
-export const deleteTeam = (
+export const deleteIcon = (
   <svg
     width="24"
     height="24"

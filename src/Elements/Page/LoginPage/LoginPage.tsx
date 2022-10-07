@@ -1,5 +1,5 @@
 import cnBind from 'classnames/bind'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { setLoginAuthRequest } from '../../../Store/requests/authLoginRequest'
 import { AppDispatch, RootState } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/BtnSave'
 import { FormInput } from '../../../UI/form/FormInput'
-import { IAuthForm, inputType } from '../RegisterPage/RegistrationPage'
+import { IAuthForm } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.scss'
 
 const cx = cnBind(styles)
@@ -19,6 +19,7 @@ const LoginPage = () => {
   const dispatch: AppDispatch = useDispatch()
   const onSubmit = (data: IAuthForm) => {
     dispatch(setLoginAuthRequest(data))
+    console.log(data)
   }
 
   return (
@@ -35,6 +36,7 @@ const LoginPage = () => {
                 required: { value: true, message: 'Login is required field' },
               }}
               name={'Login'}
+              label={'Login'}
             />
             <FormInput
               rules={{
@@ -46,13 +48,13 @@ const LoginPage = () => {
                 minLength: { value: 5, message: 'Minimum 5 characters' },
               }}
               name={'Password'}
+              label={'Password'}
             />
             <BtnSave type="submit">Sing In</BtnSave>{' '}
             <div className={styles.isMember}>
               <div className={styles.isMember}>Not a member yet?</div>
               <div>
                 <Link to={'/register'}>Sing Up</Link>
-                <Link to={'/home/players'}>Profile</Link>
               </div>
             </div>
           </form>

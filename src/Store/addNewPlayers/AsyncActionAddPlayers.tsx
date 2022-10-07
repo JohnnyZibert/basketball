@@ -18,6 +18,7 @@ export const addNewPlayersPostRequest = createAsyncThunk(
       weight: +data.weight,
       avatarUrl: data.avatarUrl,
     })
+    console.log(response.data)
     return response.data
   }
 )

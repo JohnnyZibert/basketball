@@ -2,8 +2,10 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
 import deleteTeamReducer from './deleteTeam/DeleteTeamSlice'
+import getOnePlayerReducer from './getOnePlayer/getOnePlayerSlice'
 import getOneTeamReducer from './getOneTeam/getOneTeamsSlice'
 import getPlayersReducer from './getPlayers/getPlayersSlice'
+import positionsPlayers from './getPositionsPlayers/PositionSlice'
 import teamsReducer from './getTeams/TeamsSlice'
 import photosPlayersUrlReducer from './savePhotos/SavePhotoPlayers'
 import photosTeamsUrlReducer from './savePhotos/SavePhotoSlice'
@@ -22,6 +24,8 @@ export const store = configureStore({
     deleteTeam: deleteTeamReducer,
     search: searchReducer,
     getPlayers: getPlayersReducer,
+    positions: positionsPlayers,
+    getOnePlayer: getOnePlayerReducer,
   },
 })
 

@@ -8,7 +8,7 @@ const initialState = {
   status: Status.LOADING,
 }
 
-const teamsSlice = createSlice({
+const positionsPlayers = createSlice({
   name: 'positionsPlayers',
   initialState,
   reducers: {},
@@ -18,7 +18,7 @@ const teamsSlice = createSlice({
     })
     builder.addCase(getPositionsRequest.fulfilled, (state, { payload }) => {
       state.status = Status.SUCCESS
-      state.positions = payload.positions
+      state.positions = payload
     })
 
     builder.addCase(getPositionsRequest.rejected, (state) => {
@@ -29,4 +29,4 @@ const teamsSlice = createSlice({
 
 // export const { setTeams } = teamsSlice.actions
 
-export default teamsSlice.reducer
+export default positionsPlayers.reducer

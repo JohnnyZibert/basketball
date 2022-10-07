@@ -1,13 +1,13 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { removeUser } from '../../../../Store/slices/authLoginSlice'
 import LoginPage from '../../LoginPage/LoginPage'
 import styles from './SideBarHome.module.scss'
 
 export const SideBarHome = () => {
-  const onClickSignOut = () => {
-    onClickSignOut()
-  }
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -67,7 +67,12 @@ export const SideBarHome = () => {
               fill="#FF768E"
             />
           </svg>
-          <span className={styles.btnSignOut}>Sign Out</span>
+          <span
+            className={styles.btnSignOut}
+            onClick={() => dispatch(removeUser())}
+          >
+            Sign Out
+          </span>
         </div>
       </nav>
     </>

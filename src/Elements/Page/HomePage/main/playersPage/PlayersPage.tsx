@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -13,10 +13,21 @@ import styles from './PlayersPage.module.scss'
 export const PlayersPage = () => {
   const dispatch = useAppDispatch()
   const { data } = useSelector((state: RootState) => state.getPlayers.players)
+  const { searchValue } = useSelector((state: RootState) => state.search)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
+  const handlePageClick = ({ selected: selectedPage }: any) => {
+    setCurrentPage(selectedPage)
+    console.log(selectedPage)
+  }
 
   useEffect(() => {
     dispatch(getPlayersRequest())
   }, [])
+
+  const searchedPlayers = data.filter((searchPlayer) =>
+    searchPlayer.name.toLowerCase().includes(searchValue.toLowerCase())
+  )
 
   return (
     <div>
@@ -28,7 +39,7 @@ export const PlayersPage = () => {
       </div>
       <div className={styles.cardContainer}>
         <ul className={styles.cartTeamsBox}>
-          {data.map((item) => (
+          {searchedPlayers.map((item) => (
             <Link
               key={item.id}
               className={styles.teamsCard}
@@ -42,15 +53,17 @@ export const PlayersPage = () => {
                 />
               </div>
               <div className={styles.teamsCardBottom}>
-                {item.newPlayer} <br />
-                <span>Year of foundation:{item.position}</span>
+                {item.name}
+                <span>#{item.number}</span>
+                <br />
+                <span>{item.team}</span>
               </div>
             </Link>
           ))}
         </ul>
       </div>
       <div className={styles.mainFooter}>
-        <Pagination />
+        <Pagination handlePageClick={handlePageClick} />
         <SelectPageTeams />
       </div>
     </div>

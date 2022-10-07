@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-import { deleteTeam, editTeamInfo } from '../../../../assets/img/images'
+import { deleteIcon, editInfoIcon } from '../../../../assets/img/images'
 import { deleteTeamRequest } from '../../../../Store/deleteTeam/DeleteTeamAsyncAction'
 import { getOneTeamRequest } from '../../../../Store/getOneTeam/getOneTeamRequest'
 import { AppDispatch, RootState } from '../../../../Store/store'
@@ -40,13 +40,13 @@ export const OneTeamPage = () => {
         </div>
         <div className={styles.editTools}>
           <Link to={'addNewTeams'}>
-            <div className={styles.editBtn}>{editTeamInfo}</div>
+            <div className={styles.editBtn}>{deleteIcon}</div>
           </Link>
           <div
             className={styles.deleteBtn}
             onClick={() => handleOnClickDeleteTeam(Number(id))}
           >
-            {deleteTeam}
+            {editInfoIcon}
           </div>
         </div>
       </div>

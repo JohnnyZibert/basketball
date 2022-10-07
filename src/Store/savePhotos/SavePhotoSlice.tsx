@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { Status } from '../getTeams/TeamsSlice'
-import { postPhotosRequest } from './AsyncActionSavePhoto'
+import { savePhotosTeamRequest } from './AsyncActionSavePhoto'
 
 export interface IPostPhoto {
   photosUpload: string
@@ -13,21 +13,22 @@ const initialState: IPostPhoto = {
   status: Status.SUCCESS,
 }
 
-const savePhotos = createSlice({
-  name: 'savePhotos',
+const savePhotosTeamSlice = createSlice({
+  name: 'savePhotosTeam',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(postPhotosRequest.pending, (state) => {
+    builder.addCase(savePhotosTeamRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(postPhotosRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(savePhotosTeamRequest.fulfilled, (state, { payload }) => {
       state.status = Status.SUCCESS
       const url = 'http://dev.trainee.dex-it.ru' + payload.response.data
       payload.setValue('imageUrl', url)
+      console.log(url)
     })
 
-    builder.addCase(postPhotosRequest.rejected, (state) => {
+    builder.addCase(savePhotosTeamRequest.rejected, (state) => {
       state.status = Status.ERROR
     })
   },
@@ -35,4 +36,4 @@ const savePhotos = createSlice({
 
 // export const {  } = teamsSlice.actions
 
-export default savePhotos.reducer
+export default savePhotosTeamSlice.reducer

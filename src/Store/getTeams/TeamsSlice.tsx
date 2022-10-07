@@ -30,7 +30,7 @@ export interface ITeamsSlice {
 const initialState: ITeamsSlice = {
   teams: {
     data: [],
-    page: 1,
+    page: 0,
     count: 0,
     size: 0,
   },
@@ -48,6 +48,10 @@ const teamsSlice = createSlice({
     builder.addCase(getTeamsRequest.fulfilled, (state, { payload }) => {
       state.status = 'success'
       state.teams.data = payload.data
+      state.teams.page = payload.page
+      state.teams.count = payload.count
+      state.teams.size = payload.size
+      console.log(payload.size)
     })
 
     builder.addCase(getTeamsRequest.rejected, (state) => {

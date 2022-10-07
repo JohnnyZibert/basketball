@@ -1,12 +1,16 @@
 import { debounce } from '@material-ui/core'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { setSearchValue } from '../../../../../Store/search/Search'
-import { AppDispatch } from '../../../../../Store/store'
+import { AppDispatch, RootState } from '../../../../../Store/store'
 import styles from './Search.module.scss'
 
-export const Search = () => {
+export interface ISearchParams {
+  search?: string
+}
+
+export const Search: React.FC<ISearchParams> = () => {
   const dispatch: AppDispatch = useDispatch()
   const [value, setValue] = React.useState('')
   const inputEl = React.useRef<HTMLInputElement>(null)
@@ -22,6 +26,7 @@ export const Search = () => {
     setValue(event.target.value)
     updateSearchValue(event.target.value)
   }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.searchInput}>

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { SetStateAction, useState } from 'react'
+import { Dispatch } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSelector } from 'react-redux'
 
@@ -10,12 +11,14 @@ interface IPaginationProps {
   onChangePage?: (page: number) => void
   countPage?: number
   sizePage?: number
+  handlePageClick: ({ selected: selectedPage }: any) => void
 }
 
-export const Pagination: React.FC<IPaginationProps> = () => {
-  const { page, size, count } = useSelector(
+export const Pagination: React.FC<IPaginationProps> = ({ handlePageClick }) => {
+  const { page, size, count, data } = useSelector(
     (state: RootState) => state.getTeams.teams
   )
+
   const svgBackArrow = (
     <svg
       width="6"
@@ -51,10 +54,9 @@ export const Pagination: React.FC<IPaginationProps> = () => {
         className={styles.root}
         breakLabel="..."
         nextLabel={svgUpArrow}
-        onPageChange={(event) => event.selected + 1}
-        pageRangeDisplayed={size}
-        pageCount={count}
-        forcePage={page - 1}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={page}
         previousLabel={svgBackArrow}
       />
     </div>

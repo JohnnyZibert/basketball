@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { Navigate } from 'react-router-dom'
 
 import { instance } from '../../api/instance'
 import { requestLinks } from '../../consts/links'
@@ -10,7 +11,11 @@ export const setLoginAuthRequest = createAsyncThunk(
   async (data: IAuthForm, { dispatch }) => {
     const response = await instance.post(requestLinks.authLogin, data)
     await dispatch(setUserData(response.data))
-    localStorage.setItem('token', response.data.token)
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token)
+    }
+
+    // }
   }
 )
 

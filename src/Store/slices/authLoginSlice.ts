@@ -10,11 +10,10 @@ export interface IUserData {
 
 const initialState = {
   userData: {
-    name: '',
+    name: null,
     avatarUrl: null,
-    token: '',
+    token: null,
   },
-  isAuth: false,
 }
 
 const authLoginSlice = createSlice({
@@ -23,24 +22,26 @@ const authLoginSlice = createSlice({
   reducers: {
     setUserData(state = initialState, action) {
       state.userData = action.payload
-      state.isAuth = !!action.payload
+      // state.isAuth = !!action.payload
     },
-    onClickSignOut(state) {
-      state.isAuth = false
+    removeUser(state) {
+      state.userData.name = null
+      state.userData.avatarUrl = null
+      state.userData.token = null
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(setLoginAuthRequest.pending, (state) => {
-      state.isAuth = true
-    })
-    builder.addCase(setLoginAuthRequest.fulfilled, (state = initialState) => {
-      state.isAuth = !!getToken()
-    })
-    builder.addCase(setLoginAuthRequest.rejected, (state) => {
-      state.isAuth = false
-    })
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(setLoginAuthRequest.pending, (state) => {
+  //     state.isAuth = true
+  //   })
+  //   builder.addCase(setLoginAuthRequest.fulfilled, (state = initialState) => {
+  //     state.isAuth = !!getToken()
+  //   })
+  //   builder.addCase(setLoginAuthRequest.rejected, (state) => {
+  //     state.isAuth = false
+  //   })
+  // },
 })
 
-export const { setUserData, onClickSignOut } = authLoginSlice.actions
+export const { setUserData, removeUser } = authLoginSlice.actions
 export default authLoginSlice.reducer

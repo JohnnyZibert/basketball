@@ -21,7 +21,7 @@ const options: IOption[] = [
 ]
 
 export const SelectPageTeams = () => {
-  const [currentPage, setCurrentPage] = useState('6')
+  const [currentPage, setCurrentPage] = useState('')
   const getValue = () => {
     return currentPage ? options.find((page) => page.value === currentPage) : ''
   }

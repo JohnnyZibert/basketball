@@ -1,45 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { Status } from '../getTeams/TeamsSlice'
-import { postPhotosRequestPlayers } from './AsyncActionSavePhotoPlayers'
+import { savePhotosTeamRequest } from './AsyncActionSavePhoto'
+import {
+  postPhotosRequestPlayers,
+  postPhotosRequestPlayersRequest,
+} from './AsyncActionSavePhotoPlayers'
 
-export interface IPostPhotoPlayer {
-  // photosUploadPlayer: string
+export interface IPostPhoto {
+  photosUpload: string
   status: Status
 }
 
-const initialState: IPostPhotoPlayer = {
-  // photosUploadPlayer: ' ',
+const initialState: IPostPhoto = {
+  photosUpload: ' ',
   status: Status.SUCCESS,
 }
 
-const savePhotosPlayers = createSlice({
+const savePhotosPlayersSlice = createSlice({
   name: 'savePhotosPlayers',
   initialState,
-  reducers: {
-    // addPhotoPlayer(state, action) {
-    //   state.photosUploadPlayer =
-    //     'http://dev.trainee.dex-it.ru' + action.payload.data
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(postPhotosRequestPlayers.pending, (state) => {
+    builder.addCase(postPhotosRequestPlayersRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(postPhotosRequestPlayers.fulfilled, (state, action) => {
-      state.status = Status.SUCCESS
-      // state.photosUploadPlayer =
-      //   'http://dev.trainee.dex-it.ru' + action.payload.response.data
-      const url = 'http://dev.trainee.dex-it.ru' + action.payload.response.data
-      action.payload.setValue('avatarUrl', url)
-    })
+    builder.addCase(
+      postPhotosRequestPlayersRequest.fulfilled,
+      (state, { payload }) => {
+        state.status = Status.SUCCESS
+        const url = 'http://dev.trainee.dex-it.ru' + payload.response.data
+        // payload.setValue('avatarUrl', url)
+      }
+    )
 
-    builder.addCase(postPhotosRequestPlayers.rejected, (state) => {
+    builder.addCase(postPhotosRequestPlayersRequest.rejected, (state) => {
       state.status = Status.ERROR
     })
   },
 })
 
-// export const { addPhotoPlayer } = savePhotosPlayers.actions
+// export const {  } = teamsSlice.actions
 
-export default savePhotosPlayers.reducer
+export default savePhotosPlayersSlice.reducer

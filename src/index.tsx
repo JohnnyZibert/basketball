@@ -4,7 +4,7 @@ import axios from 'axios'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Navigate } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import { getToken } from './Store/requests/authLoginRequest'

@@ -4,7 +4,7 @@ import { getPlayersRequest } from './AsyncGetPlayers'
 
 export interface IPlayersCard {
   data: {
-    newPlayer: number
+    name: string
     number: number
     position: string
     team: number
