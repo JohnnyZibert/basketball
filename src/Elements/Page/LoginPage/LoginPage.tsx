@@ -1,25 +1,25 @@
-import cnBind from 'classnames/bind'
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, Navigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
 import images from '../../../assets/img/images'
-import { setLoginAuthRequest } from '../../../Store/requests/authLoginRequest'
-import { AppDispatch, RootState } from '../../../Store/store'
+import { setLoginAuthRequest } from '../../../Store/LoginRequest/authLoginRequest'
+import { AppDispatch } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/BtnSave'
 import { FormInput } from '../../../UI/form/FormInput'
 import { IAuthForm } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.scss'
 
-const cx = cnBind(styles)
-
 const LoginPage = () => {
   const methods = useForm<IAuthForm>({ mode: 'onChange' })
   const dispatch: AppDispatch = useDispatch()
+  const navigate = useNavigate()
+  const toMain = () => {
+    navigate('/teams')
+  }
   const onSubmit = (data: IAuthForm) => {
-    dispatch(setLoginAuthRequest(data))
-    console.log(data)
+    dispatch(setLoginAuthRequest({ data, action: toMain }))
   }
 
   return (

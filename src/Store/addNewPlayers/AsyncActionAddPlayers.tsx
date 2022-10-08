@@ -12,13 +12,12 @@ export const addNewPlayersPostRequest = createAsyncThunk(
       // @ts-ignore
       position: data.position.value,
       // @ts-ignore
-      team: +data.team.value,
+      team: data.team.value,
       number: +data.number,
       height: +data.height,
       weight: +data.weight,
       avatarUrl: data.avatarUrl,
     })
-    console.log(response.data)
     return response.data
   }
 )

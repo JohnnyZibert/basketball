@@ -5,6 +5,7 @@
 .cartTeamsBox {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   gap: 24px;
   @media (max-width: 803px) {
     flex-direction: row;
@@ -16,6 +17,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 32px;
+  margin-top: 32px;
+
+
 
   button {
     display: flex;

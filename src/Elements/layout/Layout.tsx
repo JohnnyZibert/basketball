@@ -1,19 +1,29 @@
-import React, { MouseEvent, useRef, useState } from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 
-import { useAuth } from '../../hooks/use-auth'
+import { getTeamsRequest } from '../../Store/getTeams/AsyncActionTeams'
+import { getToken } from '../../Store/LoginRequest/authLoginRequest'
+import { useAppDispatch } from '../../Store/store'
 import { Header } from '../Page/HomePage/header/Header'
 import { SideBarHome } from '../Page/HomePage/sidebar/SideBarHome'
-import LoginPage from '../Page/LoginPage/LoginPage'
-import RegisterForm from '../Page/RegisterPage/RegistrationPage'
 import styles from './Layout.module.scss'
 export const Layout = () => {
-  const { isAuth, name, token } = useAuth()
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(getTeamsRequest())
+  }, [dispatch])
 
-  return token ? (
+  useEffect(() => {
+    const token = getToken()
+
+    if (!token) {
+      navigate('/login')
+    }
+  }, [navigate])
+
+  return (
     <>
-      {/*<RegisterForm />*/}
-      {/*<LoginPage />*/}
       <header className={styles.headerContainer}>
         <Header />
       </header>
@@ -26,7 +36,5 @@ export const Layout = () => {
         </main>
       </div>
     </>
-  ) : (
-    <Navigate to={'login'} />
   )
 }

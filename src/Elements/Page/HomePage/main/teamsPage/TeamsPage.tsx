@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
-import { RootState, useAppDispatch } from '../../../../../Store/store'
+import { RootState } from '../../../../../Store/store'
 import { AddButton } from '../../../../../UI/AddButton/AddButton'
 import { Pagination } from '../pagination/Pagination'
 import { Search } from '../search/Search'
@@ -11,7 +10,6 @@ import { SelectPageTeams } from '../selectPageTeams/SelectPageTeams'
 import styles from './TeamsPage.module.scss'
 
 export const TeamsPage = () => {
-  const dispatch = useAppDispatch()
   const { data } = useSelector((state: RootState) => state.getTeams.teams)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [teamPerPage] = useState(6)
@@ -34,13 +32,6 @@ export const TeamsPage = () => {
   for (let i = 1; i < Math.ceil(data.length / teamPerPage); i++) {
     pageCount.push(i)
   }
-
-  // const paginate = (pageNumber: (selectedItem: { selected: number }) => void) =>
-  //   setCurrentPage(pageNumber)
-
-  useEffect(() => {
-    dispatch(getTeamsRequest())
-  }, [])
 
   return (
     <div>

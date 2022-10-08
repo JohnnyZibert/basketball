@@ -1,16 +1,13 @@
-import React, { useCallback, useEffect } from 'react'
-import { useDropzone } from 'react-dropzone'
+import React, { useEffect } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactSelect from 'react-select'
 
-import { instance } from '../../../../api/instance'
 import { UploadForm } from '../../../../common/UploadForm'
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { getPositionsRequest } from '../../../../Store/getPositionsPlayers/getPositionRequest'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
-import { postPhotosRequestPlayersRequest } from '../../../../Store/savePhotos/AsyncActionSavePhotoPlayers'
 import { AppDispatch, RootState } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/BtnSave'
@@ -29,13 +26,11 @@ export interface IAddPlayersForm {
 }
 
 export interface IOptionType {
-  value: number
+  value: string | number
   label: string | number
 }
 
 export const AddNewPlayers = () => {
-  const { searchValue } = useSelector((state: RootState) => state.search)
-
   const methods = useForm<IAddPlayersForm>()
   const dispatch: AppDispatch = useDispatch()
   const { getValues } = methods
@@ -45,14 +40,10 @@ export const AddNewPlayers = () => {
     (state: RootState) => state.positions.positions
   )
 
-  // const playerPhoto = useSelector(
-  //   (state: RootState) => state.photosPlayersUrl.photosUploadPlayer
-  // )
   const photo = methods.watch('avatarUrl')
-  // const photo = ''
 
   const optionsTeam: IOptionType[] = teamData.map((team) => ({
-    value: team.id,
+    value: team.name,
     label: team.name,
   }))
 

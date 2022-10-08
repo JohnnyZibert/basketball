@@ -1,19 +1,26 @@
-//.supraMain {
-//  display: flex;
-//  flex-direction: row;
-//  justify-content: space-between;
-//}
-
-.playersWrapper {
+.cardContainer {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
 }
+
+.cartPlayersBox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 24px;
+  @media (max-width: 803px) {
+    flex-direction: row;
+  }
+
+}
+
 .supraMain {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 32px;
+  margin-top: 32px;
+
+
 
   button {
     display: flex;
@@ -25,25 +32,8 @@
   }
 }
 
-.imgCardPlayers {
-  padding: 12px;
-  width: 364px;
-}
-.cardContainer {
-  display: flex;
-}
 
-.cartTeamsBox {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  @media (max-width: 803px) {
-    flex-direction: row;
-  }
-
-}
-
-.teamsCard {
+.playerCard {
   display: flex;
   width: 364px;
   height: 380px;
@@ -55,18 +45,17 @@
 
 }
 
-.teamsCardTop {
+.playerCardTop {
   background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
   width: 364px;
   height: 280px;
   align-self: center;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
-.teamsCardBottom {
-  font-family: 'Avenir', sans-serif;
+.playerCardBottom {
   font-weight: 500;
   height: 100px;
   background-color: #303030;
@@ -76,16 +65,28 @@
   color: #FFFFFF;
   text-align: center;
   padding-top: 24px;
-
-  span {
-    font-size: 14px;
-    line-height: 24px;
-    color: #9C9C9C;
-  }
 }
-
 .mainFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.playerName {
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color:#FFFFFF;
+}
+.playerNumber {
+  color: #FF5761;
+  font-weight: bold;
+}
+.teamName {
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
 }

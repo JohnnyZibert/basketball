@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { deleteIcon, editInfoIcon } from '../../../assets/img/images'
-import { deleteTeamRequest } from '../../../Store/deleteTeam/DeleteTeamAsyncAction'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
-import { getOneTeamRequest } from '../../../Store/getOneTeam/getOneTeamRequest'
 import { AppDispatch, RootState } from '../../../Store/store'
 import { TablePlayers } from '../../../UI/TableWithPlayers/TablePlayers'
 import styles from '../HomePage/oneTeamPage/oneTeamPage.module.scss'
 
 export const OnePlayer = () => {
   const navigate = useNavigate()
-  const { name, number, avatarUrl, position, birthday, weight, height, team } =
-    useSelector((state: RootState) => state.getOnePlayer.data)
+  const { name, number, avatarUrl, position, birthday } = useSelector(
+    (state: RootState) => state.getOnePlayer.data
+  )
 
   const dispatch: AppDispatch = useDispatch()
   const { id } = useParams()
@@ -32,7 +31,7 @@ export const OnePlayer = () => {
   return (
     <div className={styles.oneTeamsContainer}>
       <div className={styles.header}>
-        <div className={styles.headerTeamMenu}>
+        <div className={styles.headerPlayerMenu}>
           <Link to="/">Player</Link>
           <span> / </span>
           {}
@@ -49,13 +48,13 @@ export const OnePlayer = () => {
           </div>
         </div>
       </div>
-      <div className={styles.wrapInfoTeam}>
+      <div className={styles.wrapInfoPlayer}>
         {' '}
-        <div className={styles.teamInfo}>
-          <div className={styles.logoTeams}>
-            <img src={avatarUrl} />
+        <div className={styles.playerInfo}>
+          <div className={styles.logoPlayers}>
+            <img src={avatarUrl} alt={'player'} />
           </div>
-          <div className={styles.descriptionTeam}>
+          <div className={styles.descriptionPlayer}>
             <div className={styles.nameTeam}>{name}</div>
             <div className={styles.foundation}>
               <div>

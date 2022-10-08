@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import images from '../../../assets/img/images'
-import { setRegistrationAuthRequest } from '../../../Store/requests/authRequests'
+import { setRegistrationAuthRequest } from '../../../Store/registerRequest/authRequests'
 import { AppDispatch } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/BtnSave'
 import { FormInput } from '../../../UI/form/FormInput'
@@ -27,10 +27,6 @@ const RegisterForm = () => {
   const dispatch: AppDispatch = useDispatch()
   const [inputTypePas, setType] = useState('password')
   const [icon, setIcon] = useState(eyeOff)
-  const [isType, setIsType] = useState('text')
-  const handleOnClick = () => {
-    setIsType('password')
-  }
 
   const onSubmit = (data: IAuthForm) => {
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {

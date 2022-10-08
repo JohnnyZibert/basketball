@@ -1,9 +1,9 @@
 import { debounce } from '@material-ui/core'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { setSearchValue } from '../../../../../Store/search/Search'
-import { AppDispatch, RootState } from '../../../../../Store/store'
+import { AppDispatch } from '../../../../../Store/store'
 import styles from './Search.module.scss'
 
 export interface ISearchParams {

@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice } from '@reduxjs/toolkit'
 
+import { RootState } from '../store'
 import { getPlayersRequest } from './AsyncGetPlayers'
 
 export interface IPlayersCard {
@@ -56,3 +57,20 @@ const getPlayersSlice = createSlice({
 // export const { setTeams } = getPlayersSlice.actions
 
 export default getPlayersSlice.reducer
+
+const state = (store: RootState) => store
+
+export const playersSelector = createSelector(
+  state,
+  ({ getTeams, getPlayers }) => {
+    const players = getPlayers.players.data.map((player) => {
+      return {
+        ...player,
+        teamName:
+          getTeams.teams.data.find((team) => team.id === player.team)?.name ||
+          '',
+      }
+    })
+    return players
+  }
+)

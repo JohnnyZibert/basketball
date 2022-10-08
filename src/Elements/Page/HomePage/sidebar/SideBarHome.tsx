@@ -1,13 +1,18 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { removeUser } from '../../../../Store/slices/authLoginSlice'
-import LoginPage from '../../LoginPage/LoginPage'
+import { logoutSuccess } from '../../../../Store/LoginRequest/authLoginSlice'
 import styles from './SideBarHome.module.scss'
 
 export const SideBarHome = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handlerLogout = () => {
+    dispatch(logoutSuccess())
+    navigate('/login')
+  }
 
   return (
     <>
@@ -67,10 +72,7 @@ export const SideBarHome = () => {
               fill="#FF768E"
             />
           </svg>
-          <span
-            className={styles.btnSignOut}
-            onClick={() => dispatch(removeUser())}
-          >
+          <span className={styles.btnSignOut} onClick={handlerLogout}>
             Sign Out
           </span>
         </div>

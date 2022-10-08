@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import { getToken } from './Store/requests/authLoginRequest'
+import { getToken } from './Store/LoginRequest/authLoginRequest'
 import { store } from './Store/store'
 
 axios.defaults.baseURL = 'http://dev.trainee.dex-it.ru/'

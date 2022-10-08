@@ -1,15 +1,19 @@
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import images from '../../../../assets/img/images'
+import { RootState } from '../../../../Store/store'
 import styles from './Header.module.scss'
 
 export const Header = () => {
+  const name = useSelector(
+    (state: RootState) => state.authLogin.dataProfile.name
+  )
   return (
     <div className={styles.header}>
       <div className={styles.headerLogo}>
         <img src={images.headerLogo} alt="headerLogo" />
         <div className={styles.userBox}>
-          John Smith
+          {name}
           <svg
             className={styles.userIcon}
             width="16"

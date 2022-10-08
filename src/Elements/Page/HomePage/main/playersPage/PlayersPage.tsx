@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { getPlayersRequest } from '../../../../../Store/getPlayers/AsyncGetPlayers'
+import { playersSelector } from '../../../../../Store/getPlayers/getPlayersSlice'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
 import { AddButton } from '../../../../../UI/AddButton/AddButton'
 import { Pagination } from '../pagination/Pagination'
@@ -12,18 +13,17 @@ import styles from './PlayersPage.module.scss'
 
 export const PlayersPage = () => {
   const dispatch = useAppDispatch()
-  const { data } = useSelector((state: RootState) => state.getPlayers.players)
+  const data = useSelector(playersSelector)
   const { searchValue } = useSelector((state: RootState) => state.search)
   const [currentPage, setCurrentPage] = useState<number>(1)
 
   const handlePageClick = ({ selected: selectedPage }: any) => {
     setCurrentPage(selectedPage)
-    console.log(selectedPage)
   }
 
   useEffect(() => {
     dispatch(getPlayersRequest())
-  }, [])
+  }, [dispatch])
 
   const searchedPlayers = data.filter((searchPlayer) =>
     searchPlayer.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -38,25 +38,17 @@ export const PlayersPage = () => {
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        <ul className={styles.cartTeamsBox}>
+        <ul className={styles.cartPlayersBox}>
           {searchedPlayers.map((item) => (
-            <Link
-              key={item.id}
-              className={styles.teamsCard}
-              to={`players/${item.id}`}
-            >
-              <div className={styles.teamsCardTop}>
-                <img
-                  className={styles.logoTeams}
-                  src={item.avatarUrl}
-                  alt={'logoPlayers'}
-                />
+            <Link key={item.id} className={styles.playerCard} to={`${item.id}`}>
+              <div className={styles.playerCardTop}>
+                <img src={item.avatarUrl} alt={'logoPlayers'} />
               </div>
-              <div className={styles.teamsCardBottom}>
-                {item.name}
-                <span>#{item.number}</span>
+              <div className={styles.playerCardBottom}>
+                <span className={styles.playerName}>{item.name}</span> {''}
+                <span className={styles.playerNumber}>#{item.number}</span>
                 <br />
-                <span>{item.team}</span>
+                <span className={styles.teamName}>{item.teamName}</span>
               </div>
             </Link>
           ))}
