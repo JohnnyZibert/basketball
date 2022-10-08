@@ -9,7 +9,6 @@ export const setRegistrationAuthRequest = createAsyncThunk(
   async (data: IAuthForm) => {
     const { repeatPassword, ...rest } = data
     const response = await instance.post(requestLinks.auth, rest)
-    console.log(response)
     return response
   }
 )
