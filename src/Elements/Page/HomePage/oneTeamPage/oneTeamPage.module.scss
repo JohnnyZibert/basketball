@@ -41,16 +41,42 @@
   flex-direction: row;
   transform: rotate(180deg);
   margin-bottom: 24px;
+  justify-content: flex-start;
+}
+.label{
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 33px;
+}
+.teamData{
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+}
+.nameTeam{
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 49px;
 }
 
-.logoPlayers{
-  padding: 97px 146px;
+.logoTeams{
+  display: flex;
   justify-content: center;
   align-items: center;
-  img {
+  padding-right: 146px;
+  padding-left: 146px;
+
+}
+.imgTeam{
     width: 210px;
     height: 210px;
-  }
+    display: flex;
 }
 .editTools{
   display: flex;
@@ -60,7 +86,7 @@
 .nameTeam {
   margin-bottom: 40px;
 }
-.descriptionPlayer{
+.descriptionTeam{
   color: #FFFFFF;
   padding:65px 0;
   font-family: 'Avenir', sans-serif;

@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/BtnSave'
 import { FormInput } from '../../../../UI/form/FormInput'
+import { TestSelect } from '../../../../UI/testSelect/TestSelect'
 import styles from './AddNewPlayersPage.module.scss'
 
 export interface IAddPlayersForm {
@@ -29,7 +30,23 @@ export interface IOptionType {
   value: string | number
   label: string | number
 }
-
+const colorStyles = {
+  option: (provided: any, state: { isSelected: any }) => ({
+    ...provided,
+    borderRadius: 4,
+    color: state.isSelected ? '#FFFFFF' : '#9C9C9C',
+  }),
+  // control: (styles: any) => ({
+  //   ...styles,
+  //   backgroundColor: 'red',
+  // }),
+  // singleValue: (provided: any, state: { isDisabled: any }) => {
+  //   const opacity = state.isDisabled ? 0.5 : 1
+  //   const transition = 'opacity 300ms'
+  //   const backgroundColor = '#E4163A'
+  //   return { ...provided, opacity, transition, backgroundColor }
+  // },
+}
 export const AddNewPlayers = () => {
   const methods = useForm<IAddPlayersForm>()
   const dispatch: AppDispatch = useDispatch()
@@ -43,7 +60,7 @@ export const AddNewPlayers = () => {
   const photo = methods.watch('avatarUrl')
 
   const optionsTeam: IOptionType[] = teamData.map((team) => ({
-    value: team.name,
+    value: team.id,
     label: team.name,
   }))
 
@@ -92,37 +109,20 @@ export const AddNewPlayers = () => {
               <div className={styles.inputContainer}>
                 <FormInput name={'name'} label={'Name'} />
                 <FormInput name={'newPlayer'} label={'newPlayer'} />
-                <section>
-                  <label>Position</label>
-                  <Controller
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        // @ts-ignore
-                        options={optionsPlayers}
-                        isClearable
-                      />
-                    )}
-                    name="position"
-                    control={methods.control}
-                  />
-                </section>
-                <section>
-                  <label>Team</label>
-                  <Controller
-                    render={({ field }) => (
-                      <ReactSelect
-                        {...field}
-                        // @ts-ignore
-                        options={optionsTeam}
-                        isClearable
-                      />
-                    )}
-                    name="team"
-                    control={methods.control}
-                  />
-                </section>
-
+                <TestSelect
+                  selectName="position"
+                  control={methods.control}
+                  labelName={'Positions'}
+                  options={optionsPlayers}
+                  styles={colorStyles}
+                />
+                <TestSelect
+                  selectName="team"
+                  control={methods.control}
+                  labelName={'Team'}
+                  options={optionsTeam}
+                  styles={colorStyles}
+                />
                 <div className={styles.bodySize}>
                   <FormInput name={'height'} label={'Height'} />
                   <FormInput name={'weight'} label={'Weight'} type="number" />

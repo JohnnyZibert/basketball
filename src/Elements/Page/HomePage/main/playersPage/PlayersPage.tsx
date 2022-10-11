@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { getPlayersRequest } from '../../../../../Store/getPlayers/AsyncGetPlayers'
 import { playersSelector } from '../../../../../Store/getPlayers/getPlayersSlice'
+import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
 import { RootState, useAppDispatch } from '../../../../../Store/store'
 import { AddButton } from '../../../../../UI/AddButton/AddButton'
+import { TestSelect } from '../../../../../UI/testSelect/TestSelect'
+import {
+  IAddPlayersForm,
+  IOptionType,
+} from '../../addNewPlayersPage/AddNewPlayersPage'
 import { Pagination } from '../pagination/Pagination'
 import { Search } from '../search/Search'
 import { SelectPageTeams } from '../selectPageTeams/SelectPageTeams'
 import styles from './PlayersPage.module.scss'
 
 export const PlayersPage = () => {
+  const methods = useForm<IAddPlayersForm>()
   const dispatch = useAppDispatch()
   const data = useSelector(playersSelector)
   const { searchValue } = useSelector((state: RootState) => state.search)
   const [currentPage, setCurrentPage] = useState<number>(1)
+  const teamData = useSelector((state: RootState) => state.getTeams.teams.data)
+  const optionsTeam: IOptionType[] = teamData.map((team) => ({
+    value: team.id,
+    label: team.name,
+  }))
 
   const handlePageClick = ({ selected: selectedPage }: any) => {
     setCurrentPage(selectedPage)
@@ -23,6 +36,10 @@ export const PlayersPage = () => {
 
   useEffect(() => {
     dispatch(getPlayersRequest())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getTeamsRequest())
   }, [dispatch])
 
   const searchedPlayers = data.filter((searchPlayer) =>
@@ -33,6 +50,14 @@ export const PlayersPage = () => {
     <div>
       <div className={styles.supraMain}>
         <Search />
+        <div className={styles.playersSelect}>
+          <TestSelect
+            selectName="team"
+            options={optionsTeam}
+            control={methods.control}
+            multi={true}
+          />
+        </div>
         <Link to={'addPlayers'}>
           <AddButton children={<span>Add</span>} />
         </Link>

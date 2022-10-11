@@ -6,6 +6,8 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 24px;
   @media (max-width: 803px) {
     flex-direction: row;
@@ -32,6 +34,11 @@
   }
 }
 
+.playersSelect {
+  display: flex;
+  margin-left: -266px,
+
+}
 
 .playerCard {
   display: flex;
@@ -80,6 +87,7 @@
   color:#FFFFFF;
 }
 .playerNumber {
+  font-family: 'Avenir Next Cyr Light', serif;
   color: #FF5761;
   font-weight: bold;
 }
@@ -89,4 +97,8 @@
   font-size: 14px;
   line-height: 24px;
   color: #9C9C9C;
+}
+.imgPlayers{
+  width: 58px;
+  height: 38px;
 }

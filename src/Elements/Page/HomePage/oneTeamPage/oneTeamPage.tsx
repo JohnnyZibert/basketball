@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { deleteIcon, editInfoIcon } from '../../../../assets/img/images'
 import { deleteTeamRequest } from '../../../../Store/deleteTeam/DeleteTeamAsyncAction'
 import { getOneTeamRequest } from '../../../../Store/getOneTeam/getOneTeamRequest'
+import { getPlayersRequest } from '../../../../Store/getPlayers/AsyncGetPlayers'
 import { AppDispatch, RootState } from '../../../../Store/store'
 import { TablePlayers } from '../../../../UI/TableWithPlayers/TablePlayers'
 import styles from './oneTeamPage.module.scss'
@@ -16,6 +17,8 @@ export const OneTeamPage = () => {
   const { name, division, imageUrl, foundationYear, conference } = useSelector(
     (state: RootState) => state.oneTeam.data
   )
+  const players = useSelector((state: RootState) => state.getPlayers.players)
+  console.log(players)
 
   const navigate = useNavigate()
 
@@ -24,6 +27,10 @@ export const OneTeamPage = () => {
       dispatch(getOneTeamRequest(Number(id)))
     }
   }, [id])
+
+  useEffect(() => {
+    dispatch(getPlayersRequest())
+  }, [dispatch])
 
   const handleOnClickDeleteTeam = async (id: number) => {
     await dispatch(deleteTeamRequest(Number(id)))
@@ -54,23 +61,23 @@ export const OneTeamPage = () => {
         {' '}
         <div className={styles.teamInfo}>
           <div className={styles.logoTeams}>
-            <img src={imageUrl} />
+            <img src={imageUrl} className={styles.imgTeam} />
           </div>
           <div className={styles.descriptionTeam}>
             <div className={styles.nameTeam}>{name}</div>
             <div className={styles.foundation}>
-              <div>
+              <div className={styles.label}>
                 Year of foundation
-                <div className={styles.years}>{foundationYear}</div>
+                <div className={styles.teamData}>{foundationYear}</div>
               </div>
-              <div>
+              <div className={styles.label}>
                 Division
-                <div className={styles.division}>{division}</div>
+                <div className={styles.teamData}>{division}</div>
               </div>
             </div>
-            <div>
+            <div className={styles.label}>
               Conference
-              <div className={styles.conference}>{conference}</div>
+              <div className={styles.teamData}>{conference}</div>
             </div>
           </div>
         </div>

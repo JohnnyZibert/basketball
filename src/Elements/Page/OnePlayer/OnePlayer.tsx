@@ -4,18 +4,24 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { deleteIcon, editInfoIcon } from '../../../assets/img/images'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
+import { playersSelector } from '../../../Store/getPlayers/getPlayersSlice'
+import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
 import { AppDispatch, RootState } from '../../../Store/store'
-import { TablePlayers } from '../../../UI/TableWithPlayers/TablePlayers'
-import styles from '../HomePage/oneTeamPage/oneTeamPage.module.scss'
+import { getAge } from '../../../utils/utils'
+import styles from './onePlayer.module.scss'
 
 export const OnePlayer = () => {
   const navigate = useNavigate()
-  const { name, number, avatarUrl, position, birthday } = useSelector(
-    (state: RootState) => state.getOnePlayer.data
-  )
-
   const dispatch: AppDispatch = useDispatch()
+
+  const { name, number, avatarUrl, position, birthday, height, weight, team } =
+    useSelector((state: RootState) => state.getOnePlayer.data)
+
   const { id } = useParams()
+  useEffect(() => {
+    dispatch(getTeamsRequest())
+  }, [dispatch])
+  const data = useSelector(playersSelector)
 
   useEffect(() => {
     if (id != null) {
@@ -29,12 +35,12 @@ export const OnePlayer = () => {
   }
 
   return (
-    <div className={styles.oneTeamsContainer}>
-      <div className={styles.header}>
+    <div className={styles.onePlayerContainer}>
+      <div className={styles.headerPlayer}>
         <div className={styles.headerPlayerMenu}>
           <Link to="/">Player</Link>
           <span> / </span>
-          {}
+          {name}
         </div>
         <div className={styles.editTools}>
           <Link to={'addNewPlayer'}>
@@ -55,25 +61,42 @@ export const OnePlayer = () => {
             <img src={avatarUrl} alt={'player'} />
           </div>
           <div className={styles.descriptionPlayer}>
-            <div className={styles.nameTeam}>{name}</div>
-            <div className={styles.foundation}>
-              <div>
-                Year of foundation
-                <div className={styles.years}>{birthday}</div>
-              </div>
-              <div>
-                Division
-                <div className={styles.division}>{position}</div>
-              </div>
+            <div className={styles.namePlayer}>
+              {name} <span>#{number}</span>
             </div>
-            <div>
-              Conference
-              <div className={styles.conference}>{number}</div>
+            <div className={styles.currentPlayerInfo}>
+              <div className={styles.rightBlockInfo}>
+                <div className={styles.label}>
+                  Position
+                  <div className={styles.bodyInfo}>{position}</div>
+                </div>
+                <div className={styles.label}>
+                  Height
+                  <div className={styles.bodyInfo}>{height} cm</div>
+                </div>
+                <div className={styles.label}>
+                  Age
+                  <div className={styles.bodyInfo}>{getAge(birthday)}</div>
+                </div>
+              </div>
+              <div>
+                <div className={styles.label}>
+                  Team
+                  <div className={styles.bodyInfo}>
+                    {data.find((team) => team.id === Number(id))?.teamName}
+                  </div>
+                </div>
+                <div>
+                  <div className={styles.label}>
+                    Weight
+                    <div className={styles.bodyInfo}>{weight} kg</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <TablePlayers />
     </div>
   )
 }

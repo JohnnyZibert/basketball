@@ -63,7 +63,7 @@ const state = (store: RootState) => store
 export const playersSelector = createSelector(
   state,
   ({ getTeams, getPlayers }) => {
-    const players = getPlayers.players.data.map((player) => {
+    const playersTeam = getPlayers.players.data.map((player) => {
       return {
         ...player,
         teamName:
@@ -71,6 +71,6 @@ export const playersSelector = createSelector(
           '',
       }
     })
-    return players
+    return playersTeam
   }
 )

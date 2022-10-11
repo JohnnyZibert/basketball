@@ -1,9 +1,15 @@
 import './SelectPageTeams.scss'
 
-import { SetStateAction, useState } from 'react'
+import React, { SetStateAction, useEffect, useState } from 'react'
 import Select from 'react-select'
 
+import { getTeamsRequest } from '../../../../../Store/getTeams/AsyncActionTeams'
+import { useAppDispatch } from '../../../../../Store/store'
 import { IOption } from '../../../../../UI/MultiSelect/interfaceSelect'
+
+interface IProps {
+  multi?: boolean
+}
 
 const options: IOption[] = [
   {
@@ -20,7 +26,7 @@ const options: IOption[] = [
   },
 ]
 
-export const SelectPageTeams = () => {
+export const SelectPageTeams: React.FC<IProps> = ({ multi }) => {
   const [currentPage, setCurrentPage] = useState('')
   const getValue = () => {
     return currentPage ? options.find((page) => page.value === currentPage) : ''
@@ -37,6 +43,7 @@ export const SelectPageTeams = () => {
       onChange={onChange}
       options={options}
       menuPlacement={'top'}
+      isMulti={multi}
     />
   )
 }

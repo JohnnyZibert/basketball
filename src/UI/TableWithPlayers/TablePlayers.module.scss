@@ -24,9 +24,25 @@
     padding: 10px;
     border-bottom: 0.5px solid #9C9C9C;;
   }
+
   span:last-child {
     border-bottom: none;
     padding: 10px;
   }
 }
 
+.row {
+  display: grid;
+  height: 56px;
+  grid-template-columns: 80px 52px auto 100px 100px;
+  gap: 10px;
+}
+.row_item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.row_item_left{
+  display: flex;
+  align-items: center;
+}

@@ -1,31 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { IPlayersCard, IPlayersSlice } from '../getPlayers/getPlayersSlice'
+import {
+  IPlayersCard,
+  IPlayersSlice,
+  playersSelector,
+} from '../getPlayers/getPlayersSlice'
 import { Status } from '../getTeams/TeamsSlice'
 import { getOnePlayerRequest } from './getOnePlayerRequest'
 
 export interface IOnePlayerData {
-  data: {
-    name: string
-    number: number
-    position: string
-    team: number
-    birthday: string
-    height: number
-    weight: number
-    avatarUrl: string
-    id: number
-  }
+  data: IPlayer
   status: Status
 }
-
+export interface IPlayer {
+  name: string
+  number: number | string
+  position: string
+  team: number
+  birthday: string
+  height: number
+  weight: number
+  avatarUrl: string
+  id: number
+}
 const initialState: IOnePlayerData = {
   data: {
     name: '',
     number: 0,
     position: '',
     team: 0,
-    birthday: '',
+    birthday: '2022-10-11T13:52:59.386Z',
     height: 0,
     weight: 0,
     avatarUrl: '',
