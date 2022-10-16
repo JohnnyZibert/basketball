@@ -1,0 +1,19 @@
+
+
+@media (max-width: 550px) {
+  .burgerContainer{
+    position: absolute;
+    z-index: 15;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .userSideContainer{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 50%;
+    background-color: #FFFFFF;
+    height: 100%;
+  }
+}

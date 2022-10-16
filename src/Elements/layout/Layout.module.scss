@@ -1,16 +1,33 @@
-.container{
+.container {
   display: flex;
   flex-direction: row;
-  box-shadow: 0 1px 10px  rgba(209, 209, 209, 0.5);
+  box-shadow: 0 1px 10px rgba(209, 209, 209, 0.5);
 
 }
-.asideContainer{
+
+.asideContainer {
   display: flex;
 
 
 }
-.mainContainer{
-    padding: 0 80px;
-    background-color: #F6F6F6;
+
+.mainContainer {
+  padding: 0 80px;
+  background-color: #F6F6F6;
+  width: 100%;
+}
+
+@media (max-width: 550px) {
+  .asideContainer {
+    display: none;
+  }
+
+  .mainContainer {
+    display: flex;
+    padding: 0 12px;
+  }
+  .burgerMenu {
     width: 100%;
+
+  }
 }

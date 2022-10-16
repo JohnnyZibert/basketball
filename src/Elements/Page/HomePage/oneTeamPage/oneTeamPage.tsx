@@ -14,11 +14,10 @@ import styles from './oneTeamPage.module.scss'
 export const OneTeamPage = () => {
   const dispatch: AppDispatch = useDispatch()
   const { id } = useParams()
+
   const { name, division, imageUrl, foundationYear, conference } = useSelector(
     (state: RootState) => state.oneTeam.data
   )
-  const players = useSelector((state: RootState) => state.getPlayers.players)
-  console.log(players)
 
   const navigate = useNavigate()
 
@@ -46,14 +45,19 @@ export const OneTeamPage = () => {
           {name}
         </div>
         <div className={styles.editTools}>
-          <Link to={'addNewTeams'}>
-            <div className={styles.editBtn}>{deleteIcon}</div>
+          <Link to={'/teams/newTeams'}>
+            <div
+              className={styles.editBtn}
+              // onClick={() => navigate('/players/addPlayers')}
+            >
+              {editInfoIcon}
+            </div>
           </Link>
           <div
             className={styles.deleteBtn}
             onClick={() => handleOnClickDeleteTeam(Number(id))}
           >
-            {editInfoIcon}
+            {deleteIcon}
           </div>
         </div>
       </div>
@@ -82,7 +86,7 @@ export const OneTeamPage = () => {
           </div>
         </div>
       </div>
-      <TablePlayers />
+      <TablePlayers id={id} />
     </div>
   )
 }

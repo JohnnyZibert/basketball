@@ -25,7 +25,6 @@ export const TeamsPage = () => {
   //
   const handlePageClick = ({ selected: selectedPage }: any) => {
     setCurrentPage(selectedPage)
-    console.log(selectedPage)
   }
 
   const pageCount = []
@@ -37,28 +36,29 @@ export const TeamsPage = () => {
     <div>
       <div className={styles.supraMain}>
         <Search />
-        <Link to={'newTeams'}>
+        <Link className={styles.addButton} to={'newTeams'}>
           <AddButton children={<span>Add</span>} />
         </Link>
       </div>
       <div className={styles.cardContainer}>
-        <ul className={styles.cartTeamsBox}>
+        <div className={styles.cartTeamsBox}>
           {searchedTeams.map((item) => (
             <Link key={item.id} className={styles.teamsCard} to={`${item.id}`}>
               <div className={styles.teamsCardTop}>
-                <img
-                  className={styles.logoTeams}
-                  src={item.imageUrl}
-                  alt={'logoTeam'}
-                />
+                <div className={styles.logoTeams}>
+                  <img src={item.imageUrl} alt={'logoTeam'} />
+                </div>
               </div>
               <div className={styles.teamsCardBottom}>
-                {item.name} <br />
-                <span>Year of foundation:{item.foundationYear}</span>
+                <div>{item.name}</div>
+                <div className={styles.foundationYear}>
+                  <span>Year of foundation:</span>
+                  <span>{item.foundationYear}</span>
+                </div>
               </div>
             </Link>
           ))}
-        </ul>
+        </div>
       </div>
       <div className={styles.mainFooter}>
         {/*<PaginationTest pageNumber={pageNumber} paginate={paginate} />*/}

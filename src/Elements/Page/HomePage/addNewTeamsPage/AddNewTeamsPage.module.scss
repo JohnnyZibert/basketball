@@ -29,16 +29,15 @@
   background-color: #FFFFFF;
  padding: 48px 73px;
   margin-bottom: 48px;
-  align-self: flex-start;
 }
 
 .formContainer {
   display: flex;
-  justify-content: flex-start;
-  gap: 65px;
+column-gap: 136px;
+
 }
 
-.dropZoneSection {
+.dropZoneTeamSection {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -46,10 +45,8 @@
   justify-content: center;
   background-color: #9C9C9C;
   border-radius: 8px;
-  max-width: 336px;
-  max-height: 261px;
-  width: 100%;
-  margin-right: 20px;
+  width: 336px;
+  height: 261px;
   opacity: 0.5;
 
   .dropZoneSvg {

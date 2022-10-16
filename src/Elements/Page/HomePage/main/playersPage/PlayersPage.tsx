@@ -45,7 +45,6 @@ export const PlayersPage = () => {
   const searchedPlayers = data.filter((searchPlayer) =>
     searchPlayer.name.toLowerCase().includes(searchValue.toLowerCase())
   )
-
   return (
     <div>
       <div className={styles.supraMain}>
@@ -58,7 +57,7 @@ export const PlayersPage = () => {
             multi={true}
           />
         </div>
-        <Link to={'addPlayers'}>
+        <Link className={styles.addButton} to={'addPlayers'}>
           <AddButton children={<span>Add</span>} />
         </Link>
       </div>
@@ -67,7 +66,9 @@ export const PlayersPage = () => {
           {searchedPlayers.map((item) => (
             <Link key={item.id} className={styles.playerCard} to={`${item.id}`}>
               <div className={styles.playerCardTop}>
-                <img src={item.avatarUrl} alt={'logoPlayers'} />
+                <div className={styles.logoPlayer}>
+                  <img src={item.avatarUrl} alt={'logoPlayers'} />
+                </div>
               </div>
               <div className={styles.playerCardBottom}>
                 <span className={styles.playerName}>{item.name}</span> {''}

@@ -1,17 +1,8 @@
-.cardContainer {
-  display: flex;
-}
-
 .cartTeamsBox {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: space-between;
   gap: 24px;
-  @media (max-width: 803px) {
-    flex-direction: row;
-  }
-
 }
 
 .supraMain {
@@ -21,43 +12,39 @@
   margin-bottom: 32px;
   margin-top: 32px;
 
-
-
   button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    span {
-      padding-right: 11px;
-    }
+  }
+
+  span {
+    padding-right: 11px;
   }
 }
 
 
 .teamsCard {
   display: flex;
-  width: 364px;
-  height: 380px;
+  max-width: 364px;
+  width: 100%;
   flex-direction: column;
-  @media (max-width: 803px) {
-    width: 196px;
-    height: 201px;
-  }
-
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .teamsCardTop {
   background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
-  width: 364px;
-  height: 280px;
-  align-self: center;
+  width: 100%;
+  padding: 64px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+
 .teamsCardBottom {
-  font-family: 'Avenir', sans-serif;
   font-weight: 500;
   height: 100px;
   background-color: #303030;
@@ -67,15 +54,75 @@
   color: #FFFFFF;
   text-align: center;
   padding-top: 24px;
-
-  span {
-    font-size: 14px;
-    line-height: 24px;
-    color: #9C9C9C;
-  }
 }
+
+.foundationYear {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
+  justify-content: center;
+}
+
 .mainFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.logoTeams {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 550px) {
+  .logoTeams {
+    height: 58px;
+    width: 50px;
+  }
+  .teamsCard{
+    max-width: 169px
+  }
+  .teamsCardTop {
+    padding: 31px 56px;
+  }
+  .cartTeamsBox {
+    display: flex;
+    margin-bottom: 18px;
+  }
+  .supraMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    max-width: 364px;
+
+    button {
+      margin-bottom: 16px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  .teamsCardBottom {
+    padding: 22px 0;
+    font-size: 15px;
+  }
+  .foundationYear {
+    font-size: 13px;
+    line-height: 24px;
+    color: #9C9C9C;
+
+  }
+  .addButton {
+    width: 100%;
+  }
+  .mainFooter {
+    margin-bottom: 18px
+  }
+
 }

@@ -1,5 +1,9 @@
 *,
 *::before,
-*::after{
+*::after {
     box-sizing: border-box;
+}
+
+* {
+    font-family: 'Avenir Next Cyr Light', serif;
 }

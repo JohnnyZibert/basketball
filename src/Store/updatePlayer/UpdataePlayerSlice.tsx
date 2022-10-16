@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import {
-  IPlayersCard,
-  IPlayersSlice,
-  playersSelector,
-} from '../getPlayers/getPlayersSlice'
 import { Status } from '../getTeams/TeamsSlice'
-import { getOnePlayerRequest } from './getOnePlayerRequest'
+import { updatePlayerRequest } from './UpdataePlayerRequest'
 
 export interface IOnePlayerData {
   data: IPlayer
@@ -38,28 +33,24 @@ const initialState: IOnePlayerData = {
   status: Status.SUCCESS,
 }
 
-const getOnePlayerSlice = createSlice({
-  name: 'getOnePlayer',
+const updatePlayerSlice = createSlice({
+  name: 'updatePlayerSlice',
   initialState,
-  reducers: {
-    setOnePlayer(state = initialState, { payload }) {
-      state.data = payload
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getOnePlayerRequest.pending, (state) => {
+    builder.addCase(updatePlayerRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(getOnePlayerRequest.fulfilled, (state) => {
+    builder.addCase(updatePlayerRequest.fulfilled, (state) => {
       state.status = Status.SUCCESS
     })
 
-    builder.addCase(getOnePlayerRequest.rejected, (state) => {
+    builder.addCase(updatePlayerRequest.rejected, (state) => {
       state.status = Status.ERROR
     })
   },
 })
 
-export const { setOnePlayer } = getOnePlayerSlice.actions
+export const {} = updatePlayerSlice.actions
 
-export default getOnePlayerSlice.reducer
+export default updatePlayerSlice.reducer

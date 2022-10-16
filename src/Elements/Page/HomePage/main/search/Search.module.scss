@@ -18,9 +18,11 @@
   size: 24px;
 }
 
+
 .searchInput input[type=text] {
   padding-left: 12px;
 }
+
 .searchSvg svg {
   height: 15px;
   width: 15px;
@@ -31,7 +33,20 @@
 
 }
 
+@media (max-width: 550px) {
+  .wrapper {
+    margin-bottom: 16px;
+    width: 100%;
 
+  }
+  .searchInput input {
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+}
 
 
 

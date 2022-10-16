@@ -31,11 +31,16 @@ export interface IOptionType {
   label: string | number
 }
 const colorStyles = {
-  option: (provided: any, state: { isSelected: any }) => ({
-    ...provided,
+  option: (styles: any, state: { isSelected: any }) => ({
+    ...styles,
     borderRadius: 4,
     color: state.isSelected ? '#FFFFFF' : '#9C9C9C',
   }),
+  // control: (styles: any) => ({
+  //   ...styles,
+  //   borderWidth: 0,
+  //   backgroundColor: '#F6F6F6',
+  // }),
   // control: (styles: any) => ({
   //   ...styles,
   //   backgroundColor: 'red',
@@ -50,7 +55,7 @@ const colorStyles = {
 export const AddNewPlayers = () => {
   const methods = useForm<IAddPlayersForm>()
   const dispatch: AppDispatch = useDispatch()
-  const { getValues } = methods
+  const { getValues, reset } = methods
   const teamData = useSelector((state: RootState) => state.getTeams.teams.data)
 
   const positionsPlayers = useSelector(
@@ -81,6 +86,7 @@ export const AddNewPlayers = () => {
     if (data) {
       dispatch(addNewPlayersPostRequest(data))
     }
+    reset({})
   }
 
   return (
@@ -108,7 +114,6 @@ export const AddNewPlayers = () => {
 
               <div className={styles.inputContainer}>
                 <FormInput name={'name'} label={'Name'} />
-                <FormInput name={'newPlayer'} label={'newPlayer'} />
                 <TestSelect
                   selectName="position"
                   control={methods.control}
@@ -137,8 +142,6 @@ export const AddNewPlayers = () => {
                   <BtnSave
                     type="submit"
                     onClick={() => {
-                      // getValues('position')
-                      // getValues('team')
                       getValues(['position', 'team'])
                     }}
                   >

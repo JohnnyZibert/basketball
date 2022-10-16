@@ -1,14 +1,24 @@
 .tableContainer {
   display: grid;
+  background: #9C9C9C;
+  gap: 1px;
   border: 0.5px solid #9C9C9C;
   border-radius: 10px;
+  overflow: hidden;
 }
 
-.tableHead {
+.tableHeader {
+  background: white;
   color: #707070;
-  grid-template-columns: 12fr;
-  border-bottom: 0.5px solid #9C9C9C;
-
+  padding: 14px 32px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  font-family: 'Avenir Next Cyr Light', serif;
+}
+.headerPlayer{
+  color: #707070;
 }
 
 .tableBody {
@@ -31,18 +41,53 @@
   }
 }
 
+.namePlayer {
+  color: #707070;
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.positionPlayer {
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 21px;
+  color: #707070;
+}
+
 .row {
   display: grid;
   height: 56px;
-  grid-template-columns: 80px 52px auto 100px 100px;
+  grid-template-columns: 80px 52px auto 100px 100px 100px;
   gap: 10px;
+  align-items: center;
+  background: #9C9C9C;
 }
-.row_item{
+
+.row_item {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #707070;
 }
-.row_item_left{
+
+.row_item_avatar {
   display: flex;
   align-items: center;
+  overflow: hidden;
+
+  img {
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+  }
+}
+
+.row_item_left {
+  display: flex;
+  flex-direction: column;
+
 }

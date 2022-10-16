@@ -1,34 +1,43 @@
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import images from '../../../../assets/img/images'
 import { RootState } from '../../../../Store/store'
+import { UserProfile } from '../../../../UI/userProfile/userProfile'
 import styles from './Header.module.scss'
 
-export const Header = () => {
+export interface IPropsVisible {
+  setVisibleMenu: (visibleMenu: boolean) => void
+  visibleMenu: boolean
+}
+
+export const Header = ({ setVisibleMenu, visibleMenu }: IPropsVisible) => {
   const name = useSelector(
     (state: RootState) => state.authLogin.dataProfile.name
   )
   return (
     <div className={styles.header}>
+      <svg
+        className={styles.burgerMenu}
+        onClick={() => setVisibleMenu(!visibleMenu)}
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M4 8C3.45 8 3 7.55 3 7C3 6.45 3.45 6 4 6H20C20.55 6 21 6.45 21 7C21 7.55 20.55 8 20 8H4ZM4 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H4C3.45 11 3 11.45 3 12C3 12.55 3.45 13 4 13ZM4 18H20C20.55 18 21 17.55 21 17C21 16.45 20.55 16 20 16H4C3.45 16 3 16.45 3 17C3 17.55 3.45 18 4 18Z"
+          fill="black"
+          fillOpacity="0.54"
+        />
+      </svg>
       <div className={styles.headerLogo}>
         <img src={images.headerLogo} alt="headerLogo" />
-        <div className={styles.userBox}>
-          {name}
-          <svg
-            className={styles.userIcon}
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M7.99992 1.33325C4.31992 1.33325 1.33325 4.31992 1.33325 7.99992C1.33325 11.6799 4.31992 14.6666 7.99992 14.6666C11.6799 14.6666 14.6666 11.6799 14.6666 7.99992C14.6666 4.31992 11.6799 1.33325 7.99992 1.33325ZM7.99992 3.33325C9.10659 3.33325 9.99992 4.22659 9.99992 5.33325C9.99992 6.43992 9.10659 7.33325 7.99992 7.33325C6.89325 7.33325 5.99992 6.43992 5.99992 5.33325C5.99992 4.22659 6.89325 3.33325 7.99992 3.33325ZM3.99992 10.6532C4.85992 11.9466 6.33325 12.7999 7.99992 12.7999C9.66659 12.7999 11.1399 11.9466 11.9999 10.6532C11.9799 9.32658 9.32659 8.59991 7.99992 8.59991C6.66658 8.59991 4.01992 9.32658 3.99992 10.6532Z"
-              fill="#9C9C9C"
-            />
-          </svg>
+        <div className={styles.userHeader}>
+          <UserProfile />
         </div>
       </div>
     </div>

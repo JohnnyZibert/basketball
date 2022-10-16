@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { deleteIcon, editInfoIcon } from '../../../assets/img/images'
+import { deletePlayerRequest } from '../../../Store/deletePlayer/AsyncDeletePlayer'
+import { deletePlayer } from '../../../Store/deletePlayer/deletePlayerSlice'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
 import { playersSelector } from '../../../Store/getPlayers/getPlayersSlice'
 import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
@@ -30,8 +32,8 @@ export const OnePlayer = () => {
   }, [id])
 
   const handleOnClickDeletePlayer = async (id: number) => {
-    await dispatch(getOnePlayerRequest(Number(id)))
-    await navigate('/')
+    await dispatch(deletePlayerRequest(Number(id)))
+    await navigate('/players')
   }
 
   return (
@@ -43,8 +45,13 @@ export const OnePlayer = () => {
           {name}
         </div>
         <div className={styles.editTools}>
-          <Link to={'addNewPlayer'}>
-            <div className={styles.editBtn}>{editInfoIcon}</div>
+          <Link to={'/players/addPlayers'}>
+            <div
+              className={styles.editBtn}
+              onClick={() => navigate('/players/addPlayers')}
+            >
+              {editInfoIcon}
+            </div>
           </Link>
           <div
             className={styles.deleteBtn}

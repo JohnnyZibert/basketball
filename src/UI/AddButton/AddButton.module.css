@@ -1,18 +1,19 @@
 
-.button{
+.button {
     padding: 8px 24px;
     background: #E4163A;
     border-radius: 4px;
     border: none;
     cursor: pointer;
     transition: ease-in-out 100ms;
-    color:white;
+    color: white;
 }
 
 
-.button span{
-   color: #FFFFFF;
+.button span {
+    color: #FFFFFF;
 }
+
 .button:hover {
     background: #FF5761;
 }
@@ -25,8 +26,14 @@
     background: #F6F6F6;
 }
 
-.button:disabled span{
+.button:disabled span {
     color: #D1D1D1;
+}
+
+@media (max-width: 376px) {
+    .button {
+        width: 100%;
+    }
 }
 
 

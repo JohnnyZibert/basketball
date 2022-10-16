@@ -1,28 +1,18 @@
-
+.sidebarWrapper{
+  display: flex;
+  flex-direction: column;
+justify-content: space-between;
+}
 .sideBarSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 140px;
-  //align-items: center;
   background-color: #FFFFFF;
-  @media (max-width: 680px) {
-    display: none;
-  }
-
 
 }
 
-//.signOutBlock{
-//  display: flex;
-//  flex-direction: column;
-//  justify-content: flex-end;
-//  min-height: 765px;
-//}
-
-
 .sideBarItem {
-  text-align: center;
   padding: 0 50px;
 
 }
@@ -34,6 +24,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .sideBarPlayers {
   display: flex;
   flex-direction: column;
@@ -63,6 +54,7 @@
   align-items: center;
   margin-bottom: 32px;
 }
+
 .header {
   display: flex;
   justify-content: flex-start;
@@ -101,7 +93,45 @@
     transition: 0.6s;
   }
 }
+
 .btnSignOut {
   color: #FF768E;
+}
+
+
+@media (max-width: 550px) {
+  .sideBarSection{
+    width: 50%;
+  }
+  .sideBarItem {
+    padding: 0;
+  }
+  .sideBarItem a {
+    display: flex;
+    text-decoration: none;
+    color: #9C9C9C;
+    padding-top: 20px;
+    align-items: center;
+    flex-direction: row;
+  }
+  .sideBarTeams {
+    flex-direction: row;
+
+    div {
+      margin-left: 9px;
+    }
+  }
+    .sideBarPlayers {
+      flex-direction: row;
+      div {
+        margin-left: 9px;
+      }
+    }
+  .signOutBlock{
+    flex-direction: row;
+    .btnSignOut {
+      margin-left: 9px;
+    }
+  }
 }
 
