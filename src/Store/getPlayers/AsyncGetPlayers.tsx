@@ -7,7 +7,7 @@ export const getPlayersRequest = createAsyncThunk(
   'players/getPlayersRequest',
   async () => {
     const response = await instance.get<IPlayersCard>(
-      `http://dev.trainee.dex-it.ru/api/Player/GetPlayers`
+      `http://dev.trainee.dex-it.ru/api/Playera/GetPlayers`
     )
     return response.data
   }

@@ -1,25 +1,48 @@
-.wrapper {
-  padding: 211px 372px;
+.emptyTeamsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  width: 100%;
 }
 
-.emptyTeamsContainer {
-  max-width: 556px;
-  max-height: 570px;
-  text-align: center;
+.imgEmptyTeamsContainer{
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 15px;;
+  align-items: center;
+  justify-content: center;
+}
+.imgEmptyTeams {
+  margin-bottom: 68px;
+}
+.largeText {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 49px;
+  color: #FF768E;
+  margin-bottom: 16px;
+}
 
-  h1 {
-    font-family: 'Avenir', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 36px;
-    line-height: 49px;
-    color: #FF768E;
+.smallText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  margin-bottom: 48px;
+  color: #707070;
+}
+
+@media (max-width: 400px) {
+  .largeText {
+    font-size: 17px;
+    line-height: 25px;
   }
-  span {
-    font-family: 'Avenir';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 33px;
+  .smallText {
+    font-size: 15px;
+    line-height: 24px;
   }
 }

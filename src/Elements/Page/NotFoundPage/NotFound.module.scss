@@ -1,0 +1,48 @@
+.notFondContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+
+.largeText {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 49px;
+  margin-bottom: 24px;
+  color: #FF768E;
+}
+
+.smallText {
+font-style: normal;
+  font-size: 24px;
+  line-height: 33px;
+  display: flex;
+  color: #707070;
+  align-items: flex-end;
+}
+
+.notFondImg {
+  width: 375px;
+  height: 203px;
+  margin-bottom: 56px;
+}
+
+@media (max-width: 480px) {
+  .notFondContainer{
+    padding: 0 47px;
+  }
+  .largeText {
+    font-size: 17px;
+    line-height: 25px;
+    margin-bottom: 16px;
+  }
+  .smallText {
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+}

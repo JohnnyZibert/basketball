@@ -1,5 +1,6 @@
 import React from 'react'
 
+import emptyPlayers from './differents/emptyPlayers.png'
 import emptyTeams from './differents/emptyTeams.png'
 import headerLogo from './differents/headerLogo.png'
 import imgReg from './differents/imgReg.png'
@@ -14,6 +15,7 @@ const images = {
   NotFound,
   imgSingIn,
   headerProfile,
+  emptyPlayers,
 }
 export default images
 

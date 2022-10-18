@@ -1,0 +1,132 @@
+.cartInfoBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 80px;
+}
+
+.infoCard {
+  display: flex;
+  max-width: 364px;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.InfoCardTeamTop {
+  background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
+  width: 100%;
+  padding: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.InfoCardTopPlayer{
+  background: linear-gradient(121.57deg, #707070 1.62%, #393939 81.02%);
+  width: 100%;
+  padding: 73px 45px 0 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.infoCardBottom {
+  height: 100px;
+  background-color: #303030;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 25px;
+  color: #FFFFFF;
+  text-align: center;
+  padding-top: 24px;
+}
+.playerName{
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color:#FFFFFF;
+}
+.playerNumber{
+  color: #FF5761;
+  font-weight: bold;
+}
+.teamName{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
+}
+.imgPlayers{
+  width: 58px;
+  height: 38px;
+}
+
+.foundationYear {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
+  justify-content: center;
+}
+
+.mainFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoCard {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 550px) {
+
+  .InfoCardTopPlayer{
+    padding: 11px 24px 0;
+    img {
+      min-width: 121px;
+    }
+  }
+  .logoTeams {
+    height: 58px;
+    width: 50px;
+  }
+  .infoCard{
+    max-width: 169px
+  }
+  .InfoCardTeamTop {
+    padding: 31px 56px;
+  }
+  .cartInfoBox {
+    display: flex;
+    margin-bottom: 18px;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .infoCardBottom {
+    font-size: 15px;
+    padding: 18px 0;
+  }
+  .foundationYear {
+    font-size: 13px;
+    line-height: 24px;
+    color: #9C9C9C;
+
+  }
+  .addButton {
+    width: 100%;
+  }
+  .mainFooter {
+    margin-bottom: 18px
+  }
+
+}

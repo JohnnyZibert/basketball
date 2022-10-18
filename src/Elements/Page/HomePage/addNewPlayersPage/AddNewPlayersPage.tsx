@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
-import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ReactSelect from 'react-select'
 
 import { UploadForm } from '../../../../common/UploadForm'
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { getPositionsRequest } from '../../../../Store/getPositionsPlayers/getPositionRequest'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
 import { AppDispatch, RootState } from '../../../../Store/store'
-import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
-import { BtnSave } from '../../../../UI/Button/BtnSave'
-import { FormInput } from '../../../../UI/form/FormInput'
-import { TestSelect } from '../../../../UI/testSelect/TestSelect'
+import { BtnCancel } from '../../../../UI/Button/CancelButton/BtnCancel'
+import { BtnSave } from '../../../../UI/Button/SaveFormButton/BtnSave'
+import { FormInput } from '../../../../UI/Form/FormInput'
+import { TestSelect } from '../../../../UI/TestSelect/TestSelect'
 import styles from './AddNewPlayersPage.module.scss'
 
 export interface IAddPlayersForm {
@@ -31,16 +30,6 @@ export interface IOptionType {
   label: string | number
 }
 const colorStyles = {
-  option: (styles: any, state: { isSelected: any }) => ({
-    ...styles,
-    borderRadius: 4,
-    color: state.isSelected ? '#FFFFFF' : '#9C9C9C',
-  }),
-  // control: (styles: any) => ({
-  //   ...styles,
-  //   borderWidth: 0,
-  //   backgroundColor: '#F6F6F6',
-  // }),
   // control: (styles: any) => ({
   //   ...styles,
   //   backgroundColor: 'red',
@@ -119,14 +108,12 @@ export const AddNewPlayers = () => {
                   control={methods.control}
                   labelName={'Positions'}
                   options={optionsPlayers}
-                  styles={colorStyles}
                 />
                 <TestSelect
                   selectName="team"
                   control={methods.control}
                   labelName={'Team'}
                   options={optionsTeam}
-                  styles={colorStyles}
                 />
                 <div className={styles.bodySize}>
                   <FormInput name={'height'} label={'Height'} />

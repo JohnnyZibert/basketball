@@ -2,19 +2,20 @@ import { createSelector, createSlice } from '@reduxjs/toolkit'
 
 import { RootState } from '../store'
 import { getPlayersRequest } from './AsyncGetPlayers'
+export interface IPlayers {
+  name: string
+  number: number
+  position: string
+  team: number
+  birthday: string
+  height: number
+  weight: number
+  avatarUrl: string
+  id: number
+}
 
 export interface IPlayersCard {
-  data: {
-    name: string
-    number: number
-    position: string
-    team: number
-    birthday: string
-    height: number
-    weight: number
-    avatarUrl: string
-    id: number
-  }[]
+  data: IPlayers[]
   count: number
   page: number
   size: number

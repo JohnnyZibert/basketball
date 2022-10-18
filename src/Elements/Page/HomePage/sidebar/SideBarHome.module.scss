@@ -1,8 +1,10 @@
-.sidebarWrapper{
+.sidebarWrapper {
   display: flex;
   flex-direction: column;
-justify-content: space-between;
+  justify-content: space-between;
+
 }
+
 .sideBarSection {
   display: flex;
   flex-direction: column;
@@ -23,12 +25,32 @@ justify-content: space-between;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:hover {
+    svg path {
+      fill: #E4163A;
+      transition: 0.6s;
+    }
+
+    color: #E4163A;
+    transition: 0.6s;
+  }
 }
 
 .sideBarPlayers {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:hover {
+    svg path {
+      fill: #E4163A;
+      transition: 0.6s;
+    }
+
+    color: #E4163A;
+    transition: 0.6s;
+  }
 }
 
 .wrapperContent {
@@ -46,7 +68,7 @@ justify-content: space-between;
 
 }
 
-.signOutBlock {
+.signOutBlockSidebar {
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -73,13 +95,7 @@ justify-content: space-between;
   }
 
   .activeLink:hover {
-    svg path {
-      fill: #E4163A;
-      transition: 0.6s;
-    }
 
-    color: #E4163A;
-    transition: 0.6s;
 
   }
 
@@ -94,13 +110,9 @@ justify-content: space-between;
   }
 }
 
-.btnSignOut {
-  color: #FF768E;
-}
-
 
 @media (max-width: 550px) {
-  .sideBarSection{
+  .sideBarSection {
     width: 50%;
   }
   .sideBarItem {
@@ -110,7 +122,7 @@ justify-content: space-between;
     display: flex;
     text-decoration: none;
     color: #9C9C9C;
-    padding-top: 20px;
+    padding-top: 0;
     align-items: center;
     flex-direction: row;
   }
@@ -121,14 +133,19 @@ justify-content: space-between;
       margin-left: 9px;
     }
   }
-    .sideBarPlayers {
-      flex-direction: row;
-      div {
-        margin-left: 9px;
-      }
-    }
-  .signOutBlock{
+  .sideBarPlayers {
     flex-direction: row;
+
+    div {
+      margin-left: 9px;
+    }
+  }
+  .signOutBlockSidebar {
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: 9px;
+    display: none;
+
     .btnSignOut {
       margin-left: 9px;
     }

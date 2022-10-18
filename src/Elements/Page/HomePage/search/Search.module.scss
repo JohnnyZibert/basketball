@@ -1,0 +1,58 @@
+.wrapper {
+  display: flex;
+  max-width: 364px;
+}
+
+
+.searchInput {
+  position: relative;
+}
+
+.searchInput input {
+  font-size: 14px;
+  border-radius: 4px;
+  width: 364px;
+  height: 40px;
+  border: 0.5px solid #D1D1D1;
+  outline: none;
+  size: 24px;
+  line-height: 24px;
+
+}
+.searchInput input::placeholder{
+  font-family: 'Avenir Next Cyr Light', serif;
+  font-size: 14px;
+  color: #707070;
+}
+
+.searchInput input[type=text] {
+  padding-left: 12px;
+}
+
+.searchSvg svg {
+  height: 15px;
+  width: 15px;
+  line-height: 12px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+}
+
+@media (max-width: 550px) {
+  .wrapper {
+    margin-bottom: 16px;
+    width: 100%;
+
+  }
+  .searchInput input {
+    width: 100%;
+  }
+
+  .searchInput {
+    width: 100%;
+  }
+}
+
+
+

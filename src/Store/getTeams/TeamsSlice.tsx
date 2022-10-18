@@ -7,16 +7,17 @@ export enum Status {
   SUCCESS = 'success',
   ERROR = 'error',
 }
+export interface ITeam {
+  name: string
+  foundationYear: number
+  division: string
+  conference: string
+  imageUrl: string
+  id: number
+}
 
 export interface ITeamsCard {
-  data: {
-    name: string
-    foundationYear: number
-    division: string
-    conference: string
-    imageUrl: string
-    id: number
-  }[]
+  data: ITeam[]
   count: number
   page: number
   size: number

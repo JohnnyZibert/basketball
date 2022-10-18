@@ -1,0 +1,42 @@
+.formControl input {
+    background-color: #F6F6F6;
+
+}
+.labelText {
+      color: #707070;
+}
+.inputText{
+  color:#303030;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+
+ .formControl input:hover{
+     background-color: #D1D1D1;
+ }
+ .formControl input:focus{
+     background-color: #F6F6F6;
+     outline: none;
+
+ }
+.formControl.error input{
+    border-radius: 4px;
+}
+ .formControl.error span{
+     color: #FF768E;
+ }
+.inputContainer {
+  position: relative;
+}
+
+.onIconEyes{
+    svg{
+      position: absolute;
+      top: 12px;
+      right: 15px;
+    }
+
+  }

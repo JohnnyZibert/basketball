@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 import images from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/registerRequest/authRequests'
 import { AppDispatch } from '../../../Store/store'
-import { BtnSave } from '../../../UI/Button/BtnSave'
-import { FormInput } from '../../../UI/form/FormInput'
-import styles from './register.module.scss'
+import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
+import { FormInput } from '../../../UI/Form/FormInput'
+import styles from './Register.module.scss'
 
 export interface IAuthForm {
   userName: string | null
@@ -19,8 +19,6 @@ export interface IAuthForm {
   repeatPassword: string | null
   token: string
 }
-
-export const inputType = 'password'
 
 const RegisterForm = () => {
   const methods = useForm<IAuthForm>()
@@ -113,8 +111,8 @@ const RegisterForm = () => {
             <BtnSave type="submit">Sing Up</BtnSave>{' '}
             <div className={styles.already}>
               <div className={styles.alreadyText}>Already a member?</div>
-              <div>
-                <Link to={'/'}>Sing in</Link>
+              <div className={styles.toSignIn}>
+                <Link to={'/login'}>Sing in</Link>
               </div>
             </div>
           </form>

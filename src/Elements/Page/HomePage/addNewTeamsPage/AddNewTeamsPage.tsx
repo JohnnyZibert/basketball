@@ -1,16 +1,14 @@
-import React, { useCallback } from 'react'
-import { useDropzone } from 'react-dropzone'
+import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { UploadForm } from '../../../../common/UploadForm'
 import { addNewTeamsPostRequest } from '../../../../Store/newTeams/AddNewTeamsRequest'
-import { savePhotosTeamRequest } from '../../../../Store/savePhotos/AsyncActionSavePhoto'
 import { AppDispatch } from '../../../../Store/store'
-import { BtnCancel } from '../../../../UI/Button/btnCancel/BtnCancel'
-import { BtnSave } from '../../../../UI/Button/BtnSave'
-import { FormInput } from '../../../../UI/form/FormInput'
+import { BtnCancel } from '../../../../UI/Button/CancelButton/BtnCancel'
+import { BtnSave } from '../../../../UI/Button/SaveFormButton/BtnSave'
+import { FormInput } from '../../../../UI/Form/FormInput'
 import styles from './AddNewTeamsPage.module.scss'
 
 export interface IUserForm {

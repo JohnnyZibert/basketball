@@ -6,8 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import images from '../../../assets/img/images'
 import { setLoginAuthRequest } from '../../../Store/LoginRequest/authLoginRequest'
 import { AppDispatch } from '../../../Store/store'
-import { BtnSave } from '../../../UI/Button/BtnSave'
-import { FormInput } from '../../../UI/form/FormInput'
+import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
+import { FormInput } from '../../../UI/Form/FormInput'
 import { IAuthForm } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.scss'
 
@@ -24,13 +24,13 @@ const LoginPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.registerContainer}>
+      <div className={styles.loginContainer}>
         <FormProvider {...methods}>
           <form
-            className={styles.regForm}
+            className={styles.loginForm}
             onSubmit={methods.handleSubmit(onSubmit)}
           >
-            <div className={styles.logoSingUp}>Sign In</div>
+            <div className={styles.logoSingIn}>Sign In</div>
             <FormInput
               rules={{
                 required: { value: true, message: 'Login is required field' },
@@ -53,8 +53,8 @@ const LoginPage = () => {
             <BtnSave type="submit">Sing In</BtnSave>{' '}
             <div className={styles.isMember}>
               <div className={styles.isMember}>Not a member yet?</div>
-              <div>
-                <Link to={'/register'}>Sing Up</Link>
+              <div className={styles.toSignUp}>
+                <Link to={'/register'}>Sing up</Link>
               </div>
             </div>
           </form>
@@ -62,7 +62,7 @@ const LoginPage = () => {
       </div>
       <div className={styles.imgContainer}>
         <img
-          className={styles.imgSignUp}
+          className={styles.imgSignIn}
           src={images.imgSingIn}
           alt="imgSingUp"
         />
@@ -70,17 +70,5 @@ const LoginPage = () => {
     </div>
   )
 }
-// }
-//       {/*  <ReactSelect*/}
-//       {/*    classNamePrefix="custom-select"*/}
-//       {/*    placeholder={''}*/}
-//       {/*    options={options}*/}
-//       {/*    value={getValue()}*/}
-//       {/*    onChange={onChange}*/}
-//       {/*    isMulti={isMulti}*/}
-//       {/*    components={animatedComponents}*/}
-//       {/*    isLoading={isLoading}*/}
-//       {/*  />*/
-//
-// }
+
 export default LoginPage
