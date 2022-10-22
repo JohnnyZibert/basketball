@@ -29,7 +29,7 @@ export interface IPlayersSlice {
 const initialState: IPlayersSlice = {
   players: {
     data: [],
-    page: 1,
+    page: 0,
     count: 0,
     size: 0,
   },

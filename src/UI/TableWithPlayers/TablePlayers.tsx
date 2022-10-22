@@ -47,7 +47,7 @@ const Row = ({
 }) => {
   return (
     <div className={styles.row} style={{ background: 'white' }}>
-      <div className={styles.row_item}>{rest.number}</div>
+      <div className={styles.row_item_number}>{rest.number}</div>
       {typeof rest.avatarUrl === 'string' ? (
         <div className={styles.row_item_avatar}>
           <img src={rest.avatarUrl} alt={'avatar'} />

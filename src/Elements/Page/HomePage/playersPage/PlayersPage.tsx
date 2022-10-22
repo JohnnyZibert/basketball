@@ -7,6 +7,7 @@ import images from '../../../../assets/img/images'
 import { getPlayersRequest } from '../../../../Store/getPlayers/AsyncGetPlayers'
 import { playersSelector } from '../../../../Store/getPlayers/getPlayersSlice'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
+import { ITeamsCard } from '../../../../Store/getTeams/TeamsSlice'
 import { RootState, useAppDispatch } from '../../../../Store/store'
 import { AddButton } from '../../../../UI/Button/AddButton/AddButton'
 import { InfoCard } from '../../../../UI/InfoCard/InfoCard'
@@ -41,9 +42,14 @@ export const PlayersPage = () => {
     dispatch(getPlayersRequest())
   }, [dispatch])
 
+  const getTeams = (data: ITeamsCard) => {
+    dispatch(getTeamsRequest({ data }))
+  }
+
   useEffect(() => {
-    dispatch(getTeamsRequest())
+    getTeams(dataPage)
   }, [dispatch])
+  const dataPage = useSelector((state: RootState) => state.getTeams.teams)
 
   const searchedPlayers = data.filter((searchPlayer) =>
     searchPlayer.name.toLowerCase().includes(searchValue.toLowerCase())

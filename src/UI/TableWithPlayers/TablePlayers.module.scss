@@ -74,6 +74,12 @@
   justify-content: center;
   color: #707070;
 }
+.row_item_number{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #707070;
+}
 
 .row_item_avatar {
   display: flex;
@@ -89,5 +95,26 @@
 .row_item_left {
   display: flex;
   flex-direction: column;
+
+}
+
+@media (max-width: 805px){
+  .row {
+    grid-template-columns: 60px 30px auto 80px 80px 80px;
+  }
+}
+@media (max-width: 700px){
+  .row {
+    grid-template-columns: 60px 30px auto
+  }
+  .row_item {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .row_item {
+    display: none;
+  }
 
 }

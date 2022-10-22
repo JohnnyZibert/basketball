@@ -55,14 +55,14 @@
 }
 
 @media (max-width: 550px) {
-
   .supraMain {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 16px auto;
     max-width: 364px;
-    padding: 0;
+    padding: 0 5px;
+
     button {
       align-items: center;
       justify-content: center;
@@ -79,6 +79,7 @@
   }
 
   .mainFooter {
-    padding: 0;
+    padding: 16px 10px;
+
   }
 }

@@ -9,6 +9,7 @@ import { getOneTeamRequest } from '../../../../Store/getOneTeam/getOneTeamReques
 import { getPlayersRequest } from '../../../../Store/getPlayers/AsyncGetPlayers'
 import { AppDispatch, RootState } from '../../../../Store/store'
 import { TablePlayers } from '../../../../UI/TableWithPlayers/TablePlayers'
+import { OnePage } from '../OnePage/OnePage'
 import styles from './oneTeamPage.module.scss'
 
 export const OneTeamPage = () => {
@@ -33,7 +34,7 @@ export const OneTeamPage = () => {
 
   const handleOnClickDeleteTeam = async (id: number) => {
     await dispatch(deleteTeamRequest(Number(id)))
-    await navigate('/')
+    await navigate('/teams')
   }
 
   return (
@@ -46,12 +47,7 @@ export const OneTeamPage = () => {
         </div>
         <div className={styles.editTools}>
           <Link to={'/teams/newTeams'}>
-            <div
-              className={styles.editBtn}
-              // onClick={() => navigate('/players/addPlayers')}
-            >
-              {editInfoIcon}
-            </div>
+            <div className={styles.editBtn}>{editInfoIcon}</div>
           </Link>
           <div
             className={styles.deleteBtn}
@@ -61,31 +57,13 @@ export const OneTeamPage = () => {
           </div>
         </div>
       </div>
-      <div className={styles.wrapInfoTeam}>
-        {' '}
-        <div className={styles.teamInfo}>
-          <div className={styles.logoTeams}>
-            <img src={imageUrl} className={styles.imgTeam} />
-          </div>
-          <div className={styles.descriptionTeam}>
-            <div className={styles.nameTeam}>{name}</div>
-            <div className={styles.foundation}>
-              <div className={styles.label}>
-                Year of foundation
-                <div className={styles.teamData}>{foundationYear}</div>
-              </div>
-              <div className={styles.label}>
-                Division
-                <div className={styles.teamData}>{division}</div>
-              </div>
-            </div>
-            <div className={styles.label}>
-              Conference
-              <div className={styles.teamData}>{conference}</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <OnePage
+        teamName={name}
+        division={division}
+        imageUrl={imageUrl}
+        foundationYear={foundationYear}
+        conference={conference}
+      />
       <TablePlayers id={id} />
     </div>
   )

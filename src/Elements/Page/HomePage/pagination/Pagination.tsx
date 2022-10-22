@@ -1,20 +1,31 @@
 import React from 'react'
-import ReactPaginate from 'react-paginate'
+import ReactPaginate, { ReactPaginateProps } from 'react-paginate'
 import { useSelector } from 'react-redux'
 
+import { selectCurrentPage } from '../../../../Store/getTeams/Selectors'
+import { ITeam } from '../../../../Store/getTeams/TeamsSlice'
 import { RootState } from '../../../../Store/store'
 import styles from './Paginate.module.scss'
 
 interface IPaginationProps {
-  currentPage?: number
+  currentPageTeams?: number
+  pageCount?: number
   onChangePage?: (page: number) => void
-  countPage?: number
-  sizePage?: number
+  count?: number
+  size?: number
   handlePageClick: ({ selected: selectedPage }: any) => void
+  renderOnZeroPageCount?:
+    | ((props: ReactPaginateProps) => void | null)
+    | undefined
 }
 
-export const Pagination: React.FC<IPaginationProps> = ({ handlePageClick }) => {
-  const { page } = useSelector((state: RootState) => state.getTeams.teams)
+export const Pagination: React.FC<IPaginationProps> = ({
+  handlePageClick,
+  currentPageTeams,
+  count,
+  pageCount,
+}) => {
+  const currentPage = useSelector(selectCurrentPage)
 
   const svgBackArrow = (
     <svg
@@ -49,12 +60,14 @@ export const Pagination: React.FC<IPaginationProps> = ({ handlePageClick }) => {
     <div>
       <ReactPaginate
         className={styles.root}
-        breakLabel="..."
-        nextLabel={svgUpArrow}
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={4}
-        pageCount={4}
-        previousLabel={svgBackArrow}
+        breakLabel="..." // точки между цифрами
+        nextLabel={svgUpArrow} //перещёлкивание вперёд
+        previousLabel={svgBackArrow} //перещёлкивание назад
+        onPageChange={handlePageClick} // функция для перещёлкивания страниц
+        pageRangeDisplayed={4} //количество страниц до ...
+        marginPagesDisplayed={1} //количество страниц после ...
+        pageCount={pageCount ? pageCount : 1} //количество отображаемых страниц в приложении
+        initialPage={0}
       />
     </div>
   )

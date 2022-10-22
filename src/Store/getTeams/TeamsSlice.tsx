@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { getTeamsRequest } from './AsyncActionTeams'
 
@@ -33,7 +33,7 @@ const initialState: ITeamsSlice = {
     data: [],
     page: 0,
     count: 0,
-    size: 0,
+    size: 6,
   },
   status: null,
 }
@@ -41,7 +41,12 @@ const initialState: ITeamsSlice = {
 const teamsSlice = createSlice({
   name: 'teams',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPage: (state, { payload }: PayloadAction<ITeamsCard>) => {
+      state.teams.page = payload.page
+      console.log(payload)
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getTeamsRequest.pending, (state) => {
       state.status = 'loading'
@@ -52,7 +57,6 @@ const teamsSlice = createSlice({
       state.teams.page = payload.page
       state.teams.count = payload.count
       state.teams.size = payload.size
-      console.log(payload.size)
     })
 
     builder.addCase(getTeamsRequest.rejected, (state) => {
@@ -61,6 +65,6 @@ const teamsSlice = createSlice({
   },
 })
 
-// export const { setTeams } = teamsSlice.actions
+export const { setCurrentPage } = teamsSlice.actions
 
 export default teamsSlice.reducer

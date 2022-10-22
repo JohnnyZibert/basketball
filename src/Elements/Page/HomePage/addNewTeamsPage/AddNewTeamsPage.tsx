@@ -3,11 +3,11 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { UploadForm } from '../../../../common/UploadForm'
 import { addNewTeamsPostRequest } from '../../../../Store/newTeams/AddNewTeamsRequest'
 import { AppDispatch } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/CancelButton/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/SaveFormButton/BtnSave'
+import { DropZone } from '../../../../UI/DropZone/DropZone'
 import { FormInput } from '../../../../UI/Form/FormInput'
 import styles from './AddNewTeamsPage.module.scss'
 
@@ -32,12 +32,12 @@ export const AddNewTeams: React.FC = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.contentContainer}>
       <div className={styles.header}>
-        <p>
+        <div className={styles.headerNav}>
           <Link to={'/teams'}>Teams</Link>
           <span>/</span> Add new team
-        </p>
+        </div>
       </div>
 
       <div className={styles.wrapperContent}>
@@ -46,24 +46,22 @@ export const AddNewTeams: React.FC = () => {
             className={styles.regForm}
             onSubmit={methods.handleSubmit(onSubmit)}
           >
-            <div className={styles.formContainer}>
-              <div className={styles.dropZoneContainer}>
-                <section className={styles.dropZoneTeamSection}>
-                  <UploadForm name={'imageUrl'} value={watch('imageUrl')} />
-                </section>
-              </div>
-
-              <div className={styles.inputContainer}>
-                <FormInput name={'name'} label={'Name'} />
-                <FormInput name={'division'} label={'Division'} />
-                <FormInput name={'conference'} label={'Conference'} />
-                <FormInput name={'foundationYear'} label={'Foundation year'} />
-                <div className={styles.btnContainer}>
-                  <BtnCancel>Cancel</BtnCancel>
-                  <BtnSave type="submit">Save</BtnSave>
-                </div>
+            <div className={styles.dropZoneContainer}>
+              <section className={styles.dropZoneTeamSection}>
+                <DropZone name={'imageUrl'} value={watch('imageUrl')} />
+              </section>
+            </div>
+            <div className={styles.inputContainer}>
+              <FormInput name={'name'} label={'Name'} />
+              <FormInput name={'division'} label={'Division'} />
+              <FormInput name={'conference'} label={'Conference'} />
+              <FormInput name={'foundationYear'} label={'Foundation year'} />
+              <div className={styles.btnContainer}>
+                <BtnCancel>Cancel</BtnCancel>
+                <BtnSave type="submit">Save</BtnSave>
               </div>
             </div>
+            {/*</div>*/}
           </form>
         </FormProvider>
       </div>

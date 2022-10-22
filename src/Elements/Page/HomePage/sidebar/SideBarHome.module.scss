@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  width: 100%;
+  height: 100vh;
 }
 
 .sideBarSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 140px;
+  width: 100%;
   background-color: #FFFFFF;
 
 }

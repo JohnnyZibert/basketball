@@ -8,21 +8,26 @@ import { deletePlayer } from '../../../Store/deletePlayer/deletePlayerSlice'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
 import { playersSelector } from '../../../Store/getPlayers/getPlayersSlice'
 import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
+import { ITeamsCard } from '../../../Store/getTeams/TeamsSlice'
 import { AppDispatch, RootState } from '../../../Store/store'
 import { getAge } from '../../../utils/utils'
+import { OnePage } from '../HomePage/OnePage/OnePage'
 import styles from './onePlayer.module.scss'
 
 export const OnePlayer = () => {
   const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
-
   const { name, number, avatarUrl, position, birthday, height, weight, team } =
     useSelector((state: RootState) => state.getOnePlayer.data)
 
   const { id } = useParams()
+  const getTeams = (data: ITeamsCard) => {
+    dispatch(getTeamsRequest({ data }))
+  }
   useEffect(() => {
-    dispatch(getTeamsRequest())
+    getTeams(dataPage)
   }, [dispatch])
+  const dataPage = useSelector((state: RootState) => state.getTeams.teams)
   const data = useSelector(playersSelector)
 
   useEffect(() => {
@@ -35,6 +40,7 @@ export const OnePlayer = () => {
     await dispatch(deletePlayerRequest(Number(id)))
     await navigate('/players')
   }
+  const teamName = data.find((team) => team.id === Number(id))?.teamName
 
   return (
     <div className={styles.onePlayerContainer}>
@@ -61,49 +67,59 @@ export const OnePlayer = () => {
           </div>
         </div>
       </div>
-      <div className={styles.wrapInfoPlayer}>
-        {' '}
-        <div className={styles.playerInfo}>
-          <div className={styles.logoPlayers}>
-            <img src={avatarUrl} alt={'player'} />
-          </div>
-          <div className={styles.descriptionPlayer}>
-            <div className={styles.namePlayer}>
-              {name} <span>#{number}</span>
-            </div>
-            <div className={styles.currentPlayerInfo}>
-              <div className={styles.rightBlockInfo}>
-                <div className={styles.label}>
-                  Position
-                  <div className={styles.bodyInfo}>{position}</div>
-                </div>
-                <div className={styles.label}>
-                  Height
-                  <div className={styles.bodyInfo}>{height} cm</div>
-                </div>
-                <div className={styles.label}>
-                  Age
-                  <div className={styles.bodyInfo}>{getAge(birthday)}</div>
-                </div>
-              </div>
-              <div>
-                <div className={styles.label}>
-                  Team
-                  <div className={styles.bodyInfo}>
-                    {data.find((team) => team.id === Number(id))?.teamName}
-                  </div>
-                </div>
-                <div>
-                  <div className={styles.label}>
-                    Weight
-                    <div className={styles.bodyInfo}>{weight} kg</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <OnePage
+        playerName={name}
+        number={number}
+        position={position}
+        avatarUrl={avatarUrl}
+        birthday={birthday}
+        height={height}
+        weight={weight}
+        teamNameForPlayer={teamName}
+      />
     </div>
   )
 }
+// <div className={styles.wrapInfoPlayer}>
+//   {' '}
+//   <div className={styles.playerInfo}>
+//     <div className={styles.logoPlayers}>
+//       <img src={avatarUrl} alt={'player'} />
+//     </div>
+//     <div className={styles.descriptionPlayer}>
+//       <div className={styles.namePlayer}>
+//         {name} <span>#{number}</span>
+//       </div>
+//       <div className={styles.currentPlayerInfo}>
+//         <div className={styles.rightBlockInfo}>
+//           <div className={styles.label}>
+//             Position
+//             <div className={styles.bodyInfo}>{position}</div>
+//           </div>
+//           <div className={styles.label}>
+//             Height
+//             <div className={styles.bodyInfo}>{height} cm</div>
+//           </div>
+//           <div className={styles.label}>
+//             Age
+//             <div className={styles.bodyInfo}>{getAge(birthday)}</div>
+//           </div>
+//         </div>
+//         <div>
+//           <div className={styles.label}>
+//             Team
+//             <div className={styles.bodyInfo}>
+//               {}
+//             </div>
+//           </div>
+//           <div>
+//             <div className={styles.label}>
+//               Weight
+//               <div className={styles.bodyInfo}>{weight} kg</div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>

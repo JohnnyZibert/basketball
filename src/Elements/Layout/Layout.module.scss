@@ -3,27 +3,32 @@
   flex-direction: row;
   box-shadow: 0 1px 10px rgba(209, 209, 209, 0.5);
 }
-.burgerMenu{
+
+.burgerMenu {
   display: none;
 }
+
 .asideContainer {
   display: flex;
-
+  max-width: 140px;
 }
+
 .mainContainer {
   //padding: 0 80px;
   background-color: #F6F6F6;
   width: 100%;
   position: relative;
 }
+
 @media (max-width: 550px) {
   .asideContainer {
     display: none;
   }
   .mainContainer {
     display: flex;
-    padding: 0 5px;
+    padding: 0;
     top: 76px;
+    justify-content: center;
   }
   .burgerMenu {
     width: 100%;

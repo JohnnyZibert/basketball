@@ -2,16 +2,10 @@ import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form'
 
-import { instance } from '../api/instance'
-import styles from '../Elements/Page/HomePage/addNewPlayersPage/AddNewPlayersPage.module.scss'
+import { instance } from '../../api/instance'
+import styles from '../../UI/DropZone/DropZone.module.scss'
 
-export const UploadForm = ({
-  name,
-  value,
-}: {
-  name: string
-  value: string
-}) => {
+export const DropZone = ({ name, value }: { name: string; value: string }) => {
   const { setValue } = useFormContext()
   const onDrop = useCallback(
     async (acceptedFiles) => {

@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
 
 import { instance } from '../../api/instance'
+import { deletePlayer } from '../deletePlayer/deletePlayerSlice'
 import { IOneTeam } from '../getOneTeam/getOneTeamsSlice'
+import { useAppDispatch } from '../store'
+import { deleteTeam } from './DeleteTeamSlice'
 
 export const deleteTeamRequest = createAsyncThunk(
   'deleteTeamSlice/deleteTeamRequest',

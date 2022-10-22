@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { EffectCallback, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { getTeamsRequest } from '../../Store/getTeams/AsyncActionTeams'
+import { ITeamsCard, ITeamsSlice } from '../../Store/getTeams/TeamsSlice'
 import { getToken } from '../../Store/LoginRequest/authLoginRequest'
-import { useAppDispatch } from '../../Store/store'
+import { RootState, useAppDispatch } from '../../Store/store'
 import { UserProfile } from '../../UI/UserProfile/userProfile'
 import { BurgerMenu } from '../Page/BurgerMenu/BurgerMenu'
 import { Header } from '../Page/HomePage/header/Header'
@@ -16,9 +18,15 @@ export const Layout = () => {
 
   const [visibleMenu, setVisibleMenu] = useState(false)
 
+  const getTeams = (data: ITeamsCard) => {
+    dispatch(getTeamsRequest({ data }))
+  }
+
   useEffect(() => {
-    dispatch(getTeamsRequest())
+    getTeams(data)
   }, [dispatch])
+  const data = useSelector((state: RootState) => state.getTeams.teams)
+  console.log(data)
 
   useEffect(() => {
     const token = getToken()
