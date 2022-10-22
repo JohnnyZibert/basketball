@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import images from '../../../../assets/img/images'
 import { getPlayersRequest } from '../../../../Store/getPlayers/AsyncGetPlayers'
-import { playersSelector } from '../../../../Store/getPlayers/getPlayersSlice'
+import {
+  playersSelector,
+  setCurrentPagePlayers,
+  setCurrentPageSize,
+} from '../../../../Store/getPlayers/getPlayersSlice'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
-import { ITeamsCard } from '../../../../Store/getTeams/TeamsSlice'
 import { RootState, useAppDispatch } from '../../../../Store/store'
 import { AddButton } from '../../../../UI/Button/AddButton/AddButton'
 import { InfoCard } from '../../../../UI/InfoCard/InfoCard'
@@ -25,35 +28,37 @@ import styles from './PlayersPage.module.scss'
 export const PlayersPage = () => {
   const methods = useForm<IAddPlayersForm>()
   const dispatch = useAppDispatch()
-  const data = useSelector(playersSelector)
+  const dataPlayers = useSelector(playersSelector)
   const { searchValue } = useSelector((state: RootState) => state.search)
-  const [currentPage, setCurrentPage] = useState<number>(1)
   const teamData = useSelector((state: RootState) => state.getTeams.teams.data)
+  const teamDataPage = useSelector((state: RootState) => state.getTeams.teams)
+  const { count, size, page } = useSelector(
+    (state: RootState) => state.getPlayers.players
+  )
   const optionsTeam: IOptionType[] = teamData.map((team) => ({
     value: team.id,
     label: team.name,
   }))
-
-  const handlePageClick = ({ selected: selectedPage }: any) => {
-    setCurrentPage(selectedPage)
-  }
-
   useEffect(() => {
-    dispatch(getPlayersRequest())
+    dispatch(
+      getTeamsRequest({ page: teamDataPage.page, size: teamDataPage.size })
+    )
   }, [dispatch])
 
-  const getTeams = (data: ITeamsCard) => {
-    dispatch(getTeamsRequest({ data }))
-  }
-
   useEffect(() => {
-    getTeams(dataPage)
-  }, [dispatch])
-  const dataPage = useSelector((state: RootState) => state.getTeams.teams)
+    dispatch(getPlayersRequest({ page, size }))
+  }, [dispatch, page, size])
 
-  const searchedPlayers = data.filter((searchPlayer) =>
+  const searchedPlayers = dataPlayers.filter((searchPlayer) =>
     searchPlayer.name.toLowerCase().includes(searchValue.toLowerCase())
   )
+  const handlerOnClickPage = (data: { selected: number }) => {
+    const currentPage = data.selected + 1
+    dispatch(setCurrentPagePlayers(currentPage))
+  }
+  const selectSizePage = (newValue: { value: string }) => {
+    dispatch(setCurrentPageSize(Number(newValue.value)))
+  }
   return (
     <div>
       <div className={styles.supraMain}>
@@ -79,8 +84,12 @@ export const PlayersPage = () => {
         <InfoCard cardInfo={searchedPlayers} />
       )}
       <div className={styles.mainFooter}>
-        <Pagination handlePageClick={handlePageClick} />
-        <SelectPageTeams />
+        <Pagination
+          count={count}
+          size={size}
+          handleOnClick={handlerOnClickPage}
+        />
+        <SelectPageTeams size={size} onChangeSize={selectSizePage} />
       </div>
     </div>
   )

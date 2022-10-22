@@ -42,9 +42,11 @@ const teamsSlice = createSlice({
   name: 'teams',
   initialState,
   reducers: {
-    setCurrentPage: (state, { payload }: PayloadAction<ITeamsCard>) => {
-      state.teams.page = payload.page
-      console.log(payload)
+    setCurrentPageTeams: (state, { payload }: PayloadAction<number>) => {
+      state.teams.page = payload
+    },
+    setCountItem: (state, { payload }: PayloadAction<number>) => {
+      state.teams.size = payload
     },
   },
   extraReducers: (builder) => {
@@ -53,10 +55,7 @@ const teamsSlice = createSlice({
     })
     builder.addCase(getTeamsRequest.fulfilled, (state, { payload }) => {
       state.status = 'success'
-      state.teams.data = payload.data
-      state.teams.page = payload.page
-      state.teams.count = payload.count
-      state.teams.size = payload.size
+      state.teams = payload
     })
 
     builder.addCase(getTeamsRequest.rejected, (state) => {
@@ -65,6 +64,6 @@ const teamsSlice = createSlice({
   },
 })
 
-export const { setCurrentPage } = teamsSlice.actions
+export const { setCurrentPageTeams, setCountItem } = teamsSlice.actions
 
 export default teamsSlice.reducer

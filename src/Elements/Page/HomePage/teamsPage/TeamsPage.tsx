@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { instance } from '../../../../api/instance'
 import images from '../../../../assets/img/images'
-import { getToken } from '../../../../Store/LoginRequest/authLoginRequest'
+import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
+import {
+  setCountItem,
+  setCurrentPageTeams,
+} from '../../../../Store/getTeams/TeamsSlice'
 import { RootState, useAppDispatch } from '../../../../Store/store'
 import { AddButton } from '../../../../UI/Button/AddButton/AddButton'
 import { InfoCard } from '../../../../UI/InfoCard/InfoCard'
@@ -16,41 +19,33 @@ import styles from './TeamsPage.module.scss'
 
 export const TeamsPage = () => {
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const { data } = useSelector((state: RootState) => state.getTeams.teams)
-  const team = useSelector((state: RootState) => state.getTeams.teams)
-  const [currentPage, setCurrentPage] = useState<number>(1)
-  const [teamPerPage] = useState(6)
+  const { page, size, count, data } = useSelector(
+    (state: RootState) => state.getTeams.teams
+  )
   const { searchValue } = useSelector((state: RootState) => state.search)
-
   // const search = searchValue ? `search=${searchValue}` : ''
-  // const offset = currentPage * teamPerPage
-  // const firstPage = offset - teamPerPage
-  // const currentPageTeams = data.slice(firstPage, offset)
+
   const searchedTeams = data.filter((searchTeam) =>
     searchTeam.name.toLowerCase().includes(searchValue.toLowerCase())
   )
-  const fetchTeamPage = async (selectedPage: number) => {
-    const response = await instance.get(
-      `http://dev.trainee.dex-it.ru/api/Team/GetTeams?Page=${selectedPage}&PageSize=${team.size}`
-    )
-    return response.data
-  }
-  const handlePageClick = async ({
-    selected: selectedPage,
-  }: {
-    selected: number
-  }) => {
-    const currentPage = selectedPage + 1
-    const teamFromServer = await fetchTeamPage(currentPage)
-    console.log(teamFromServer)
+
+  useEffect(() => {
+    dispatch(getTeamsRequest({ page, size }))
+  }, [dispatch, page, size])
+
+  // const pagesCount = Math.ceil(teamData.count / teamData.size)
+  // const pages = []
+  // for (let i = 1; i < pagesCount; i++) {
+  //   pages.push(i)
+  // }
+  const handlerOnClickPage = (data: { selected: number }) => {
+    const currentPage = data.selected + 1
+    dispatch(setCurrentPageTeams(currentPage))
   }
 
-  // const pageCount = []
-  // for (let i = 1; i < Math.ceil(team.count / team.size); i++) {
-  //   pageCount.push(i)
-  // }
-  const pageCount = Math.ceil(team.count / team.size)
+  const selectSizePage = (newValue: { value: string }) => {
+    dispatch(setCountItem(Number(newValue.value)))
+  }
 
   return (
     <div>
@@ -69,15 +64,25 @@ export const TeamsPage = () => {
         <InfoCard cardInfo={searchedTeams} />
       )}
       <div className={styles.mainFooter}>
-        {/*<PaginationTest pageNumber={pageNumber} paginate={paginate} />*/}
-        {/*<PaginatedItems itemsPerPage={4} />*/}
+        {/*{pages.map((page) => {*/}
+        {/*  return (*/}
+        {/*    <span*/}
+        {/*      key={`${page}${page}`}*/}
+        {/*      onClick={() => {*/}
+        {/*        dispatch(setCurrentPage(page))*/}
+        {/*      }}*/}
+        {/*      className={teamData.page === page ? styles.selectedPage : ''}*/}
+        {/*    >*/}
+        {/*      {page}*/}
+        {/*    </span>*/}
+        {/*  )*/}
+        {/*})}*/}
         <Pagination
-          handlePageClick={handlePageClick}
-          currentPageTeams={team.page}
-          size={team.size}
-          pageCount={pageCount}
+          count={count}
+          size={size}
+          handleOnClick={handlerOnClickPage}
         />
-        <SelectPageTeams />
+        <SelectPageTeams size={size} onChangeSize={selectSizePage} />
       </div>
     </div>
   )

@@ -80,6 +80,9 @@
   object-fit: cover;
   flex-shrink: 0;
 }
+.selectedPage{
+  font-weight: bold;
+}
 
 @media (max-width: 550px) {
   .logoTeams {

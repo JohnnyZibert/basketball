@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit'
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { RootState } from '../store'
 import { getPlayersRequest } from './AsyncGetPlayers'
@@ -31,7 +31,7 @@ const initialState: IPlayersSlice = {
     data: [],
     page: 0,
     count: 0,
-    size: 0,
+    size: 6,
   },
   status: null,
 }
@@ -39,14 +39,21 @@ const initialState: IPlayersSlice = {
 const getPlayersSlice = createSlice({
   name: 'players',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPagePlayers: (state, { payload }: PayloadAction<number>) => {
+      state.players.page = payload
+    },
+    setCurrentPageSize: (state, { payload }: PayloadAction<number>) => {
+      state.players.size = payload
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getPlayersRequest.pending, (state) => {
       state.status = 'loading'
     })
     builder.addCase(getPlayersRequest.fulfilled, (state, { payload }) => {
       state.status = 'success'
-      state.players.data = payload.data
+      state.players = payload
     })
 
     builder.addCase(getPlayersRequest.rejected, (state) => {
@@ -55,7 +62,8 @@ const getPlayersSlice = createSlice({
   },
 })
 
-// export const { setTeams } = getPlayersSlice.actions
+export const { setCurrentPagePlayers, setCurrentPageSize } =
+  getPlayersSlice.actions
 
 export default getPlayersSlice.reducer
 

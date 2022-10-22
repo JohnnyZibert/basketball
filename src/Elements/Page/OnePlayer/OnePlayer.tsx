@@ -4,31 +4,24 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { deleteIcon, editInfoIcon } from '../../../assets/img/images'
 import { deletePlayerRequest } from '../../../Store/deletePlayer/AsyncDeletePlayer'
-import { deletePlayer } from '../../../Store/deletePlayer/deletePlayerSlice'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
 import { playersSelector } from '../../../Store/getPlayers/getPlayersSlice'
 import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
-import { ITeamsCard } from '../../../Store/getTeams/TeamsSlice'
 import { AppDispatch, RootState } from '../../../Store/store'
-import { getAge } from '../../../utils/utils'
 import { OnePage } from '../HomePage/OnePage/OnePage'
 import styles from './onePlayer.module.scss'
 
 export const OnePlayer = () => {
   const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
+  const data = useSelector(playersSelector)
   const { name, number, avatarUrl, position, birthday, height, weight, team } =
     useSelector((state: RootState) => state.getOnePlayer.data)
 
   const { id } = useParams()
-  const getTeams = (data: ITeamsCard) => {
-    dispatch(getTeamsRequest({ data }))
-  }
   useEffect(() => {
-    getTeams(dataPage)
+    dispatch(getTeamsRequest({}))
   }, [dispatch])
-  const dataPage = useSelector((state: RootState) => state.getTeams.teams)
-  const data = useSelector(playersSelector)
 
   useEffect(() => {
     if (id != null) {

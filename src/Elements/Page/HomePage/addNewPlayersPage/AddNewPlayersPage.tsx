@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { addNewPlayersPostRequest } from '../../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { getPositionsRequest } from '../../../../Store/getPositionsPlayers/getPositionRequest'
 import { getTeamsRequest } from '../../../../Store/getTeams/AsyncActionTeams'
-import { ITeamsCard } from '../../../../Store/getTeams/TeamsSlice'
 import { AppDispatch, RootState } from '../../../../Store/store'
 import { BtnCancel } from '../../../../UI/Button/CancelButton/BtnCancel'
 import { BtnSave } from '../../../../UI/Button/SaveFormButton/BtnSave'
@@ -63,14 +62,9 @@ export const AddNewPlayers = () => {
     value: position,
     label: position,
   }))
-  const getTeams = (data: ITeamsCard) => {
-    dispatch(getTeamsRequest({ data }))
-  }
-
   useEffect(() => {
-    getTeams(data)
+    dispatch(getTeamsRequest({}))
   }, [dispatch])
-  const data = useSelector((state: RootState) => state.getTeams.teams)
 
   useEffect(() => {
     dispatch(getPositionsRequest())

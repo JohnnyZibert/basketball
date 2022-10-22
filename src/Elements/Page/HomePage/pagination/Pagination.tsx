@@ -1,31 +1,20 @@
 import React from 'react'
-import ReactPaginate, { ReactPaginateProps } from 'react-paginate'
-import { useSelector } from 'react-redux'
+import ReactPaginate from 'react-paginate'
 
-import { selectCurrentPage } from '../../../../Store/getTeams/Selectors'
-import { ITeam } from '../../../../Store/getTeams/TeamsSlice'
-import { RootState } from '../../../../Store/store'
 import styles from './Paginate.module.scss'
 
 interface IPaginationProps {
-  currentPageTeams?: number
-  pageCount?: number
-  onChangePage?: (page: number) => void
-  count?: number
-  size?: number
-  handlePageClick: ({ selected: selectedPage }: any) => void
-  renderOnZeroPageCount?:
-    | ((props: ReactPaginateProps) => void | null)
-    | undefined
+  count: number
+  size: number
+  handleOnClick: (data: { selected: number }) => void
 }
 
 export const Pagination: React.FC<IPaginationProps> = ({
-  handlePageClick,
-  currentPageTeams,
   count,
-  pageCount,
+  size,
+  handleOnClick,
 }) => {
-  const currentPage = useSelector(selectCurrentPage)
+  const pagesCount = Math.ceil(count / size)
 
   const svgBackArrow = (
     <svg
@@ -63,11 +52,10 @@ export const Pagination: React.FC<IPaginationProps> = ({
         breakLabel="..." // точки между цифрами
         nextLabel={svgUpArrow} //перещёлкивание вперёд
         previousLabel={svgBackArrow} //перещёлкивание назад
-        onPageChange={handlePageClick} // функция для перещёлкивания страниц
+        onPageChange={handleOnClick} // функция для перещёлкивания страниц
         pageRangeDisplayed={4} //количество страниц до ...
         marginPagesDisplayed={1} //количество страниц после ...
-        pageCount={pageCount ? pageCount : 1} //количество отображаемых страниц в приложении
-        initialPage={0}
+        pageCount={pagesCount} //количество отображаемых страниц в приложении
       />
     </div>
   )

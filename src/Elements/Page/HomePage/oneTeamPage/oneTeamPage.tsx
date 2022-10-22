@@ -29,7 +29,7 @@ export const OneTeamPage = () => {
   }, [id])
 
   useEffect(() => {
-    dispatch(getPlayersRequest())
+    dispatch(getPlayersRequest({}))
   }, [dispatch])
 
   const handleOnClickDeleteTeam = async (id: number) => {

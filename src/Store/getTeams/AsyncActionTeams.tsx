@@ -1,15 +1,15 @@
-import { AsyncThunkPayloadCreator, createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
 import { ITeamsCard } from './TeamsSlice'
 
 export const getTeamsRequest = createAsyncThunk(
   'teams/getTeamsRequest',
-  async ({ data }: { data: ITeamsCard }) => {
-    const { count, page, size } = data
+  async ({ page, size }: Partial<Pick<ITeamsCard, 'size' | 'page'>>) => {
     const response = await instance.get(
       `http://dev.trainee.dex-it.ru/api/Team/GetTeams?Page=${page}&PageSize=${size}`
     )
     return response.data
+    // return response.data as ITeamsCard['page'] вытаскивает только 1 параметр из интерфейса
   }
 )

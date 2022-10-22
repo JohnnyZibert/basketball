@@ -1,10 +1,15 @@
 import './SelectPageTeams.scss'
 
-import React, { SetStateAction, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select'
+
+import { setCountItem } from '../../../../Store/getTeams/TeamsSlice'
+import { useAppDispatch } from '../../../../Store/store'
 
 interface IProps {
   multi?: boolean
+  size?: number
+  onChangeSize: (newValue: { value: string }) => void
 }
 
 const options = [
@@ -22,21 +27,29 @@ const options = [
   },
 ]
 
-export const SelectPageTeams: React.FC<IProps> = ({ multi }) => {
-  const [currentPage, setCurrentPage] = useState('')
+export const SelectPageTeams: React.FC<IProps> = ({
+  multi,
+  size,
+  onChangeSize,
+}) => {
+  const [currentPage] = useState('6')
+  const dispatch = useAppDispatch()
   const getValue = () => {
-    return currentPage ? options.find((page) => page.value === currentPage) : ''
+    return currentPage
+      ? options.find((page) => page.value === String(size))
+      : '6'
   }
 
-  const onChange = (newValue: { value: SetStateAction<string> }) => {
-    setCurrentPage(newValue.value)
-  }
+  // const onChange = (newValue: { value: string }) => {
+  //   dispatch(setCountItem(Number(newValue.value)))
+  //   console.log(newValue.value)
+  // }
   return (
     <Select
       classNamePrefix="custom-select"
       value={getValue()}
       // @ts-ignore
-      onChange={onChange}
+      onChange={onChangeSize}
       options={options}
       menuPlacement={'top'}
       isMulti={multi}
