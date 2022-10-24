@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React, { ReactElement, SVGProps } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { RegisterOptions } from 'react-hook-form/dist/types/validator'
 import { Icon } from 'react-icons-kit'
-import { eye } from 'react-icons-kit/feather/eye'
-import { eyeOff } from 'react-icons-kit/feather/eyeOff'
 
 import styles from './formInput.module.scss'
 
@@ -12,24 +10,17 @@ export const FormInput = ({
   rules,
   type = 'text',
   label,
+  onEyeClick,
+  iconInput,
 }: {
   name: string
   rules?: RegisterOptions
   type?: string
   onEyeClick?: () => void
-  eyeIcon?: string
   label?: string
+  iconInput?: (props: SVGProps<SVGElement>) => ReactElement
 }) => {
   const { control, formState } = useFormContext()
-  const [inputTypePas, setType] = useState('password')
-
-  const handleToggle = () => {
-    if (inputTypePas === 'password') {
-      setType('text')
-    } else {
-      setType('password')
-    }
-  }
 
   return (
     <Controller
@@ -44,12 +35,8 @@ export const FormInput = ({
             <div className={styles.inputContainer}>
               <div className={styles.onIconEyes}>
                 <div>
-                  {type === 'password' && (
-                    <Icon
-                      icon={inputTypePas === 'password' ? eyeOff : eye}
-                      onClick={handleToggle}
-                      size={16}
-                    />
+                  {iconInput && (
+                    <Icon icon={iconInput} onClick={onEyeClick} size={16} />
                   )}
                   <input
                     type={type}

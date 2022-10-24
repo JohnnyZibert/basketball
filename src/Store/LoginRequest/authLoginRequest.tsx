@@ -18,7 +18,6 @@ export const setLoginAuthRequest = createAsyncThunk(
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('name', response.data.name)
       }
-
       await action()
     } catch (e: any) {
       console.error(e)

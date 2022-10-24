@@ -9,24 +9,27 @@ import images from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/registerRequest/authRequests'
 import { AppDispatch } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
+import { Checkbox } from '../../../UI/CheckBox/CheckBox'
 import { FormInput } from '../../../UI/Form/FormInput'
 import styles from './Register.module.scss'
 
 export interface IAuthForm {
-  userName: string | null
-  login: string | null
-  password: string | null
-  repeatPassword: string | null
+  name: string
+  login: string
+  password: string
+  repeatPassword: string
   token: string
 }
 
 const RegisterForm = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
-  const [inputTypePas, setType] = useState('password')
-  const [icon, setIcon] = useState(eyeOff)
+  const [isShow, setShow] = useState(false)
+  const [checked, setChecked] = useState(false)
 
   const onSubmit = (data: IAuthForm) => {
+    // checked && localStorage.setItem('data', JSON.stringify(data))
+
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {
       dispatch(setRegistrationAuthRequest(data))
     } else {
@@ -37,15 +40,13 @@ const RegisterForm = () => {
     }
   }
 
-  const handleToggle = () => {
-    if (inputTypePas === 'password') {
-      setIcon(eye)
-      setType('text')
-    } else {
-      setIcon(eyeOff)
-      setType('password')
-    }
+  const handleOnClickEye = () => {
+    setShow((prevState) => !prevState)
   }
+  const handleChange = () => {
+    setChecked(!checked)
+  }
+  const icon = isShow ? eye : eyeOff
 
   return (
     <div className={styles.container}>
@@ -55,7 +56,7 @@ const RegisterForm = () => {
             className={styles.regForm}
             onSubmit={methods.handleSubmit(onSubmit)}
           >
-            <div className={styles.logoSingUp}>Sign Up</div>
+            <div className={styles.logoSingUp}>Sign up</div>
             <FormInput
               rules={{
                 required: {
@@ -84,9 +85,9 @@ const RegisterForm = () => {
               }}
               name={'Password'}
               label={'Password'}
-              type={inputTypePas}
-              onEyeClick={handleToggle}
-              eyeIcon={icon}
+              type={isShow ? 'text' : 'password'}
+              onEyeClick={handleOnClickEye}
+              iconInput={icon}
             />
             <FormInput
               rules={{
@@ -101,12 +102,13 @@ const RegisterForm = () => {
               }}
               name={'Enter your password again'}
               label={'Enter your password again'}
-              type={inputTypePas}
-              onEyeClick={handleToggle}
-              eyeIcon={icon}
+              type={isShow ? 'text' : 'password'}
+              onEyeClick={handleOnClickEye}
+              iconInput={icon}
             />
             <div className={styles.checkBox}>
-              <input type="checkbox" /> I accept the agreement
+              <Checkbox checked={checked} onChange={handleChange} /> I accept I
+              accept the agreement
             </div>
             <BtnSave type="submit">Sing Up</BtnSave>{' '}
             <div className={styles.already}>

@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { eye } from 'react-icons-kit/feather/eye'
+import { eyeOff } from 'react-icons-kit/feather/eyeOff'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -15,11 +17,20 @@ const LoginPage = () => {
   const methods = useForm<IAuthForm>({ mode: 'onChange' })
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
-  const toMain = () => {
-    navigate('/teams')
+
+  const [isShow, setShow] = useState(false)
+
+  const handleOnClickEye = () => {
+    setShow((prevState) => !prevState)
   }
+  const icon = isShow ? eye : eyeOff
+
   const onSubmit = (data: IAuthForm) => {
     dispatch(setLoginAuthRequest({ data, action: toMain }))
+  }
+
+  const toMain = () => {
+    navigate('/teams')
   }
 
   return (
@@ -49,6 +60,9 @@ const LoginPage = () => {
               }}
               name={'Password'}
               label={'Password'}
+              type={isShow ? 'text' : 'password'}
+              onEyeClick={handleOnClickEye}
+              iconInput={icon}
             />
             <BtnSave type="submit">Sing In</BtnSave>{' '}
             <div className={styles.isMember}>
