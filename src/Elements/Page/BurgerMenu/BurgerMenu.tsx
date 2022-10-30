@@ -1,9 +1,11 @@
+import React from 'react'
+
 import { SignOutButton } from '../../../UI/Button/SignOutButton/SignOutButton'
 import { UserProfile } from '../../../UI/UserProfile/userProfile'
-import { SideBarHome } from '../HomePage/sidebar/SideBarHome'
+import { SideBarHome } from '../HomePage/Sidebar/SideBarHome'
 import styles from './BurgerMenu.module.scss'
 
-export const BurgerMenu = () => {
+export const BurgerMenu: React.FC = () => {
   return (
     <div className={styles.burgerContainer}>
       <div className={styles.userSideContainer}>

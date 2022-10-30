@@ -1,10 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import {
-  IPlayersCard,
-  IPlayersSlice,
-  playersSelector,
-} from '../getPlayers/getPlayersSlice'
 import { Status } from '../getTeams/TeamsSlice'
 import { getOnePlayerRequest } from './getOnePlayerRequest'
 
@@ -35,7 +30,7 @@ const initialState: IOnePlayerData = {
     avatarUrl: '',
     id: 0,
   },
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const getOnePlayerSlice = createSlice({

@@ -4,7 +4,7 @@ import { Status } from '../getTeams/TeamsSlice'
 import { addNewPlayersPostRequest } from './AsyncActionAddPlayers'
 
 const initialState = {
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const addNewPlayersSlice = createSlice({

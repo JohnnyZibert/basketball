@@ -1,7 +1,9 @@
+import React from 'react'
+
 import images from '../../../assets/img/images'
 import styles from './NotFound.module.scss'
 
-export const NotFoundPage = () => {
+export const NotFoundPage: React.FC = () => {
   return (
     <div className={styles.notFondContainer}>
       <img className={styles.notFondImg} src={images.NotFound} alt="NotFound" />

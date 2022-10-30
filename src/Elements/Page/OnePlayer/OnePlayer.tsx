@@ -5,18 +5,19 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { deleteIcon, editInfoIcon } from '../../../assets/img/images'
 import { deletePlayerRequest } from '../../../Store/deletePlayer/AsyncDeletePlayer'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
-import { playersSelector } from '../../../Store/getPlayers/getPlayersSlice'
+import { selectorOnePlayer } from '../../../Store/getOnePlayer/Selectors'
+import { playersSelector } from '../../../Store/getPlayers/Selectors'
 import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
-import { AppDispatch, RootState } from '../../../Store/store'
+import { AppDispatch } from '../../../Store/store'
 import { OnePage } from '../HomePage/OnePage/OnePage'
 import styles from './onePlayer.module.scss'
 
-export const OnePlayer = () => {
+export const OnePlayer: React.FC = () => {
   const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
   const data = useSelector(playersSelector)
-  const { name, number, avatarUrl, position, birthday, height, weight, team } =
-    useSelector((state: RootState) => state.getOnePlayer.data)
+  const { name, number, avatarUrl, position, birthday, height, weight } =
+    useSelector(selectorOnePlayer)
 
   const { id } = useParams()
   useEffect(() => {
@@ -27,7 +28,7 @@ export const OnePlayer = () => {
     if (id != null) {
       dispatch(getOnePlayerRequest(Number(id)))
     }
-  }, [id])
+  }, [dispatch, id])
 
   const handleOnClickDeletePlayer = async (id: number) => {
     await dispatch(deletePlayerRequest(Number(id)))

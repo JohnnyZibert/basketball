@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { Status } from '../getTeams/TeamsSlice'
 import { setRegistrationAuthRequest } from './authRequests'
 
-const initialState = {
-  authStatus: false,
+interface IRegister {
+  status: Status
+}
+
+const initialState: IRegister = {
+  status: Status.LOADING,
 }
 
 export const authSlice = createSlice({
@@ -12,16 +17,15 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(setRegistrationAuthRequest.pending, (state) => {
-      state.authStatus = true
+      state.status = Status.LOADING
     })
     builder.addCase(setRegistrationAuthRequest.fulfilled, (state) => {
-      state.authStatus = false
+      state.status = Status.SUCCESS
     })
     builder.addCase(setRegistrationAuthRequest.rejected, (state) => {
-      state.authStatus = false
+      state.status = Status.ERROR
     })
   },
 })
 
-// export const {  } = authSlice.actions;
-export const auth = authSlice.reducer
+export default authSlice.reducer

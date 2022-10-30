@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { getToken } from '../Store/LoginRequest/authLoginRequest'
+import { getToken } from '../Store/loginRequest/authLoginRequest'
 
 export const baseURL = 'http://dev.trainee.dex-it.ru/api/'
 

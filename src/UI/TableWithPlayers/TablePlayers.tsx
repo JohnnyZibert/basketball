@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 
 import { IPlayer } from '../../Store/getOnePlayer/getOnePlayerSlice'
-import { RootState } from '../../Store/store'
+import { selectGetPlayers } from '../../Store/getPlayers/Selectors'
 import { getAge } from '../../utils/utils'
 import styles from './TablePlayers.module.scss'
 
@@ -11,10 +11,8 @@ interface IProps {
 }
 
 export const TablePlayers: React.FC<IProps> = ({ id }) => {
-  const players = useSelector(
-    (state: RootState) => state.getPlayers.players.data
-  )
-  const teamPlayers = players.filter(
+  const { data } = useSelector(selectGetPlayers)
+  const teamPlayers = data.filter(
     (teamPlayer) => teamPlayer.team === Number(id && id)
   )
 

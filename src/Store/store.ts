@@ -8,15 +8,15 @@ import getOneTeamReducer from './getOneTeam/getOneTeamsSlice'
 import getPlayersReducer from './getPlayers/getPlayersSlice'
 import positionsPlayers from './getPositionsPlayers/PositionSlice'
 import teamsReducer from './getTeams/TeamsSlice'
-import authLoginReducer from './LoginRequest/authLoginSlice'
-import { auth } from './registerRequest/authSlice'
-import photosPlayersUrlReducer from './savePhotos/SavePhotoPlayers'
-import photosTeamsUrlReducer from './savePhotos/SavePhotoSlice'
+import authLoginReducer from './loginRequest/authLoginSlice'
+import authRegisterReducer from './registerRequest/authSlice'
+import photosTeamsUrlReducer from './savePhotoNewTeams/SavePhotoSlice'
+import photosPlayersUrlReducer from './savePhotosNewPlayers/SavePhotoPlayers'
 import searchReducer from './search/Search'
 
 export const store = configureStore({
   reducer: {
-    auth,
+    authRegister: authRegisterReducer,
     authLogin: authLoginReducer,
     getTeams: teamsReducer,
     photosTeamsUrl: photosTeamsUrlReducer,

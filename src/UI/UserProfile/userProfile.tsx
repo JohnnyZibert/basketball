@@ -1,9 +1,12 @@
+import React from 'react'
+
 import styles from './userProfile.module.scss'
 
-export const UserProfile = () => {
+export const UserProfile: React.FC = () => {
   const getName = localStorage.getItem('name')
   return (
     <div className={styles.userProfileContainer}>
+      <span className={styles.userNameSide}>{getName}</span>
       <div className={styles.userSidebar}>
         <svg
           className={styles.userIcon}
@@ -21,7 +24,6 @@ export const UserProfile = () => {
           />
         </svg>
       </div>
-      <span className={styles.userNameSide}>{getName}</span>
     </div>
   )
 }

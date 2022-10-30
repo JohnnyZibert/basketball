@@ -8,7 +8,23 @@
   margin-right: 12px;
 }
 .userProfileContainer{
-  width: 50%;
   display: flex;
-  margin-bottom: 27px;
+  width: 100%;
+  span {
+    margin-right: 20px;
+  }
+}
+.burgerMenuUser {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+@media (max-width: 550px) {
+  .userProfileContainer{
+    padding-bottom: 20px;
+    flex-flow: row-reverse;
+    justify-content: flex-end;
+  }
+
 }

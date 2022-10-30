@@ -4,7 +4,7 @@ import { Status } from '../getTeams/TeamsSlice'
 import { addNewTeamsPostRequest } from './AddNewTeamsRequest'
 
 const initialState = {
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const addNewTeamsSlice = createSlice({
@@ -15,7 +15,7 @@ const addNewTeamsSlice = createSlice({
     builder.addCase(addNewTeamsPostRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(addNewTeamsPostRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(addNewTeamsPostRequest.fulfilled, (state) => {
       state.status = Status.SUCCESS
     })
 
@@ -24,7 +24,5 @@ const addNewTeamsSlice = createSlice({
     })
   },
 })
-
-// export const {  } = addNewTeamsSlice.actions
 
 export default addNewTeamsSlice.reducer

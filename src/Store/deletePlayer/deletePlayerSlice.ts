@@ -30,7 +30,7 @@ const initialState: IOnePlayerData = {
     avatarUrl: '',
     id: 0,
   },
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const deletePlayerSlice = createSlice({

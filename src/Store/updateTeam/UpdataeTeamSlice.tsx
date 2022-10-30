@@ -4,7 +4,7 @@ import { Status } from '../getTeams/TeamsSlice'
 import { updateTeamRequest } from './UpdataeTeamRequest'
 
 export interface IOneTeam {
-  data: {
+  teamData: {
     name: string
     foundationYear: number
     division: string
@@ -15,7 +15,7 @@ export interface IOneTeam {
   status: Status
 }
 
-const initialState = {
+const initialState: IOneTeam = {
   teamData: {
     name: '',
     foundationYear: 0,
@@ -24,7 +24,7 @@ const initialState = {
     imageUrl: '',
     id: 0,
   },
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const updateTeamSlice = createSlice({
@@ -39,7 +39,7 @@ const updateTeamSlice = createSlice({
     builder.addCase(updateTeamRequest.pending, (state) => {
       state.status = Status.LOADING
     })
-    builder.addCase(updateTeamRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(updateTeamRequest.fulfilled, (state) => {
       state.status = Status.SUCCESS
     })
 
@@ -48,7 +48,5 @@ const updateTeamSlice = createSlice({
     })
   },
 })
-
-export const { updateTeam } = updateTeamSlice.actions
 
 export default updateTeamSlice.reducer

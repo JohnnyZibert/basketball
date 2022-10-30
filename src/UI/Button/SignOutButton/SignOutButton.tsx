@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { logoutSuccess } from '../../../Store/LoginRequest/authLoginSlice'
+import { logoutSuccess } from '../../../Store/loginRequest/authLoginSlice'
 import styles from './SignOutButton.module.scss'
 
 export const SignOutButton = () => {

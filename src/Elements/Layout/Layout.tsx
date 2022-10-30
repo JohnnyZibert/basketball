@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { getTeamsRequest } from '../../Store/getTeams/AsyncActionTeams'
-import { getToken } from '../../Store/LoginRequest/authLoginRequest'
+import { getToken } from '../../Store/loginRequest/authLoginRequest'
 import { useAppDispatch } from '../../Store/store'
 import { BurgerMenu } from '../Page/BurgerMenu/BurgerMenu'
-import { Header } from '../Page/HomePage/header/Header'
-import { SideBarHome } from '../Page/HomePage/sidebar/SideBarHome'
+import { Header } from '../Page/HomePage/Header/Header'
+import { SideBarHome } from '../Page/HomePage/Sidebar/SideBarHome'
 import styles from './Layout.module.scss'
 
 export const Layout = () => {

@@ -42,6 +42,7 @@ export const FormInput = ({
                     type={type}
                     value={props.field.value}
                     onChange={props.field.onChange}
+                    placeholder={''}
                   />
                 </div>
               </div>

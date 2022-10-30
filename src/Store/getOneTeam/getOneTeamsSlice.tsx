@@ -24,7 +24,7 @@ const initialState: IOneTeam = {
     imageUrl: '',
     id: 0,
   },
-  status: Status.SUCCESS,
+  status: Status.LOADING,
 }
 
 const getOneTeamSlice = createSlice({

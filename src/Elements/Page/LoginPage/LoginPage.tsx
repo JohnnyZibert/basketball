@@ -6,28 +6,26 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import images from '../../../assets/img/images'
-import { setLoginAuthRequest } from '../../../Store/LoginRequest/authLoginRequest'
+import { setLoginAuthRequest } from '../../../Store/loginRequest/authLoginRequest'
 import { AppDispatch } from '../../../Store/store'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
 import { FormInput } from '../../../UI/Form/FormInput'
 import { IAuthForm } from '../RegisterPage/RegistrationPage'
 import styles from './LoginPage.module.scss'
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const methods = useForm<IAuthForm>({ mode: 'onChange' })
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
-
   const [isShow, setShow] = useState(false)
 
   const handleOnClickEye = () => {
     setShow((prevState) => !prevState)
   }
-  const icon = isShow ? eye : eyeOff
-
   const onSubmit = (data: IAuthForm) => {
     dispatch(setLoginAuthRequest({ data, action: toMain }))
   }
+  const icon = isShow ? eye : eyeOff
 
   const toMain = () => {
     navigate('/teams')

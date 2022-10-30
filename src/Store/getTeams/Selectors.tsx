@@ -1,3 +1,3 @@
 import { RootState } from '../store'
 
-export const selectCurrentPage = (state: RootState) => state.getTeams.teams.page
+export const selectGetTeams = (state: RootState) => state.getTeams.teams

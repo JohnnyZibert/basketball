@@ -21,7 +21,7 @@ export interface IAuthForm {
   token: string
 }
 
-const RegisterForm = () => {
+const RegisterForm: React.FC = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
   const [isShow, setShow] = useState(false)

@@ -1,6 +1,6 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { RootState } from '../store'
+import { Status } from '../getTeams/TeamsSlice'
 import { getPlayersRequest } from './AsyncGetPlayers'
 export interface IPlayers {
   name: string
@@ -23,7 +23,7 @@ export interface IPlayersCard {
 
 export interface IPlayersSlice {
   players: IPlayersCard
-  status: string | null
+  status: Status
 }
 
 const initialState: IPlayersSlice = {
@@ -33,7 +33,7 @@ const initialState: IPlayersSlice = {
     count: 0,
     size: 6,
   },
-  status: null,
+  status: Status.LOADING,
 }
 
 const getPlayersSlice = createSlice({
@@ -49,15 +49,15 @@ const getPlayersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getPlayersRequest.pending, (state) => {
-      state.status = 'loading'
+      state.status = Status.LOADING
     })
     builder.addCase(getPlayersRequest.fulfilled, (state, { payload }) => {
-      state.status = 'success'
       state.players = payload
+      state.status = Status.SUCCESS
     })
 
     builder.addCase(getPlayersRequest.rejected, (state) => {
-      state.status = 'error'
+      state.status = Status.ERROR
     })
   },
 })
@@ -66,20 +66,3 @@ export const { setCurrentPagePlayers, setCurrentPageSize } =
   getPlayersSlice.actions
 
 export default getPlayersSlice.reducer
-
-const state = (store: RootState) => store
-
-export const playersSelector = createSelector(
-  state,
-  ({ getTeams, getPlayers }) => {
-    const playersTeam = getPlayers.players.data.map((player) => {
-      return {
-        ...player,
-        teamName:
-          getTeams.teams.data.find((team) => team.id === player.team)?.name ||
-          '',
-      }
-    })
-    return playersTeam
-  }
-)
