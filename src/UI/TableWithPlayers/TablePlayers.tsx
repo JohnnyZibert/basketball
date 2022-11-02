@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 
-import { IPlayer } from '../../Store/getOnePlayer/getOnePlayerSlice'
 import { selectGetPlayers } from '../../Store/getPlayers/Selectors'
+import { IPlayer } from '../../types/types'
 import { getAge } from '../../utils/utils'
 import styles from './TablePlayers.module.scss'
 
@@ -11,8 +11,8 @@ interface IProps {
 }
 
 export const TablePlayers: React.FC<IProps> = ({ id }) => {
-  const { data } = useSelector(selectGetPlayers)
-  const teamPlayers = data.filter(
+  const { players } = useSelector(selectGetPlayers)
+  const teamPlayers = players.data.filter(
     (teamPlayer) => teamPlayer.team === Number(id && id)
   )
 

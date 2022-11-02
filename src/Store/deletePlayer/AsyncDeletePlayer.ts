@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
-import { IPlayer } from './deletePlayerSlice'
+import { IPlayer } from '../../types/types'
 
 export const deletePlayerRequest = createAsyncThunk(
   'deletePlayerSlice/deletePlayerRequest',

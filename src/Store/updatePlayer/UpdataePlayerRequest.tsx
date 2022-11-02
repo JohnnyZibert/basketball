@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
-import { IUserForm } from '../../Elements/Page/HomePage/AddNewTeamsPage/AddNewTeamsPage'
-import { IPlayer } from '../deletePlayer/deletePlayerSlice'
+import { IPlayer, IUserForm } from '../../types/types'
 
 export const updatePlayerRequest = createAsyncThunk(
   'updatePlayerSlice/updatePlayerRequest',

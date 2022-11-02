@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { Status } from '../../types/types'
 import { setRegistrationAuthRequest } from './authRequests'
 
 interface IRegister {

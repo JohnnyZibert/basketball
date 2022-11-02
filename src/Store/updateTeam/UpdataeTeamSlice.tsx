@@ -1,19 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { IOneTeam, Status } from '../../types/types'
 import { updateTeamRequest } from './UpdataeTeamRequest'
-
-export interface IOneTeam {
-  teamData: {
-    name: string
-    foundationYear: number
-    division: string
-    conference: string
-    imageUrl: string
-    id: number
-  }
-  status: Status
-}
 
 const initialState: IOneTeam = {
   teamData: {

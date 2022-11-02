@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
-import { IUserForm } from '../../Elements/Page/HomePage/AddNewTeamsPage/AddNewTeamsPage'
-import { IOneTeam } from '../getOneTeam/getOneTeamsSlice'
+import { IOneTeam, IUserForm } from '../../types/types'
 
 export const updateTeamRequest = createAsyncThunk(
   'updateTeamSlice/updateTeamRequest',

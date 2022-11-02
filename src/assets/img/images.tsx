@@ -7,6 +7,7 @@ import imgReg from './differents/imgReg.png'
 import imgSingIn from './differents/imgSingIn.png'
 import NotFound from './differents/NotFound.png'
 import headerProfile from './icons/headerProfile.png'
+import loader from './icons/loading.gif'
 
 const images = {
   headerLogo,
@@ -16,6 +17,7 @@ const images = {
   imgSingIn,
   headerProfile,
   emptyPlayers,
+  loader,
 }
 export default images
 

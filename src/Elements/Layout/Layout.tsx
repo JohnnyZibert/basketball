@@ -5,8 +5,8 @@ import { getTeamsRequest } from '../../Store/getTeams/AsyncActionTeams'
 import { getToken } from '../../Store/loginRequest/authLoginRequest'
 import { useAppDispatch } from '../../Store/store'
 import { BurgerMenu } from '../Page/BurgerMenu/BurgerMenu'
-import { Header } from '../Page/HomePage/Header/Header'
-import { SideBarHome } from '../Page/HomePage/Sidebar/SideBarHome'
+import { Header } from '../Page/Header/Header'
+import { SideBarHome } from '../Page/Sidebar/SideBarHome'
 import styles from './Layout.module.scss'
 
 export const Layout = () => {

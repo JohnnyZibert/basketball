@@ -3,15 +3,15 @@ import { Route, Routes } from 'react-router-dom'
 
 import styles from './App.module.scss'
 import { Layout } from './Elements/Layout/Layout'
-import { AddNewPlayers } from './Elements/Page/HomePage/AddNewPlayersPage/AddNewPlayersPage'
-import { AddNewTeams } from './Elements/Page/HomePage/AddNewTeamsPage/AddNewTeamsPage'
-import { OneTeamPage } from './Elements/Page/HomePage/OneTeamPage/OneTeamPage'
-import { PlayersPage } from './Elements/Page/HomePage/PlayersPage/PlayersPage'
-import { TeamsPage } from './Elements/Page/HomePage/TeamsPage/TeamsPage'
+import { AddNewPlayers } from './Elements/Page/AddNewPlayersPage/AddNewPlayersPage'
+import { AddNewTeams } from './Elements/Page/AddNewTeamsPage/AddNewTeamsPage'
 import LoginPage from './Elements/Page/LoginPage/LoginPage'
 import { NotFoundPage } from './Elements/Page/NotFoundPage/NotFoundPage'
 import { OnePlayer } from './Elements/Page/OnePlayer/OnePlayer'
+import { OneTeamPage } from './Elements/Page/OneTeamPage/OneTeamPage'
+import { PlayersPage } from './Elements/Page/PlayersPage/PlayersPage'
 import RegisterForm from './Elements/Page/RegisterPage/RegistrationPage'
+import { TeamsPage } from './Elements/Page/TeamsPage/TeamsPage'
 
 function App() {
   return (

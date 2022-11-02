@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
-import { ITeamsCard } from './TeamsSlice'
+import { ITeamsCard } from '../../types/types'
 
 export const getTeamsRequest = createAsyncThunk(
   'teams/getTeamsRequest',

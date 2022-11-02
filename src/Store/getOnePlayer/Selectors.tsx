@@ -1,3 +1,3 @@
 import { RootState } from '../store'
 
-export const selectorOnePlayer = (state: RootState) => state.getOnePlayer.data
+export const selectOnePlayer = (state: RootState) => state.getOnePlayer.data

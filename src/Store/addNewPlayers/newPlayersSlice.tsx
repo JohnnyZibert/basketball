@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { IStatus, Status } from '../../types/types'
 import { addNewPlayersPostRequest } from './AsyncActionAddPlayers'
 
-const initialState = {
+const initialState: IStatus = {
   status: Status.LOADING,
 }
 

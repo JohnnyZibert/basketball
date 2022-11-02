@@ -2,7 +2,7 @@ import React from 'react'
 
 import { SignOutButton } from '../../../UI/Button/SignOutButton/SignOutButton'
 import { UserProfile } from '../../../UI/UserProfile/userProfile'
-import { SideBarHome } from '../HomePage/Sidebar/SideBarHome'
+import { SideBarHome } from '../Sidebar/SideBarHome'
 import styles from './BurgerMenu.module.scss'
 
 export const BurgerMenu: React.FC = () => {

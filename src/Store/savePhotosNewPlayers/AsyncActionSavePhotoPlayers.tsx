@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
 
-export interface postPhotosRequestPlayers {
+interface postPhotosRequestPlayers {
   file: FormData
   setValue: (url: string) => void
 }

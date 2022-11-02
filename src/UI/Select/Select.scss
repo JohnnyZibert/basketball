@@ -5,20 +5,18 @@
     box-shadow: none !important;
     border: 0.5px solid #D1D1D1 !important;
     background: #F6F6F6 !important;
-  }
-
-  &__control {
     cursor: pointer !important;
+
     &--is-focused {
       box-shadow: none !important;
     }
   }
 
-
   &__option {
     cursor: pointer !important;
     &--is-focused {
       background: #C60E2E !important;
+      color: #FFFFFF;
     }
     &:hover {
       box-shadow: none !important;

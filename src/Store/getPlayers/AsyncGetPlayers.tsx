@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import queryString from 'query-string'
 
 import { instance } from '../../api/instance'
-import { IPlayersCard } from './getPlayersSlice'
+import { IPlayersCard } from '../../types/types'
 
 interface IGetPlayers extends Partial<Pick<IPlayersCard, 'size' | 'page'>> {
   selectedOptions?: {

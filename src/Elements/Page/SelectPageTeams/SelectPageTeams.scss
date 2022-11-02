@@ -1,0 +1,72 @@
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.custom-select-player {
+  &-container {
+    > div {
+      outline: none !important;
+      box-shadow: none !important;
+
+    }
+  }
+
+  &__control {
+    width: 88px;
+    height: 40px;
+    border: 0.5px solid #D1D1D1 !important;
+    box-shadow: none !important;
+    &:active {
+      border-color: hsl(0, 0%, 80%) !important;
+    }
+  }
+
+  &__option {
+    &:hover {
+      background-color: #FF768E !important;
+    }
+    &--is-focused {
+      background: #C60E2E !important;
+    }
+
+    &:active {
+      background: #C60E2E !important;
+    }
+  }
+
+}
+
+@media (max-width: 550px) {
+  .custom-select-player {
+    &-container {
+      > div {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+    }
+    &__control {
+      width: 60px !important;
+      height: 28px !important;
+    }
+    &__value-container{
+      justify-content: center !important;
+    }
+    &__indicator {
+      padding: 0 !important;
+    }
+  }
+}
+
+
+//custom-select__indicator custom-select__dropdown-indicator css-tlfecz-indicatorContainer

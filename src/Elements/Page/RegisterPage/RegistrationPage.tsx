@@ -8,28 +8,19 @@ import { Link } from 'react-router-dom'
 import images from '../../../assets/img/images'
 import { setRegistrationAuthRequest } from '../../../Store/registerRequest/authRequests'
 import { AppDispatch } from '../../../Store/store'
+import { IAuthForm } from '../../../types/types'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
 import { Checkbox } from '../../../UI/CheckBox/CheckBox'
 import { FormInput } from '../../../UI/Form/FormInput'
 import styles from './Register.module.scss'
 
-export interface IAuthForm {
-  name: string
-  login: string
-  password: string
-  repeatPassword: string
-  token: string
-}
-
 const RegisterForm: React.FC = () => {
   const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
-  const [isShow, setShow] = useState(false)
-  const [checked, setChecked] = useState(false)
+  const [isShow, setShow] = useState<boolean>(false)
+  const [checked, setChecked] = useState<boolean>(false)
 
   const onSubmit = (data: IAuthForm) => {
-    // checked && localStorage.setItem('data', JSON.stringify(data))
-
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {
       dispatch(setRegistrationAuthRequest(data))
     } else {

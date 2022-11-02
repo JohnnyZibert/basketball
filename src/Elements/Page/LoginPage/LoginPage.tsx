@@ -2,22 +2,24 @@ import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { eye } from 'react-icons-kit/feather/eye'
 import { eyeOff } from 'react-icons-kit/feather/eyeOff'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import images from '../../../assets/img/images'
 import { setLoginAuthRequest } from '../../../Store/loginRequest/authLoginRequest'
-import { AppDispatch } from '../../../Store/store'
+import { AppDispatch, RootState } from '../../../Store/store'
+import { IAuthForm } from '../../../types/types'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
 import { FormInput } from '../../../UI/Form/FormInput'
-import { IAuthForm } from '../RegisterPage/RegistrationPage'
+import { ErrorModal } from '../../../UI/ModalErrorPassword/ErrorModal'
 import styles from './LoginPage.module.scss'
 
 const LoginPage: React.FC = () => {
   const methods = useForm<IAuthForm>({ mode: 'onChange' })
   const dispatch: AppDispatch = useDispatch()
+  const [isShow, setShow] = useState<boolean>(false)
   const navigate = useNavigate()
-  const [isShow, setShow] = useState(false)
+  const { status } = useSelector((state: RootState) => state.authLogin)
 
   const handleOnClickEye = () => {
     setShow((prevState) => !prevState)
@@ -73,6 +75,9 @@ const LoginPage: React.FC = () => {
         </FormProvider>
       </div>
       <div className={styles.imgContainer}>
+        <div className={styles.modalErrorContainer}>
+          {status === 'error' && <ErrorModal />}
+        </div>
         <img
           className={styles.imgSignIn}
           src={images.imgSingIn}

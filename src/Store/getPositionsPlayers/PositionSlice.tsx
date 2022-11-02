@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { Status } from '../../types/types'
 import { getPositionsRequest } from './getPositionRequest'
 
-const initialState = {
+interface IPositionPlayers {
+  positions: string[]
+  status: Status
+}
+
+const initialState: IPositionPlayers = {
   positions: [],
   status: Status.LOADING,
 }

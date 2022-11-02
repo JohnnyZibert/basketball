@@ -1,32 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { ITeamsSlice, Status } from '../../types/types'
 import { getTeamsRequest } from './AsyncActionTeams'
-
-export enum Status {
-  LOADING = 'loading',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
-export interface ITeam {
-  name: string
-  foundationYear: number
-  division: string
-  conference: string
-  imageUrl: string
-  id: number
-}
-
-export interface ITeamsCard {
-  data: ITeam[]
-  count: number
-  page: number
-  size: number
-}
-
-export interface ITeamsSlice {
-  teams: ITeamsCard
-  status: string | null
-}
 
 const initialState: ITeamsSlice = {
   teams: {
@@ -35,7 +10,7 @@ const initialState: ITeamsSlice = {
     count: 0,
     size: 6,
   },
-  status: null,
+  status: Status.LOADING,
 }
 
 const teamsSlice = createSlice({
@@ -51,15 +26,15 @@ const teamsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getTeamsRequest.pending, (state) => {
-      state.status = 'loading'
+      state.status = Status.LOADING
     })
     builder.addCase(getTeamsRequest.fulfilled, (state, { payload }) => {
-      state.status = 'success'
+      state.status = Status.SUCCESS
       state.teams = payload
     })
 
     builder.addCase(getTeamsRequest.rejected, (state) => {
-      state.status = 'error'
+      state.status = Status.ERROR
     })
   },
 })

@@ -1,22 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { IOneTeam, Status } from '../../types/types'
 import { getOneTeamRequest } from './getOneTeamRequest'
 
-export interface IOneTeam {
-  data: {
-    name: string
-    foundationYear: number
-    division: string
-    conference: string
-    imageUrl: string
-    id: number
-  }
-  status: Status
-}
-
 const initialState: IOneTeam = {
-  data: {
+  teamData: {
     name: '',
     foundationYear: 0,
     division: '',
@@ -32,7 +20,7 @@ const getOneTeamSlice = createSlice({
   initialState,
   reducers: {
     setOneTeam(state = initialState, { payload }) {
-      state.data = payload
+      state.teamData = payload
     },
   },
   extraReducers: (builder) => {

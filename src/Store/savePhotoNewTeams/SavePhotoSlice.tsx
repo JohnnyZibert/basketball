@@ -1,12 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { IPostPhoto, Status } from '../../types/types'
 import { savePhotosTeamRequest } from './AsyncActionSavePhoto'
-
-export interface IPostPhoto {
-  photosUpload: string
-  status: Status
-}
 
 const initialState: IPostPhoto = {
   photosUpload: ' ',

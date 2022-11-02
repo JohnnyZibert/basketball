@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { useParams } from 'react-router-dom'
 
 import { instance } from '../../api/instance'
-import { IOneTeam, setOneTeam } from './getOneTeamsSlice'
+import { IOneTeam } from '../../types/types'
+import { setOneTeam } from './getOneTeamsSlice'
 
 export const getOneTeamRequest = createAsyncThunk(
   'getOneTeam/getOneTeamRequest',

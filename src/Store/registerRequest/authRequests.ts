@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
 import { requestLinks } from '../../consts/links'
-import { IAuthForm } from '../../Elements/Page/RegisterPage/RegistrationPage'
+import { IAuthForm } from '../../types/types'
 
 export const setRegistrationAuthRequest = createAsyncThunk(
   'authSlice/setRegistrationAuthRequest',

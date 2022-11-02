@@ -1,30 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { IPlayersSlice, Status } from '../../types/types'
 import { getPlayersRequest } from './AsyncGetPlayers'
-export interface IPlayers {
-  name: string
-  number: number
-  position: string
-  team: number
-  birthday: string
-  height: number
-  weight: number
-  avatarUrl: string
-  id: number
-}
-
-export interface IPlayersCard {
-  data: IPlayers[]
-  count: number
-  page: number
-  size: number
-}
-
-export interface IPlayersSlice {
-  players: IPlayersCard
-  status: Status
-}
 
 const initialState: IPlayersSlice = {
   players: {

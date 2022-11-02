@@ -1,0 +1,41 @@
+.headerOneItemCard {
+  display: flex;
+  background-color: #FFFFFF;
+  padding: 24px 32px;
+  border-radius: 10px 10px 0 0;
+  justify-content: space-between;
+  span {
+    color: #9C9C9C;
+  }
+}
+.headerOneItemMenu {
+  color: #E4163A;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.editTools{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+.deleteBtn{
+  cursor: pointer;
+}
+.editBtn{
+  cursor: pointer;
+}
+
+
+@media (max-width: 550px) {
+
+  .headerOneItemMenu {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .editTools {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+}

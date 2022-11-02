@@ -2,13 +2,26 @@ import classNames from 'classnames'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { IPlayers } from '../../Store/getPlayers/getPlayersSlice'
-import { ITeam } from '../../Store/getTeams/TeamsSlice'
+import { IPlayers, ITeam } from '../../types/types'
 import styles from './InfoCard.module.scss'
 
 interface IProps {
   cardInfo: Array<IPlayers> | Array<ITeam>
 }
+// interface IPlayersAndITeam {
+//   foundationYear: string
+//   teamName: string
+//   imageUrl: string | undefined
+//   name: string
+//   number: number
+//   position: string
+//   team: number
+//   birthday: string
+//   height: number
+//   weight: number
+//   avatarUrl: string
+//   id: number
+// }
 
 export const InfoCard: React.FC<IProps> = ({ cardInfo }) => {
   const cx = classNames.bind(styles)

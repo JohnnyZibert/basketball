@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit'
 
 import { RootState } from '../store'
 
-export const selectGetPlayers = (state: RootState) => state.getPlayers.players
+export const selectGetPlayers = (state: RootState) => state.getPlayers
 
 const state = (store: RootState) => store
 

@@ -1,0 +1,94 @@
+.cardContainer {
+  display: flex;
+}
+
+.supraMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-top: 32px;
+  padding: 0 80px;
+
+  button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      padding-right: 11px;
+    }
+  }
+}
+
+.playersSelect {
+  display: flex;
+  margin-left: -267px,
+}
+
+
+.mainFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+
+}
+
+.playerName {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.playerNumber {
+  color: #FF5761;
+  font-weight: bold;
+}
+
+.teamName {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9C9C9C;
+}
+
+@media (max-width: 775px) {
+  .supraMain {
+    flex-direction: column;
+  }
+  .playersSelect {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .supraMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px auto;
+    max-width: 364px;
+    padding: 0 5px;
+
+    button {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  .playersSelect {
+    margin-left: 0;
+    margin-bottom: 16px;
+  }
+
+  .addButton {
+    width: 100%;
+  }
+
+  .mainFooter {
+    padding: 16px 10px;
+
+  }
+}

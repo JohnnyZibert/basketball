@@ -1,16 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Status } from '../getTeams/TeamsSlice'
+import { AuthState, Status } from '../../types/types'
 import { setLoginAuthRequest } from './authLoginRequest'
-
-export interface AuthState {
-  dataProfile: {
-    name: string
-    avatarUrl: string
-    token: string
-  }
-  status: Status
-}
 
 const initialState: AuthState = {
   dataProfile: {
