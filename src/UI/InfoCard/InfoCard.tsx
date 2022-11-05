@@ -1,12 +1,16 @@
 import classNames from 'classnames'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { IPlayers, ITeam } from '../../types/types'
+import { selectGetPlayers } from '../../Store/getPlayers/Selectors'
+import { selectGetTeams } from '../../Store/getTeams/Selectors'
+import { IPlayer, ITeam } from '../../types/types'
+import { Loader } from '../Loader/Loader'
 import styles from './InfoCard.module.scss'
 
 interface IProps {
-  cardInfo: Array<IPlayers> | Array<ITeam>
+  cardInfo: Array<IPlayer> | Array<ITeam>
 }
 // interface IPlayersAndITeam {
 //   foundationYear: string
@@ -24,6 +28,8 @@ interface IProps {
 // }
 
 export const InfoCard: React.FC<IProps> = ({ cardInfo }) => {
+  const { status } = useSelector(selectGetPlayers)
+  const statusTeam = useSelector(selectGetTeams)
   const cx = classNames.bind(styles)
   return (
     <div className={styles.cardContainer}>

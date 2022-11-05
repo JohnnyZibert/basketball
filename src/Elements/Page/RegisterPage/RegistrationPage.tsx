@@ -19,6 +19,7 @@ const RegisterForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const [isShow, setShow] = useState<boolean>(false)
   const [checked, setChecked] = useState<boolean>(false)
+  const { isValid } = methods.formState
 
   const onSubmit = (data: IAuthForm) => {
     if (methods.getValues('password') === methods.getValues('repeatPassword')) {
@@ -98,10 +99,12 @@ const RegisterForm: React.FC = () => {
               iconInput={icon}
             />
             <div className={styles.checkBox}>
-              <Checkbox checked={checked} onChange={handleChange} /> I accept I
-              accept the agreement
+              <Checkbox checked={checked} onChange={handleChange} /> I accept
+              the agreement
             </div>
-            <BtnSave type="submit">Sing Up</BtnSave>{' '}
+            <BtnSave type="submit" disabled={!isValid}>
+              Sing Up
+            </BtnSave>{' '}
             <div className={styles.already}>
               <div className={styles.alreadyText}>Already a member?</div>
               <div className={styles.toSignIn}>

@@ -38,7 +38,7 @@ export const PlayersPage = () => {
   const { players, status } = useSelector(selectGetPlayers)
 
   const [selectedOptions, setSelectedOptions] = useState<IOptionType[]>()
-  const [_, setIsSelectOpen] = useState<boolean>(false)
+  const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false)
 
   const optionsTeam: IOptionType[] = teamData.teams.data.map((team) => ({
     value: team.id,
@@ -65,6 +65,7 @@ export const PlayersPage = () => {
     const currentPage = data.selected + 1
     dispatch(setCurrentPagePlayers(currentPage))
   }
+
   const selectSizePage = (value: string) => {
     dispatch(setCurrentPageSize(Number(value)))
   }
@@ -117,6 +118,7 @@ export const PlayersPage = () => {
         <Pagination
           count={players.count}
           size={players.size}
+          page={players.page}
           handleOnClick={handlerOnClickPage}
         />
         <SelectPageTeams size={players.size} onChangeSize={selectSizePage} />

@@ -51,6 +51,7 @@
     "react-use-upload": "^1.0.0",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
+    "services": "^0.0.3",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0",
     "yarn": "^1.22.19",

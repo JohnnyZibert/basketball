@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
+import { getOneTeamRequest } from '../../../Store/getOneTeam/getOneTeamRequest'
+import { selectOneTeam } from '../../../Store/getOneTeam/Selectors'
+import { getPlayersRequest } from '../../../Store/getPlayers/AsyncGetPlayers'
+import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
+import { selectGetTeams } from '../../../Store/getTeams/Selectors'
 import { addNewTeamsPostRequest } from '../../../Store/newTeams/AddNewTeamsRequest'
 import { AppDispatch } from '../../../Store/store'
-import { IUserForm } from '../../../types/types'
+import { updateTeamRequest } from '../../../Store/updateTeam/UpdataeTeamRequest'
+import { ITeam, ITeamData, IUserForm } from '../../../types/types'
 import { BtnCancel } from '../../../UI/Button/CancelButton/BtnCancel'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
 import { DropZone } from '../../../UI/DropZone/DropZone'
@@ -12,17 +19,59 @@ import { FormInput } from '../../../UI/Form/FormInput'
 import { OneItemCardHeader } from '../../../UI/OneItemCardHeader/OneItemCardHeader'
 import styles from './AddNewTeamsPage.module.scss'
 
-export const AddNewTeams: React.FC = () => {
-  const methods = useForm<IUserForm>()
-  const { watch, reset } = methods
-  const dispatch: AppDispatch = useDispatch()
+interface IId {
+  id: number
+}
 
-  const onSubmit = (data: IUserForm) => {
-    if (data) {
-      dispatch(addNewTeamsPostRequest(data))
+export const AddNewTeams: React.FC = () => {
+  const methods = useForm({
+    defaultValues: {
+      name: '',
+      foundationYear: 0,
+      division: '',
+      conference: '',
+      imageUrl: '',
+    },
+  })
+  const { watch, reset, setValue, register } = methods
+  const dispatch: AppDispatch = useDispatch()
+  const { id } = useParams()
+
+  // const [editMode, setEditMode] = useState(false)
+  useEffect(() => {
+    if (id != null) {
+      dispatch(getOneTeamRequest(Number(id)))
     }
-    reset({})
+  }, [dispatch, id])
+
+  const teamData = useSelector(selectOneTeam)
+
+  const createTeam = (data: IUserForm) => {
+    dispatch(addNewTeamsPostRequest(data))
   }
+  const updateTeam = (data: {
+    division: string
+    conference: string
+    imageUrl: string
+    name: string
+    foundationYear: number
+    id: string | number
+  }) => {
+    dispatch(updateTeamRequest(data))
+  }
+  // IUserForm
+  const onSubmit = (data: IUserForm | ITeam) => {
+    return id ? updateTeam({ ...data, id }) : createTeam(data), reset({})
+  }
+
+  if (id) {
+    setValue('name', teamData.data.name)
+    setValue('foundationYear', teamData.data.foundationYear)
+    setValue('division', teamData.data.division)
+    setValue('conference', teamData.data.conference)
+    // setValue('imageUrl', data.imageUrl)
+  }
+  // get user and set form fields
 
   return (
     <div className={styles.contentContainer}>
@@ -42,10 +91,14 @@ export const AddNewTeams: React.FC = () => {
               </section>
             </div>
             <div className={styles.inputContainer}>
-              <FormInput name={'name'} label={'Name'} />
-              <FormInput name={'division'} label={'Division'} />
-              <FormInput name={'conference'} label={'Conference'} />
-              <FormInput name={'foundationYear'} label={'Foundation year'} />
+              <FormInput name={'name'} label={'Name'} id={id} />
+              <FormInput name={'division'} label={'Division'} id={id} />
+              <FormInput name={'conference'} label={'Conference'} id={id} />
+              <FormInput
+                name={'foundationYear'}
+                label={'Foundation year'}
+                id={id}
+              />
               <div className={styles.btnContainer}>
                 <BtnCancel>Cancel</BtnCancel>
                 <BtnSave type="submit">Save</BtnSave>

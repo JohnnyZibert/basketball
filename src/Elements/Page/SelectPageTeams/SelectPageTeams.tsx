@@ -4,13 +4,15 @@ import { CSSObject } from '@emotion/styled'
 import React, { useState } from 'react'
 import Select from 'react-select'
 
+import { IOptionType } from '../../../types/types'
+
 interface IProps {
   multi?: boolean
   size?: number
   onChangeSize: (value: string) => void
 }
 
-const options = [
+const options: IOptionType[] = [
   {
     value: '6',
     label: '6',
@@ -30,12 +32,10 @@ export const SelectPageTeams: React.FC<IProps> = ({
   size,
   onChangeSize,
 }) => {
-  const [currentPage, _] = useState<string>('6')
   const getValue = () => {
-    return currentPage
-      ? options.find((page) => page.value === String(size))
-      : '6'
+    return size ? options.find((option) => option.label === String(size)) : '6'
   }
+
   const customStyles = {
     option: (
       provided: CSSObject,
@@ -46,7 +46,6 @@ export const SelectPageTeams: React.FC<IProps> = ({
       background: state.isFocused ? '#C60E2E' : '#FFFFFF',
     }),
   }
-
   return (
     <Select
       classNamePrefix="custom-select-player"
@@ -62,6 +61,7 @@ export const SelectPageTeams: React.FC<IProps> = ({
       menuPlacement={'top'}
       isMulti={multi}
       styles={customStyles}
+      defaultInputValue={'6'}
     />
   )
 }

@@ -6,6 +6,7 @@ import styles from './Paginate.module.scss'
 interface IPaginationProps {
   count: number
   size: number
+  page: number
   handleOnClick: (data: { selected: number }) => void
 }
 
@@ -13,6 +14,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
   count,
   size,
   handleOnClick,
+  page,
 }) => {
   const pagesCount = Math.ceil(count / size)
 
@@ -56,6 +58,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
         pageRangeDisplayed={4} //количество страниц до ...
         marginPagesDisplayed={1} //количество страниц после ...
         pageCount={27} //количество отображаемых страниц в приложении
+        forcePage={page && page - 1}
       />
     </div>
   )

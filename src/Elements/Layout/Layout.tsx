@@ -15,13 +15,9 @@ export const Layout = () => {
 
   const [visibleMenu, setVisibleMenu] = useState(false)
 
-  const getTeams = () => {
-    dispatch(getTeamsRequest({}))
-  }
-
   useEffect(() => {
-    getTeams()
-  }, [dispatch])
+    dispatch(getTeamsRequest({}))
+  }, [])
 
   useEffect(() => {
     const token = getToken()

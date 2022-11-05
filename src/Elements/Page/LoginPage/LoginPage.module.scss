@@ -13,7 +13,7 @@
   font-size: 36px;
   line-height: 49px;
   color: #344472;
-
+  margin-bottom: 32px;
 }
 
 .imgContainer {
@@ -45,7 +45,6 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 25px;
 }
 
 .loginForm input {
@@ -70,15 +69,30 @@
   justify-content: center;
 
 }
+
 .modalErrorContainer {
   position: absolute;
   z-index: 15;
   background: #FF5761;
   border-radius: 4px;
-  top:0;
+  top: 0;
   right: 0;
   margin: 36px;
   transition: 0.5s;
+}
+
+.login {
+  margin-bottom: 24px;
+}
+
+.passwordContainer {
+  margin-bottom: 32px;
+}
+
+.errorPassword {
+  color: #FF768E;
+  font-size: 12px;
+  line-height: 24px;
 }
 
 .isMember {

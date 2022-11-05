@@ -17,7 +17,7 @@ export const OneTeamPage = () => {
   const dispatch: AppDispatch = useDispatch()
   const { id } = useParams()
   const navigate = useNavigate()
-  const { teamData } = useSelector(selectOneTeam)
+  const { data } = useSelector(selectOneTeam)
 
   useEffect(() => {
     if (id != null) {
@@ -37,17 +37,17 @@ export const OneTeamPage = () => {
   return (
     <div className={styles.headerContainer}>
       <OneItemCardHeader
-        name={teamData.name}
+        name={data.name}
         id={id}
         handleOnClickDeleteItem={handleOnClickDeleteTeam}
         pageName={'Teams'}
       />
       <OnePage
-        teamName={teamData.name}
-        division={teamData.division}
-        imageUrl={teamData.imageUrl}
-        foundationYear={teamData.foundationYear}
-        conference={teamData.conference}
+        teamName={data.name}
+        division={data.division}
+        imageUrl={data.imageUrl}
+        foundationYear={data.foundationYear}
+        conference={data.conference}
       />
       <TablePlayers id={id} />
     </div>

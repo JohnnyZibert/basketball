@@ -4,7 +4,7 @@ import { IOneTeam, Status } from '../../types/types'
 import { updateTeamRequest } from './UpdataeTeamRequest'
 
 const initialState: IOneTeam = {
-  teamData: {
+  data: {
     name: '',
     foundationYear: 0,
     division: '',
@@ -20,7 +20,7 @@ const updateTeamSlice = createSlice({
   initialState,
   reducers: {
     updateTeam(state = initialState, { payload }) {
-      state.teamData = payload
+      state.data = payload
     },
   },
   extraReducers: (builder) => {

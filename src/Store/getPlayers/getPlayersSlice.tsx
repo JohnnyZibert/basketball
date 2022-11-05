@@ -29,8 +29,8 @@ const getPlayersSlice = createSlice({
       state.status = Status.LOADING
     })
     builder.addCase(getPlayersRequest.fulfilled, (state, { payload }) => {
-      state.players = payload
       state.status = Status.SUCCESS
+      state.players = payload
     })
 
     builder.addCase(getPlayersRequest.rejected, (state) => {

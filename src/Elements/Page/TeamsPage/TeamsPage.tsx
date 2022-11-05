@@ -65,6 +65,7 @@ export const TeamsPage = () => {
           count={teams.count}
           size={teams.size}
           handleOnClick={handlerOnClickPage}
+          page={teams.page}
         />
         <SelectPageTeams size={teams.size} onChangeSize={selectSizePage} />
       </div>

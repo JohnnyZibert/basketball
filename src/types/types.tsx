@@ -1,8 +1,3 @@
-export interface IOnePlayerData {
-  data: IPlayer
-  status: Status
-}
-
 export enum Status {
   LOADING = 'loading',
   SUCCESS = 'success',
@@ -18,7 +13,16 @@ export interface ITeam {
   division: string
   conference: string
   imageUrl: string
-  id: number
+  id: number | string
+}
+export interface ITeamData {
+  data: {
+    name: string
+    foundationYear: number
+    division: string
+    conference: string
+    imageUrl: string
+  }
 }
 
 export interface ITeamsCard {
@@ -30,40 +34,6 @@ export interface ITeamsCard {
 
 export interface ITeamsSlice {
   teams: ITeamsCard
-  status: Status
-}
-export interface IPlayers {
-  name: string
-  number: number
-  position: string
-  team: number
-  birthday: string
-  height: number
-  weight: number
-  avatarUrl: string
-  id: number
-}
-
-export interface IPlayersCard {
-  data: IPlayers[]
-  count: number
-  page: number
-  size: number
-}
-
-export interface IPlayersSlice {
-  players: IPlayersCard
-  status: Status
-}
-export interface IOneTeam {
-  teamData: {
-    name: string
-    foundationYear: number
-    division: string
-    conference: string
-    imageUrl: string
-    id: number
-  }
   status: Status
 }
 
@@ -78,10 +48,27 @@ export interface IPlayer {
   avatarUrl: string
   id: number
 }
+
+export interface IPlayersCard {
+  data: IPlayer[]
+  count: number
+  page: number
+  size: number
+}
+
+export interface IPlayersSlice {
+  players: IPlayersCard
+  status: Status
+}
 export interface IOnePlayerData {
   data: IPlayer
   status: Status
 }
+export interface IOneTeam {
+  data: ITeam
+  status: Status
+}
+
 export interface IUserForm {
   name: string
   foundationYear: number

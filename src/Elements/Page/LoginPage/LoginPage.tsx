@@ -20,12 +20,14 @@ const LoginPage: React.FC = () => {
   const [isShow, setShow] = useState<boolean>(false)
   const navigate = useNavigate()
   const { status } = useSelector((state: RootState) => state.authLogin)
+  const { isValid } = methods.formState
 
   const handleOnClickEye = () => {
     setShow((prevState) => !prevState)
   }
   const onSubmit = (data: IAuthForm) => {
     dispatch(setLoginAuthRequest({ data, action: toMain }))
+    methods.reset()
   }
   const icon = isShow ? eye : eyeOff
 
@@ -42,29 +44,40 @@ const LoginPage: React.FC = () => {
             onSubmit={methods.handleSubmit(onSubmit)}
           >
             <div className={styles.logoSingIn}>Sign In</div>
-            <FormInput
-              rules={{
-                required: { value: true, message: 'Login is required field' },
-              }}
-              name={'Login'}
-              label={'Login'}
-            />
-            <FormInput
-              rules={{
-                required: {
-                  value: true,
-                  message: 'password is required field',
-                },
-                maxLength: { value: 15, message: 'Maximum 15 characters' },
-                minLength: { value: 5, message: 'Minimum 5 characters' },
-              }}
-              name={'Password'}
-              label={'Password'}
-              type={isShow ? 'text' : 'password'}
-              onEyeClick={handleOnClickEye}
-              iconInput={icon}
-            />
-            <BtnSave type="submit">Sing In</BtnSave>{' '}
+            <div className={styles.login}>
+              <FormInput
+                rules={{
+                  required: { value: true, message: 'Login is required field' },
+                }}
+                name={'Login'}
+                label={'Login'}
+              />
+            </div>
+            <div className={styles.passwordContainer}>
+              <FormInput
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'password is required field',
+                  },
+                  maxLength: { value: 15, message: 'Maximum 15 characters' },
+                  minLength: { value: 5, message: 'Minimum 5 characters' },
+                }}
+                name={'Password'}
+                label={'Password'}
+                type={isShow ? 'text' : 'password'}
+                onEyeClick={handleOnClickEye}
+                iconInput={icon}
+              />
+              {status === 'error' && (
+                <span className={styles.errorPassword}>
+                  Wrong password. Please, try again.
+                </span>
+              )}
+            </div>
+            <BtnSave type="submit" disabled={!isValid}>
+              Sing In
+            </BtnSave>{' '}
             <div className={styles.isMember}>
               <div className={styles.isMember}>Not a member yet?</div>
               <div className={styles.toSignUp}>

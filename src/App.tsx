@@ -23,7 +23,9 @@ function App() {
           <Route path="teams" element={<TeamsPage />} />
           <Route path="teams/:id" element={<OneTeamPage />} />
           <Route path="teams/newTeams" element={<AddNewTeams />} />
+          <Route path="teams/update/:id" element={<AddNewTeams />} />
           <Route path="players/addPlayers" element={<AddNewPlayers />} />
+          <Route path="players/update/:id" element={<AddNewPlayers />} />
         </Route>
         <Route path="register" element={<RegisterForm />} />
         <Route path="login" element={<LoginPage />} />
