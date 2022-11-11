@@ -21,10 +21,10 @@ export const TablePlayers: React.FC<IProps> = ({ id }) => {
       <div className={styles.tableContainer}>
         <div className={styles.tableHeader}>Roster</div>
         <Row
-          number={'#'}
+          number={Number('#')}
           avatarUrl={<span className={styles.headerPlayer}>Player</span>}
-          height={'Height'}
-          weight={'Weight'}
+          height={Number('Height')}
+          weight={Number('Weight')}
           age={'Age'}
         />
         {teamPlayers.map((el) => (

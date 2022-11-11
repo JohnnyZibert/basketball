@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
-import logger from 'redux-logger'
 
 import deleteTeamReducer from './deleteTeam/DeleteTeamSlice'
 import getOnePlayerReducer from './getOnePlayer/getOnePlayerSlice'
@@ -28,10 +27,6 @@ export const store = configureStore({
     positions: positionsPlayers,
     getOnePlayer: getOnePlayerReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      ...(process.env.NODE_ENV !== 'production' ? [logger] : [])
-    ),
 })
 
 export type RootState = ReturnType<typeof store.getState>

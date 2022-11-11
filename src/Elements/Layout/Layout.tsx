@@ -24,8 +24,10 @@ export const Layout = () => {
 
     if (!token) {
       navigate('/login')
+    } else {
+      navigate('/teams')
     }
-  }, [navigate])
+  }, [])
 
   return (
     <>

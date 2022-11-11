@@ -39,14 +39,14 @@ export interface ITeamsSlice {
 
 export interface IPlayer {
   name: string
-  number: number | string
+  number: number
   position: string
   team: number
   birthday: string
-  height: number | string
-  weight: number | string
+  height: number
+  weight: number
   avatarUrl: string
-  id: number
+  id: number | string
 }
 
 export interface IPlayersCard {
@@ -107,7 +107,12 @@ export interface IAddPlayersForm {
   avatarUrl: string
 }
 
-export interface IOptionType {
-  value: string | number
+export interface IOption {
+  value: string | number | undefined
+  label: string | number | undefined
+}
+
+export interface IOptionPageSize {
+  value: string
   label: string
 }

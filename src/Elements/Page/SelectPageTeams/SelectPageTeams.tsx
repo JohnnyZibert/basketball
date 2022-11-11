@@ -1,10 +1,10 @@
 import './SelectPageTeams.scss'
 
 import { CSSObject } from '@emotion/styled'
-import React, { useState } from 'react'
+import React from 'react'
 import Select from 'react-select'
 
-import { IOptionType } from '../../../types/types'
+import { IOptionPageSize } from '../../../types/types'
 
 interface IProps {
   multi?: boolean
@@ -12,7 +12,7 @@ interface IProps {
   onChangeSize: (value: string) => void
 }
 
-const options: IOptionType[] = [
+const options: IOptionPageSize[] = [
   {
     value: '6',
     label: '6',
@@ -62,6 +62,7 @@ export const SelectPageTeams: React.FC<IProps> = ({
       isMulti={multi}
       styles={customStyles}
       defaultInputValue={'6'}
+      ref={null}
     />
   )
 }

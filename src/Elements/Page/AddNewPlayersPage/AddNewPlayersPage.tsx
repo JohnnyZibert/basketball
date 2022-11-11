@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import { addNewPlayersPostRequest } from '../../../Store/addNewPlayers/AsyncActionAddPlayers'
+import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
+import { selectOnePlayer } from '../../../Store/getOnePlayer/Selectors'
 import { getPositionsRequest } from '../../../Store/getPositionsPlayers/getPositionRequest'
-import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
 import { selectGetTeams } from '../../../Store/getTeams/Selectors'
 import { AppDispatch, RootState } from '../../../Store/store'
-import { IAddPlayersForm, IOptionType } from '../../../types/types'
+import { updatePlayerRequest } from '../../../Store/updatePlayer/UpdataePlayerRequest'
+import { IAddPlayersForm, IOption } from '../../../types/types'
 import { BtnCancel } from '../../../UI/Button/CancelButton/BtnCancel'
 import { BtnSave } from '../../../UI/Button/SaveFormButton/BtnSave'
 import { DropZone } from '../../../UI/DropZone/DropZone'
@@ -19,38 +22,73 @@ import styles from './AddNewPlayersPage.module.scss'
 
 export const AddNewPlayers = () => {
   const methods = useForm<IAddPlayersForm>()
+  const { id } = useParams()
   const dispatch: AppDispatch = useDispatch()
   const { getValues, reset } = methods
-  const [selectedOptionsTeam] = useState<IOptionType>()
-  const [selectedOptionsPosition] = useState<IOptionType>()
   const { teams } = useSelector(selectGetTeams)
   const positionsPlayers = useSelector(
     (state: RootState) => state.positions.positions
   )
-
+  const { data: dataPlayers } = useSelector(selectOnePlayer)
   const photo = methods.watch('avatarUrl')
 
-  const optionsTeam: IOptionType[] = teams.data.map((team) => ({
+  const optionsTeam: IOption[] = teams.data.map((team) => ({
     value: team.id,
     label: team.name,
   }))
 
-  const optionsPlayers: IOptionType[] = positionsPlayers.map((position) => ({
+  const optionsPlayers: IOption[] = positionsPlayers.map((position) => ({
     value: position,
     label: position,
   }))
+
   useEffect(() => {
-    dispatch(getTeamsRequest({ page: teams.page, size: teams.size }))
-  }, [dispatch])
+    if (id != null) {
+      dispatch(getOnePlayerRequest(Number(id)))
+    }
+  }, [dispatch, id])
 
   useEffect(() => {
     dispatch(getPositionsRequest())
   }, [dispatch])
 
-  const onSubmit = (data: IAddPlayersForm) => {
-    data && dispatch(addNewPlayersPostRequest(data))
+  const createPlayer = (data: IAddPlayersForm) => {
+    dispatch(addNewPlayersPostRequest(data))
     reset({})
   }
+  const updateTeam = (data: {
+    name: string
+    number: number
+    position: string
+    team: number
+    birthday: string
+    height: number
+    weight: number
+    avatarUrl: string
+    id: number | string
+  }) => {
+    dispatch(updatePlayerRequest(data))
+    reset({})
+  }
+  const handleSetValue = useCallback(() => {
+    reset({ ...dataPlayers })
+  }, [reset, dataPlayers])
+
+  useEffect(() => {
+    id && handleSetValue()
+  }, [id, handleSetValue])
+
+  const onSubmit = (data: IAddPlayersForm) => {
+    console.log(data)
+    return id ? updateTeam({ ...data, id }) : createPlayer(data)
+  }
+
+  // const currentPosition = optionsPlayers.find((currenOption) =>
+  //   currenOption.label === dataPlayers.position ? dataPlayers.position : ''
+  // )
+  // const currentTeamPlayer = optionsTeam.find((currenTeam) =>
+  //   currenTeam.value === dataPlayers.team ? dataPlayers.team : ''
+  // )
 
   return (
     <div className={styles.contentContainer}>
@@ -77,31 +115,32 @@ export const AddNewPlayers = () => {
                 <section className={styles.sectionPosition}>
                   <label>Position</label>
                   <Controller
+                    name={'position'}
+                    control={methods.control}
                     render={({ field }) => (
                       <SelectPlayer
                         {...field}
                         options={optionsPlayers}
                         multi={false}
-                        value={selectedOptionsPosition}
+                        value={field.value as any}
                       />
                     )}
-                    name="position"
-                    control={methods.control}
                   />
                 </section>
                 <section>
                   <label>Team</label>
                   <Controller
+                    name="team"
+                    control={methods.control}
                     render={({ field }) => (
                       <SelectPlayer
                         {...field}
+                        value={field.value as any}
                         options={optionsTeam}
                         multi={false}
-                        value={selectedOptionsTeam}
+                        onChange={field.onChange}
                       />
                     )}
-                    name="team"
-                    control={methods.control}
                   />
                 </section>
               </div>

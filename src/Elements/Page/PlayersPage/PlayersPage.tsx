@@ -18,7 +18,7 @@ import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
 import { selectGetTeams } from '../../../Store/getTeams/Selectors'
 import { selectSearch } from '../../../Store/search/Selectors'
 import { useAppDispatch } from '../../../Store/store'
-import { IAddPlayersForm, IOptionType } from '../../../types/types'
+import { IAddPlayersForm, IOption } from '../../../types/types'
 import { AddButton } from '../../../UI/Button/AddButton/AddButton'
 import { InfoCard } from '../../../UI/InfoCard/InfoCard'
 import { Loader } from '../../../UI/Loader/Loader'
@@ -37,10 +37,10 @@ export const PlayersPage = () => {
   const { searchValue } = useSelector(selectSearch)
   const { players, status } = useSelector(selectGetPlayers)
 
-  const [selectedOptions, setSelectedOptions] = useState<IOptionType[]>()
+  const [selectedOptions, setSelectedOptions] = useState()
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false)
 
-  const optionsTeam: IOptionType[] = teamData.teams.data.map((team) => ({
+  const optionsTeam: IOption[] = teamData.teams.data.map((team) => ({
     value: team.id,
     label: team.name,
   }))
@@ -76,7 +76,7 @@ export const PlayersPage = () => {
     setIsSelectOpen(true)
   }
   const handleOnChange = (
-    option: (newValue: OnChangeValue<IOptionType, isMultiType>) => void
+    option: (newValue: OnChangeValue<IOption, isMultiType>) => void
   ) => {
     // @ts-ignore
     setSelectedOptions(option)

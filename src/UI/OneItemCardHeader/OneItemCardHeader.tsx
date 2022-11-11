@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { deleteIcon, editInfoIcon } from '../../assets/img/images'
@@ -35,7 +35,9 @@ export const OneItemCardHeader: React.FC<IProps> = ({
       </div>
       {!name.includes('Add new') && (
         <div className={styles.editTools}>
-          <Link to={id ? `/teams/update/${id}` : `/players/update/${id}`}>
+          <Link
+            to={pageNameItem ? `/teams/update/${id}` : `/players/update/${id}`}
+          >
             <div className={styles.editBtn} onClick={handleOnEdit}>
               {editInfoIcon}
             </div>

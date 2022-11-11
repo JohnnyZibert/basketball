@@ -3,28 +3,24 @@ import './Select.scss'
 import { CSSObject } from '@emotion/styled'
 import React from 'react'
 import { ControllerRenderProps } from 'react-hook-form'
-import ReactSelect, {
-  GroupBase,
-  OptionsOrGroups,
-  PropsValue,
-} from 'react-select'
+import ReactSelect, { GroupBase } from 'react-select'
 import { OnChangeValue } from 'react-select/dist/declarations/src/types'
 
-import { IAddPlayersForm, IOptionType } from '../../types/types'
+import { IAddPlayersForm, IOption } from '../../types/types'
 
 export type isMultiType = true | false
 
 type IProps = {
-  options: OptionsOrGroups<IOptionType, GroupBase<IOptionType>> | undefined
+  options: (IOption | GroupBase<IOption>)[]
   selectType?: '100' | '200'
   multi?: boolean
   // styles?: {
   //   option: (provided: CSSObject, state: { isSelected: number }) => CSSObject
   // }
-  value?: PropsValue<IOptionType> | undefined
+  value?: IOption
   // onBlur?: FocusEventHandler
   // onFocus?: FocusEventHandler
-  onChange?: (newValue: OnChangeValue<IOptionType, boolean>) => void
+  onChange?: (newValue: OnChangeValue<IOption, boolean>) => void
   field?: ControllerRenderProps<IAddPlayersForm, 'team'>
 }
 
@@ -99,6 +95,7 @@ export const SelectPlayer: React.FC<IProps> = ({
       components={{ ClearIndicator: () => null }}
       value={value}
       onChange={onChange}
+      ref={null}
     />
   )
 }
