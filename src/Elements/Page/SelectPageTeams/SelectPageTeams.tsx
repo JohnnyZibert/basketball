@@ -61,8 +61,6 @@ export const SelectPageTeams: React.FC<IProps> = ({
       menuPlacement={'top'}
       isMulti={multi}
       styles={customStyles}
-      defaultInputValue={'6'}
-      ref={null}
     />
   )
 }

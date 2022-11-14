@@ -13,10 +13,17 @@ export const BtnSave: FC<IProps> = ({
   children,
   type = 'button',
   onClick,
+  disabled,
   ...rest
 }) => {
   return (
-    <button className={styles.button} {...rest} type={type} onClick={onClick}>
+    <button
+      className={styles.button}
+      {...rest}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   )

@@ -14,7 +14,7 @@ export const SignOutButton = () => {
     navigate('/login')
   }
   return (
-    <>
+    <div onClick={handlerLogout} className={styles.signOutContainer}>
       <svg
         width="22"
         height="18"
@@ -29,9 +29,7 @@ export const SignOutButton = () => {
           fill="#FF768E"
         />
       </svg>
-      <div className={styles.btnSignOut} onClick={handlerLogout}>
-        Sign out
-      </div>
-    </>
+      <div className={styles.btnSignOut}>Sign out</div>
+    </div>
   )
 }

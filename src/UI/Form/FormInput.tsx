@@ -24,7 +24,6 @@ export const FormInput = ({
 }) => {
   const { control, formState } = useFormContext()
   // const [valueInput, setValueInput] = useState<string>()
-
   return (
     <Controller
       control={control}

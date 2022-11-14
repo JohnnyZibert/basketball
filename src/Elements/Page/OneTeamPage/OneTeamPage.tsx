@@ -37,7 +37,7 @@ export const OneTeamPage = () => {
   return (
     <div className={styles.headerContainer}>
       <OneItemCardHeader
-        name={data.name}
+        nameAdd={data.name}
         id={id}
         handleOnClickDeleteItem={handleOnClickDeleteTeam}
         pageName={'Teams'}
@@ -48,6 +48,7 @@ export const OneTeamPage = () => {
         imageUrl={data.imageUrl}
         foundationYear={data.foundationYear}
         conference={data.conference}
+        birthday={null}
       />
       <TablePlayers id={id} />
     </div>

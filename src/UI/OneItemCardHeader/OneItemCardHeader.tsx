@@ -5,7 +5,7 @@ import { deleteIcon, editInfoIcon } from '../../assets/img/images'
 import styles from '../../UI/OneItemCardHeader/OneItemCardHeader.module.scss'
 
 interface IProps {
-  name: string
+  nameAdd: string
   pageName: string
   handleOnClickDeleteItem?: MouseEventHandler<HTMLDivElement> | undefined
   id?: string | undefined
@@ -13,7 +13,7 @@ interface IProps {
 
 export const OneItemCardHeader: React.FC<IProps> = ({
   pageName,
-  name,
+  nameAdd,
   handleOnClickDeleteItem,
   id,
 }) => {
@@ -31,9 +31,9 @@ export const OneItemCardHeader: React.FC<IProps> = ({
       <div className={styles.headerOneItemMenu}>
         <Link to={pageNameItem ? '/teams' : '/players'}>{pageName}</Link>
         <span> / </span>
-        {name}
+        {nameAdd}
       </div>
-      {!name.includes('Add new') && (
+      {!nameAdd.includes('Add new') && (
         <div className={styles.editTools}>
           <Link
             to={pageNameItem ? `/teams/update/${id}` : `/players/update/${id}`}

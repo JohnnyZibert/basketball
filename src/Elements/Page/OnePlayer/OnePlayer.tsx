@@ -16,8 +16,7 @@ export const OnePlayer: React.FC = () => {
   const navigate = useNavigate()
   const dispatch: AppDispatch = useDispatch()
   const data = useSelector(playersSelector)
-  const { data: playerInfo } = useSelector(selectOnePlayer)
-
+  const playerInfo = useSelector(selectOnePlayer)
   const { id } = useParams()
   useEffect(() => {
     dispatch(getTeamsRequest({}))
@@ -39,20 +38,20 @@ export const OnePlayer: React.FC = () => {
     <>
       <div className={styles.headerContainer}>
         <OneItemCardHeader
-          name={playerInfo.name}
+          nameAdd={playerInfo.data.name}
           id={id}
           handleOnClickDeleteItem={handleOnClickDeletePlayer}
           pageName={'Players'}
         />
 
         <OnePage
-          playerName={playerInfo.name}
-          number={playerInfo.number}
-          position={playerInfo.position}
-          avatarUrl={playerInfo.avatarUrl}
-          birthday={playerInfo.birthday}
-          height={playerInfo.height}
-          weight={playerInfo.weight}
+          playerName={playerInfo.data.name}
+          number={playerInfo.data.number}
+          position={playerInfo.data.position}
+          avatarUrl={playerInfo.data.avatarUrl}
+          birthday={playerInfo.data.birthday}
+          height={playerInfo.data.height}
+          weight={playerInfo.data.weight}
           teamNameForPlayer={teamName}
         />
       </div>

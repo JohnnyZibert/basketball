@@ -95,7 +95,6 @@ export const SelectPlayer: React.FC<IProps> = ({
       components={{ ClearIndicator: () => null }}
       value={value}
       onChange={onChange}
-      ref={null}
     />
   )
 }

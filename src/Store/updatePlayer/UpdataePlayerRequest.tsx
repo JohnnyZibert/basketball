@@ -1,19 +1,22 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { instance } from '../../api/instance'
-import { IPlayer } from '../../types/types'
+import { IOption, IPlayer } from '../../types/types'
 
 export const updatePlayerRequest = createAsyncThunk(
   'updatePlayerSlice/updatePlayerRequest',
-  async (data: IPlayer) => {
-    const response = await instance.put<IPlayer>(
+  async (
+    data: Omit<IPlayer, 'position' | 'team'> & {
+      position: IOption
+      team: IOption
+    }
+  ) => {
+    const response = await instance.put(
       `http://dev.trainee.dex-it.ru/api/Player/Update`,
       {
         ...data,
-        // @ts-ignore
         position: data.position.value,
-        // @ts-ignore
-        team: +data.team.value,
+        team: Number(data?.team?.value || 0),
         number: +data.number,
         height: +data.height,
         weight: +data.weight,

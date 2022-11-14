@@ -6,7 +6,6 @@ import { ITeam } from '../../types/types'
 export const deleteTeamRequest = createAsyncThunk(
   'deleteTeamSlice/deleteTeamRequest',
   async (id: number) => {
-    console.log(id)
     const response = await instance.delete<ITeam>(
       `http://dev.trainee.dex-it.ru/api/Team/Delete?id=${id}`
     )

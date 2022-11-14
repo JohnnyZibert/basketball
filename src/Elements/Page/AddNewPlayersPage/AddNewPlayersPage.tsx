@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom'
 
 import { addNewPlayersPostRequest } from '../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
-import { selectOnePlayer } from '../../../Store/getOnePlayer/Selectors'
+import { selectBirthdayPlayer } from '../../../Store/getOnePlayer/Selectors'
+import { playersSelector } from '../../../Store/getPlayers/Selectors'
 import { getPositionsRequest } from '../../../Store/getPositionsPlayers/getPositionRequest'
 import { selectGetTeams } from '../../../Store/getTeams/Selectors'
 import { AppDispatch, RootState } from '../../../Store/store'
@@ -26,12 +27,13 @@ export const AddNewPlayers = () => {
   const dispatch: AppDispatch = useDispatch()
   const { getValues, reset } = methods
   const { teams } = useSelector(selectGetTeams)
+  const teamName = useSelector(playersSelector)
   const positionsPlayers = useSelector(
     (state: RootState) => state.positions.positions
   )
-  const { data: dataPlayers } = useSelector(selectOnePlayer)
-  const photo = methods.watch('avatarUrl')
 
+  const photo = methods.watch('avatarUrl')
+  const onePlayerData = useSelector(selectBirthdayPlayer)
   const optionsTeam: IOption[] = teams.data.map((team) => ({
     value: team.id,
     label: team.name,
@@ -41,9 +43,8 @@ export const AddNewPlayers = () => {
     value: position,
     label: position,
   }))
-
   useEffect(() => {
-    if (id != null) {
+    if (id !== null) {
       dispatch(getOnePlayerRequest(Number(id)))
     }
   }, [dispatch, id])
@@ -57,29 +58,41 @@ export const AddNewPlayers = () => {
     reset({})
   }
   const updateTeam = (data: {
-    name: string
+    birthday: Date | null
     number: number
-    position: string
-    team: number
-    birthday: string
-    height: number
-    weight: number
     avatarUrl: string
-    id: number | string
+    name: string
+    weight: number
+    position: { value: string; label: string }
+    team: { value: string; label: string }
+    id: string
+    height: number
   }) => {
     dispatch(updatePlayerRequest(data))
     reset({})
   }
   const handleSetValue = useCallback(() => {
-    reset({ ...dataPlayers })
-  }, [reset, dataPlayers])
+    reset({
+      ...onePlayerData,
+      position: {
+        value: onePlayerData.position,
+        label: onePlayerData.position,
+      },
+      team: {
+        value: String(onePlayerData.team),
+        label: String(
+          teamName.find((teamName) => teamName.team === onePlayerData.team)
+            ?.teamName
+        ),
+      },
+    })
+  }, [reset, onePlayerData])
 
   useEffect(() => {
     id && handleSetValue()
   }, [id, handleSetValue])
 
   const onSubmit = (data: IAddPlayersForm) => {
-    console.log(data)
     return id ? updateTeam({ ...data, id }) : createPlayer(data)
   }
 
@@ -89,11 +102,10 @@ export const AddNewPlayers = () => {
   // const currentTeamPlayer = optionsTeam.find((currenTeam) =>
   //   currenTeam.value === dataPlayers.team ? dataPlayers.team : ''
   // )
-
   return (
     <div className={styles.contentContainer}>
       <div className={styles.header}>
-        <OneItemCardHeader name={'Add new player'} pageName={'Players'} />
+        <OneItemCardHeader nameAdd={'Add new player'} pageName={'Players'} />
       </div>
 
       <div className={styles.wrapperContent}>
@@ -138,7 +150,6 @@ export const AddNewPlayers = () => {
                         value={field.value as any}
                         options={optionsTeam}
                         multi={false}
-                        onChange={field.onChange}
                       />
                     )}
                   />

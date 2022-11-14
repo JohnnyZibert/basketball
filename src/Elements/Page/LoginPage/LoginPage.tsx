@@ -15,12 +15,12 @@ import { ErrorModal } from '../../../UI/ModalErrorPassword/ErrorModal'
 import styles from './LoginPage.module.scss'
 
 const LoginPage: React.FC = () => {
-  const methods = useForm<IAuthForm>({ mode: 'onChange' })
+  const methods = useForm<IAuthForm>()
   const dispatch: AppDispatch = useDispatch()
   const [isShow, setShow] = useState<boolean>(false)
   const navigate = useNavigate()
   const { status } = useSelector((state: RootState) => state.authLogin)
-  const { isValid } = methods.formState
+  const isValid = !!methods.watch().login && !!methods.watch().password
 
   const handleOnClickEye = () => {
     setShow((prevState) => !prevState)
@@ -49,7 +49,7 @@ const LoginPage: React.FC = () => {
                 rules={{
                   required: { value: true, message: 'Login is required field' },
                 }}
-                name={'Login'}
+                name={'login'}
                 label={'Login'}
               />
             </div>
@@ -63,7 +63,7 @@ const LoginPage: React.FC = () => {
                   maxLength: { value: 15, message: 'Maximum 15 characters' },
                   minLength: { value: 5, message: 'Minimum 5 characters' },
                 }}
-                name={'Password'}
+                name={'password'}
                 label={'Password'}
                 type={isShow ? 'text' : 'password'}
                 onEyeClick={handleOnClickEye}
@@ -77,7 +77,7 @@ const LoginPage: React.FC = () => {
             </div>
             <BtnSave type="submit" disabled={!isValid}>
               Sing In
-            </BtnSave>{' '}
+            </BtnSave>
             <div className={styles.isMember}>
               <div className={styles.isMember}>Not a member yet?</div>
               <div className={styles.toSignUp}>

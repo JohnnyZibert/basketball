@@ -67,7 +67,7 @@ export const AddNewTeams: React.FC = () => {
   return (
     <div className={styles.contentContainer}>
       <div className={styles.header}>
-        <OneItemCardHeader name={'Add new team'} pageName={'Teams'} />
+        <OneItemCardHeader nameAdd={'Add new team'} pageName={'Teams'} />
       </div>
 
       <div className={styles.wrapperContent}>

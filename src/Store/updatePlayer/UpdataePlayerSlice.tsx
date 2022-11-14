@@ -9,7 +9,7 @@ const initialState: IOnePlayerData = {
     number: 0,
     position: '',
     team: 0,
-    birthday: '2022-10-11T13:52:59.386Z',
+    birthday: null,
     height: 0,
     weight: 0,
     avatarUrl: '',

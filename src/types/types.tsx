@@ -42,7 +42,7 @@ export interface IPlayer {
   number: number
   position: string
   team: number
-  birthday: string
+  birthday: Date | null
   height: number
   weight: number
   avatarUrl: string
@@ -99,9 +99,15 @@ export interface IPostPhoto {
 export interface IAddPlayersForm {
   name: string
   number: number
-  position: string
-  team: number
-  birthday: string
+  position: {
+    value: string
+    label: string
+  }
+  team: {
+    value: string
+    label: string
+  }
+  birthday: Date | null
   height: number
   weight: number
   avatarUrl: string

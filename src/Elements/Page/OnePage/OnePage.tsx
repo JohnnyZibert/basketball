@@ -13,7 +13,7 @@ interface IProps {
   number?: number | string
   position?: string
   avatarUrl?: string
-  birthday?: string
+  birthday: Date | null
   height?: number | string
   weight?: number | string
   teamNameForPlayer?: string | undefined
@@ -51,7 +51,7 @@ export const OnePage: React.FC<IProps> = ({
                 teamName
               ) : (
                 <div className={styles.nameTeam}>
-                  {playerName}{' '}
+                  {playerName}
                   <span className={styles.numberPlayer}>#{number}</span>
                 </div>
               )}
@@ -79,9 +79,7 @@ export const OnePage: React.FC<IProps> = ({
                 {playerName && (
                   <div className={styles.age}>
                     <div className={styles.label}> {playerName && 'Age'}</div>
-                    <div className={styles.personInfo}>
-                      {getAge(String(birthday))}
-                    </div>
+                    <div className={styles.personInfo}>{getAge(birthday)}</div>
                   </div>
                 )}
               </div>

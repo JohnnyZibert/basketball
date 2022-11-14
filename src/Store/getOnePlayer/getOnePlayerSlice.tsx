@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
 
 import { IOnePlayerData, Status } from '../../types/types'
 import { getOnePlayerRequest } from './getOnePlayerRequest'
@@ -9,7 +10,7 @@ const initialState: IOnePlayerData = {
     number: 0,
     position: '',
     team: 0,
-    birthday: '2022-10-11T13:52:59.386Z',
+    birthday: null,
     height: 0,
     weight: 0,
     avatarUrl: '',
@@ -22,8 +23,11 @@ const getOnePlayerSlice = createSlice({
   name: 'getOnePlayer',
   initialState,
   reducers: {
-    setOnePlayer(state = initialState, { payload }) {
-      state.data = payload
+    setOnePlayer: (state = initialState, { payload }) => {
+      state.data = {
+        ...payload,
+        birthday: moment(payload.birthday).format('yyyy-MM-D'),
+      }
     },
   },
   extraReducers: (builder) => {

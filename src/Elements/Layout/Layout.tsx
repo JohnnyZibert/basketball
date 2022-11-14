@@ -10,23 +10,23 @@ import { SideBarHome } from '../Page/Sidebar/SideBarHome'
 import styles from './Layout.module.scss'
 
 export const Layout = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
-
-  const [visibleMenu, setVisibleMenu] = useState(false)
-
-  useEffect(() => {
-    dispatch(getTeamsRequest({}))
-  }, [])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const token = getToken()
 
     if (!token) {
-      navigate('/login')
+      navigate('login')
     } else {
       navigate('/teams')
     }
+  }, [])
+
+  const [visibleMenu, setVisibleMenu] = useState(false)
+
+  useEffect(() => {
+    dispatch(getTeamsRequest({}))
   }, [])
 
   return (
