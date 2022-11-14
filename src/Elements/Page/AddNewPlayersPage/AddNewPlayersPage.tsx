@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Controller } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { addNewPlayersPostRequest } from '../../../Store/addNewPlayers/AsyncActionAddPlayers'
 import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerRequest'
@@ -23,6 +23,7 @@ import styles from './AddNewPlayersPage.module.scss'
 
 export const AddNewPlayers = () => {
   const methods = useForm<IAddPlayersForm>()
+  const navigate = useNavigate()
   const { id } = useParams()
   const dispatch: AppDispatch = useDispatch()
   const { getValues, reset } = methods
@@ -95,6 +96,9 @@ export const AddNewPlayers = () => {
   const onSubmit = (data: IAddPlayersForm) => {
     return id ? updateTeam({ ...data, id }) : createPlayer(data)
   }
+  const handleOnClickCancel = () => {
+    navigate('/players')
+  }
 
   // const currentPosition = optionsPlayers.find((currenOption) =>
   //   currenOption.label === dataPlayers.position ? dataPlayers.position : ''
@@ -164,7 +168,10 @@ export const AddNewPlayers = () => {
                 <FormInput name={'number'} label={'Number'} type="number" />
               </div>
 
-              <div className={styles.btnContainer}>
+              <div
+                className={styles.btnContainer}
+                onClick={handleOnClickCancel}
+              >
                 <BtnCancel>Cancel</BtnCancel>
                 <BtnSave
                   type="submit"

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { getOneTeamRequest } from '../../../Store/getOneTeam/getOneTeamRequest'
 import { selectOneTeam } from '../../../Store/getOneTeam/Selectors'
@@ -17,6 +17,7 @@ import { OneItemCardHeader } from '../../../UI/OneItemCardHeader/OneItemCardHead
 import styles from './AddNewTeamsPage.module.scss'
 
 export const AddNewTeams: React.FC = () => {
+  const navigate = useNavigate()
   const methods = useForm({
     defaultValues: {
       name: '',
@@ -64,6 +65,9 @@ export const AddNewTeams: React.FC = () => {
     id && handleSetValues()
   }, [handleSetValues, id])
 
+  const handleOnClickCancel = () => {
+    navigate('/teams')
+  }
   return (
     <div className={styles.contentContainer}>
       <div className={styles.header}>
@@ -90,7 +94,10 @@ export const AddNewTeams: React.FC = () => {
                 label={'Foundation year'}
                 id={id}
               />
-              <div className={styles.btnContainer}>
+              <div
+                className={styles.btnContainer}
+                onClick={handleOnClickCancel}
+              >
                 <BtnCancel>Cancel</BtnCancel>
                 <BtnSave type="submit">Save</BtnSave>
               </div>
