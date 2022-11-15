@@ -21,10 +21,10 @@ export const TablePlayers: React.FC<IProps> = ({ id }) => {
       <div className={styles.tableContainer}>
         <div className={styles.tableHeader}>Roster</div>
         <Row
-          number={Number('#')}
+          number={'#'}
           avatarUrl={<span className={styles.headerPlayer}>Player</span>}
-          height={Number('Height')}
-          weight={Number('Weight')}
+          height={'Height'}
+          weight={'Weight'}
           age={'Age'}
         />
         {teamPlayers.map((el) => (
@@ -40,8 +40,13 @@ export const TablePlayers: React.FC<IProps> = ({ id }) => {
 
 const Row = ({
   ...rest
-}: Partial<Omit<IPlayer, 'avatarUrl'>> & { avatarUrl: ReactNode } & {
+}: Partial<Omit<IPlayer, 'avatarUrl' | 'number' | 'height' | 'weight'>> & {
+  avatarUrl: ReactNode
+} & {
   age?: string
+  number: string | number
+  weight: string | number
+  height: string | number
 }) => {
   return (
     <div className={styles.row} style={{ background: 'white' }}>

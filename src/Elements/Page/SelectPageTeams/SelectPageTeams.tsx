@@ -27,11 +27,7 @@ const options: IOptionPageSize[] = [
   },
 ]
 
-export const SelectPageTeams: React.FC<IProps> = ({
-  multi,
-  size,
-  onChangeSize,
-}) => {
+export const SelectPageTeams: React.FC<IProps> = ({ size, onChangeSize }) => {
   const getValue = () => {
     return size ? options.find((option) => option.label === String(size)) : '6'
   }
@@ -59,7 +55,6 @@ export const SelectPageTeams: React.FC<IProps> = ({
       }}
       options={options}
       menuPlacement={'top'}
-      isMulti={multi}
       styles={customStyles}
     />
   )

@@ -7,6 +7,7 @@ import { getOnePlayerRequest } from '../../../Store/getOnePlayer/getOnePlayerReq
 import { selectOnePlayer } from '../../../Store/getOnePlayer/Selectors'
 import { playersSelector } from '../../../Store/getPlayers/Selectors'
 import { getTeamsRequest } from '../../../Store/getTeams/AsyncActionTeams'
+import { selectGetTeams } from '../../../Store/getTeams/Selectors'
 import { AppDispatch } from '../../../Store/store'
 import { OneItemCardHeader } from '../../../UI/OneItemCardHeader/OneItemCardHeader'
 import { OnePage } from '../OnePage/OnePage'
@@ -17,9 +18,11 @@ export const OnePlayer: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const data = useSelector(playersSelector)
   const playerInfo = useSelector(selectOnePlayer)
+  const { teams } = useSelector(selectGetTeams)
   const { id } = useParams()
+
   useEffect(() => {
-    dispatch(getTeamsRequest({}))
+    dispatch(getTeamsRequest({ page: teams.page, size: teams.size }))
   }, [dispatch])
 
   useEffect(() => {

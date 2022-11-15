@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { getTeamsRequest } from '../../Store/getTeams/AsyncActionTeams'
+import { selectGetTeams } from '../../Store/getTeams/Selectors'
 import { getToken } from '../../Store/loginRequest/authLoginRequest'
 import { useAppDispatch } from '../../Store/store'
 import { BurgerMenu } from '../Page/BurgerMenu/BurgerMenu'
@@ -12,21 +14,20 @@ import styles from './Layout.module.scss'
 export const Layout = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const teamData = useSelector(selectGetTeams)
 
   useEffect(() => {
     const token = getToken()
 
     if (!token) {
       navigate('login')
-    } else {
-      navigate('/teams')
     }
   }, [])
 
   const [visibleMenu, setVisibleMenu] = useState(false)
-
+  console.log(teamData.teams.size)
   useEffect(() => {
-    dispatch(getTeamsRequest({}))
+    teamData.teams.size && dispatch(getTeamsRequest({}))
   }, [])
 
   return (

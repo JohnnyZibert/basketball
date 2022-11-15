@@ -38,16 +38,21 @@ export const PlayersPage = () => {
   const { players, status } = useSelector(selectGetPlayers)
 
   const [selectedOptions, setSelectedOptions] = useState()
-  const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false)
+  // const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false)
 
   const optionsTeam: IOption[] = teamData.teams.data.map((team) => ({
     value: team.id,
     label: team.name,
   }))
+
   useEffect(() => {
-    dispatch(
-      getTeamsRequest({ page: teamData.teams.page, size: teamData.teams.size })
-    )
+    teamData.teams.page &&
+      dispatch(
+        getTeamsRequest({
+          page: teamData.teams.page,
+          size: teamData.teams.size,
+        })
+      )
   }, [dispatch])
 
   useEffect(() => {
@@ -60,6 +65,7 @@ export const PlayersPage = () => {
       })
     )
   }, [dispatch, players.page, players.size, selectedOptions, searchValue])
+  console.log(players.size)
 
   const handlerOnClickPage = (data: { selected: number }) => {
     const currentPage = data.selected + 1
@@ -69,12 +75,12 @@ export const PlayersPage = () => {
   const selectSizePage = (value: string) => {
     dispatch(setCurrentPageSize(Number(value)))
   }
-  const handleOnBlur = () => {
-    setIsSelectOpen(false)
-  }
-  const handleOnFocus = () => {
-    setIsSelectOpen(true)
-  }
+  // const handleOnBlur = () => {
+  //   setIsSelectOpen(false)
+  // }
+  // const handleOnFocus = () => {
+  //   setIsSelectOpen(true)
+  // }
   const handleOnChange = (
     option: (newValue: OnChangeValue<IOption, isMultiType>) => void
   ) => {
@@ -93,8 +99,8 @@ export const PlayersPage = () => {
             control={methods.control}
             multi={true}
             value={selectedOptions}
-            onBlur={handleOnBlur}
-            onFocus={handleOnFocus}
+            // onBlur={handleOnBlur}
+            // onFocus={handleOnFocus}
             // @ts-ignore
             onChange={handleOnChange}
             // selectType={'propsStyle'}

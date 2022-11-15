@@ -168,11 +168,8 @@ export const AddNewPlayers = () => {
                 <FormInput name={'number'} label={'Number'} type="number" />
               </div>
 
-              <div
-                className={styles.btnContainer}
-                onClick={handleOnClickCancel}
-              >
-                <BtnCancel>Cancel</BtnCancel>
+              <div className={styles.btnContainer}>
+                <BtnCancel onClick={handleOnClickCancel}>Cancel</BtnCancel>
                 <BtnSave
                   type="submit"
                   onClick={() => getValues(['position', 'team'])}
